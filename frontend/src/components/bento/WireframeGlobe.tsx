@@ -7,6 +7,11 @@ interface WireframeGlobeProps {
 }
 
 export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork }) => {
+  // Orbit: tilted ellipse a=95, b=68, tilt=-25°, centered (120,120).
+  // b=68 > Earth r=60 → orbit NEVER crosses the Earth body.
+  // Split into Front arc (right side, ON TOP) and Back arc (left side, BEHIND).
+  // No clipPath needed — pure SVG layer ordering.
+
   return (
     <div
       onClick={onInspectNetwork}
@@ -36,32 +41,25 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
         >
           <defs>
             {/* Full closed orbit path for satellite animateMotion */}
+            {/* Starts at t=270° (91.3, 58.4) = top-left of orbit */}
             <path
               id="orbitPath"
-              d="M 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 Z"
+              d="M 91.3 58.4 C 138.9 36.2, 190.2 45.9, 206.1 79.9 C 222.0 113.9, 196.3 159.4, 148.7 181.6 C 101.1 203.8, 49.8 194.1, 33.9 160.1 C 18.0 126.1, 43.7 80.6, 91.3 58.4 Z"
               fill="none"
             />
-
-            {/* Clip region: everything OUTSIDE the Earth circle (evenodd donut) */}
-            <clipPath id="outsideEarth">
-              <path
-                d="M 0 0 h 240 v 240 h -240 Z M 180 120 a 60 60 0 1 1 -120 0 a 60 60 0 1 1 120 0"
-                clipRule="evenodd"
-              />
-            </clipPath>
           </defs>
 
           {/* ============================================================ */}
-          {/* LAYER 1: Full orbit path drawn BEHIND Earth (dim, faint)     */}
-          {/* This shows faintly through Earth giving depth perception     */}
+          {/* LAYER 1: Back orbit arc — BEHIND Earth (dim, faint)          */}
+          {/* t=90° (148.7, 181.6) → t=180° → t=270° (91.3, 58.4)        */}
           {/* ============================================================ */}
           <path
-            d="M 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 Z"
+            d="M 148.7 181.6 C 101.1 203.8, 49.8 194.1, 33.9 160.1 C 18.0 126.1, 43.7 80.6, 91.3 58.4"
             fill="none"
             stroke="#00dc82"
             strokeWidth="1.2"
             strokeDasharray="4 2"
-            opacity="0.25"
+            opacity="0.15"
           >
             <animate
               attributeName="stroke-dashoffset"
@@ -210,17 +208,16 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           </circle>
 
           {/* ============================================================ */}
-          {/* LAYER 4: Front orbit arc (CLIPPED to outside Earth only)     */}
-          {/* Only the portions of the orbit outside the Earth are visible */}
+          {/* LAYER 4: Front orbit arc — ON TOP of Earth (bright)          */}
+          {/* t=270° (91.3, 58.4) → t=0° → t=90° (148.7, 181.6)          */}
           {/* ============================================================ */}
           <path
-            d="M 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 Z"
+            d="M 91.3 58.4 C 138.9 36.2, 190.2 45.9, 206.1 79.9 C 222.0 113.9, 196.3 159.4, 148.7 181.6"
             fill="none"
             stroke="#00dc82"
             strokeWidth="1.2"
             strokeDasharray="4 2"
             opacity="0.85"
-            clipPath="url(#outsideEarth)"
           >
             <animate
               attributeName="stroke-dashoffset"
@@ -232,8 +229,10 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           </path>
 
           {/* ============================================================ */}
-          {/* LAYER 5: Satellite (visible outside Earth, hidden inside)    */}
-          {/* Orbit fractions: visible 0.093-0.407 and 0.593-0.907        */}
+          {/* LAYER 5: Satellite orbiting along the full path              */}
+          {/* Path starts at t=270° (top-left). Front arc = first half,    */}
+          {/* Back arc = second half. Satellite visible on front, hidden   */}
+          {/* on back.                                                      */}
           {/* ============================================================ */}
           <g>
             <animateMotion
@@ -244,11 +243,11 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
               <mpath href="#orbitPath" />
             </animateMotion>
 
-            {/* Opacity: hidden when inside Earth, visible when outside */}
+            {/* Opacity: visible on front arc (first ~50%), hidden on back (~50%) */}
             <animate
               attributeName="opacity"
-              values="0; 0; 1; 1; 0; 0; 1; 1; 0; 0"
-              keyTimes="0; 0.08; 0.10; 0.39; 0.42; 0.58; 0.60; 0.89; 0.92; 1"
+              values="1; 1; 0; 0; 1"
+              keyTimes="0; 0.48; 0.50; 0.98; 1"
               dur="8s"
               repeatCount="indefinite"
             />
