@@ -2,7 +2,7 @@
 
 > **Research Paper**: *A Secure and Scalable Hybrid Classical–Post-Quantum Cryptographic Framework for Quantum-Resilient Blockchain Systems*  
 > **Author**: Md. Tanvir Hasan  
-> **Affiliation**: Department of Software Engineering, Daffodil International University, Savar, Dhaka 1216, Bangladesh  
+> **Affiliation**: Department of Computer Science Engineering, Daffodil International University, Savar, Dhaka 1216, Bangladesh  
 > **ORCID**: [0009-0008-9130-3360](https://orcid.org/0009-0008-9130-3360)
 
 ---

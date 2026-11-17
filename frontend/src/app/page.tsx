@@ -33,7 +33,7 @@ export default function Home() {
           <div className="rounded-2xl bg-[#0b0e14] border border-[#161d27] p-4 flex items-center justify-between text-xs font-mono">
             <div>
               <div className="text-slate-200 font-bold">Md. Tanvir Hasan</div>
-              <div className="text-[11px] text-slate-500">Daffodil International University</div>
+              <div className="text-[11px] text-slate-500">Dept. of Computer Science Engineering, DIU</div>
             </div>
             <a
               href="https://orcid.org/0009-0008-9130-3360"

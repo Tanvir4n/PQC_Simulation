@@ -7,7 +7,7 @@ Author: Md. Tanvir Hasan (Daffodil International University)
 PAPER_METADATA = {
     "title": "A Secure and Scalable Hybrid Classical–Post-Quantum Cryptographic Framework for Quantum-Resilient Blockchain Systems",
     "author": "Md. Tanvir Hasan",
-    "affiliation": "Daffodil International University, Savar, Dhaka 1216, Bangladesh",
+    "affiliation": "Department of Computer Science Engineering, Daffodil International University, Savar, Dhaka 1216, Bangladesh",
     "orcid": "0009-0008-9130-3360",
     "email": "hasan23105101461@diu.edu.bd",
     "classical_algorithm": "ECDSA over secp256k1",

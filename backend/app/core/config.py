@@ -10,7 +10,7 @@ class Settings:
     VERSION: str = "1.0.0"
     DESCRIPTION: str = "Interactive Hybrid Blockchain Research Simulation & Visualization Platform"
     AUTHOR: str = "Md. Tanvir Hasan"
-    AFFILIATION: str = "Daffodil International University"
+    AFFILIATION: str = "Department of Computer Science Engineering, Daffodil International University"
     ORCID: str = "0009-0008-9130-3360"
     
     API_PREFIX: str = "/api"

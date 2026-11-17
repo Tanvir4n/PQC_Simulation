@@ -217,7 +217,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </a>
           </div>
           <div className="text-xs font-semibold text-slate-200 mt-1">Md. Tanvir Hasan</div>
-          <div className="text-[11px] text-slate-400">Daffodil International Univ.</div>
+          <div className="text-[11px] text-slate-400">Dept. of Computer Science Engineering, DIU</div>
           <div className="mt-2 text-[10px] text-slate-400 font-mono">
             ECDSA + ML-DSA-65 (FIPS 204)
           </div>
