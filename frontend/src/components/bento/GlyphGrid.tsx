@@ -56,16 +56,14 @@ export const GlyphGrid: React.FC<{ onSelectGlyph?: (id: string) => void }> = ({ 
               onMouseEnter={() => setActiveIdx(idx)}
               onMouseLeave={() => setActiveIdx(null)}
               onClick={() => onSelectGlyph?.(g.id)}
-              className={`cursor-pointer rounded-xl h-14 flex flex-col items-center justify-center border transition-all ${
-                isActive
+              className={`cursor-pointer rounded-xl h-14 flex flex-col items-center justify-center border transition-all ${isActive
                   ? "dark:bg-[#00dc82]/10 bg-emerald-50 border-[#00dc82] shadow-sm shadow-[#00dc82]/30 scale-105"
                   : "dark:bg-[#080b0f] bg-slate-50 dark:border-[#161d27] border-slate-200 hover:border-slate-300 dark:hover:border-[#263344]"
-              }`}
+                }`}
             >
               <span
-                className={`text-base font-bold transition-colors flex items-center justify-center h-5 ${
-                  isActive ? "text-[#00dc82]" : "dark:text-slate-300 text-slate-700"
-                }`}
+                className={`text-base font-bold transition-colors flex items-center justify-center h-5 ${isActive ? "text-[#00dc82]" : "dark:text-slate-300 text-slate-700"
+                  }`}
               >
                 {g.symbol}
               </span>
