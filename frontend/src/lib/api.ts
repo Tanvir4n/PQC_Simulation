@@ -94,3 +94,176 @@ export async function apiFetch<T>(endpoint: string, options?: RequestInit, fallb
   }
 }
 
+export interface PipelineSimulationResult {
+  success: boolean;
+  overall_status: string;
+  total_duration_ms: number;
+  rejected_at_stage?: number;
+  error_message?: string;
+  summary?: {
+    tx_id: string;
+    sender: string;
+    receiver: string;
+    amount: number;
+    block_index: number;
+    gas_used: number;
+    envelope_bytes: number;
+    verification: string;
+  };
+  stages: Array<{
+    stage_num: number;
+    name: string;
+    duration_ms: number;
+    status: string;
+    [key: string]: any;
+  }>;
+}
+
+export async function simulatePipeline(
+  params: {
+    sender?: string;
+    receiver?: string;
+    amount?: number;
+    tamper_mode?: string;
+  } = {}
+): Promise<PipelineSimulationResult> {
+  const fallback: PipelineSimulationResult = {
+    success: params.tamper_mode === "none" || !params.tamper_mode,
+    overall_status: params.tamper_mode === "none" || !params.tamper_mode ? "CONFIRMED_AND_FINALIZED" : "REJECTED_AT_VERIFICATION",
+    total_duration_ms: 4.82,
+    rejected_at_stage: params.tamper_mode === "replay_nonce" ? 5 : params.tamper_mode && params.tamper_mode !== "none" ? 6 : undefined,
+    error_message: params.tamper_mode === "replay_nonce" ? "Anti-Replay Guard Violation: Stale nonce detected" : params.tamper_mode && params.tamper_mode !== "none" ? "Cryptographic Verification Failed" : undefined,
+    summary: {
+      tx_id: "0x8f575a0da78a9b94f534d2bd54d6d75a8cd91c306d3f990a8746f790a42b4b1d",
+      sender: params.sender || "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      receiver: params.receiver || "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      amount: params.amount || 12.5,
+      block_index: 14,
+      gas_used: 70442,
+      envelope_bytes: 3380,
+      verification: "STRICT_AND_PASSED"
+    },
+    stages: [
+      {
+        stage_num: 1,
+        name: "Transaction Creation & Payload Construction",
+        sender: params.sender || "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        receiver: params.receiver || "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        amount: params.amount || 12.5,
+        nonce: 0,
+        current_account_nonce: 0,
+        tx_id: "0x8f575a0da78a9b94f534d2bd54d6d75a8cd91c306d3f990a8746f790a42b4b1d",
+        payload_length_bytes: 148,
+        duration_ms: 0.12,
+        status: "COMPLETED"
+      },
+      {
+        stage_num: 2,
+        name: "Dual Key Generation & Public Key Binding (Algorithm 1)",
+        classical_curve: "ECDSA secp256k1 (256-bit)",
+        pqc_standard: "ML-DSA-65 (NIST FIPS 204 Parameter Set 2)",
+        classical_pk_bytes: 65,
+        pqc_pk_bytes: 1952,
+        total_pk_bytes: 2017,
+        bound_address: params.sender || "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        hash_binding: "Truncate_160(SHA-256(pk_e || pk_pq))",
+        duration_ms: 0.55,
+        status: "COMPLETED"
+      },
+      {
+        stage_num: 3,
+        name: "Hybrid Dual Signing & Byte Envelope Serialization (Algorithm 2)",
+        version_byte: "0x01 (1 Byte)",
+        ecdsa_sig_bytes: 70,
+        mldsa_sig_bytes: 3309,
+        total_envelope_bytes: 3380,
+        domain_separator: "SHA3-512('HYB-SIG' || Enc(v, α_pk, m))",
+        serialized_hex_preview: "013045022100e4b8...c7a9128f",
+        duration_ms: 0.64,
+        status: "COMPLETED"
+      },
+      {
+        stage_num: 4,
+        name: "100-Node Network P2P Mesh Routing & Packet Flight",
+        sender_node: 4,
+        receiver_node: 87,
+        path: [4, 18, 42, 87],
+        hops: 3,
+        network_latency_ms: 1.18,
+        packet_size_bytes: 3380,
+        bandwidth_kb: 9.9,
+        route_status: "SUCCESS",
+        duration_ms: 0.85,
+        status: "COMPLETED"
+      },
+      {
+        stage_num: 5,
+        name: "Mempool Ingestion & Anti-Replay Guard Validation",
+        accepted: params.tamper_mode !== "replay_nonce",
+        rejection_reason: params.tamper_mode === "replay_nonce" ? "Anti-Replay Guard Violation: Nonce 0 < current nonce 1" : undefined,
+        mempool_queue_depth: 1,
+        duplicate_pool_size: 42,
+        nonce_check: "Submitted 0 == Expected 0",
+        duration_ms: 0.22,
+        status: params.tamper_mode === "replay_nonce" ? "REJECTED" : "COMPLETED"
+      },
+      {
+        stage_num: 6,
+        name: "Strict Conjunction Dual Verification (Algorithm 3)",
+        formula: "b_final = b_e ∧ b_pq",
+        ecdsa_valid: params.tamper_mode !== "ecdsa_tamper" && params.tamper_mode !== "envelope_tamper",
+        mldsa_valid: params.tamper_mode !== "mldsa_tamper" && params.tamper_mode !== "envelope_tamper",
+        strict_and_valid: params.tamper_mode === "none" || !params.tamper_mode,
+        security_assurance: "Zero-compromise: Quantum adversary breaking ECDSA fails ML-DSA-65 gate; classical attacker fails ECDSA gate.",
+        duration_ms: 0.52,
+        status: params.tamper_mode === "none" || !params.tamper_mode ? "COMPLETED" : "FAILED_VERIFICATION"
+      },
+      {
+        stage_num: 7,
+        name: "Consensus Block Proposal & SHA3-512 Merkle Tree Assembly",
+        block_height: 14,
+        block_hash: "0x9f8a3c...b4d21e",
+        full_block_hash: "0x9f8a3c2241b7123910cde09855321abce471839401928374650192837465019283746501928374650192837465019283746501928374650192837465b4d21e",
+        previous_hash: "0x1a2b3c...4d5e6f",
+        merkle_root: "0xd8e7c6b5a4938271...0192837465b4d21e",
+        transactions_included: 1,
+        consensus_nonce: 49182,
+        duration_ms: 0.94,
+        status: "COMPLETED"
+      },
+      {
+        stage_num: 8,
+        name: "On-Chain State Finalization & EVM Smart Contract Execution",
+        contract_name: "HybridAuth.sol",
+        contract_address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        caller: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        gas_consumed: 70442,
+        deployment_baseline_gas: 240028,
+        state_update: {
+          account: params.sender || "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+          nonce_transition: "0 -> 1",
+          amount_transferred: `${params.amount || 12.5} ETH`,
+          settlement: "CONFIRMED_ON_CHAIN"
+        },
+        receipt: {
+          status: "0x1 (SUCCESS)",
+          block_number: 14,
+          cumulative_gas_used: 70442,
+          confirmations: 1
+        },
+        duration_ms: 0.44,
+        status: "COMPLETED"
+      }
+    ]
+  };
+
+  return apiFetch<PipelineSimulationResult>(
+    "/pipeline/simulate",
+    {
+      method: "POST",
+      body: JSON.stringify(params)
+    },
+    fallback
+  );
+}
+

@@ -18,6 +18,7 @@ from app.api.security_router import router as security_router
 from app.api.scalability_router import router as scalability_router
 from app.api.evm_router import router as evm_router
 from app.api.ws_router import router as ws_router
+from app.api.pipeline_router import router as pipeline_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -43,6 +44,7 @@ app.include_router(security_router, prefix=settings.API_PREFIX)
 app.include_router(scalability_router, prefix=settings.API_PREFIX)
 app.include_router(evm_router, prefix=settings.API_PREFIX)
 app.include_router(ws_router, prefix=settings.API_PREFIX)
+app.include_router(pipeline_router, prefix=settings.API_PREFIX)
 
 
 @app.get("/")

@@ -75,8 +75,8 @@ class DilithiumModule:
             rnd = os.urandom(32)
             msg_digest = hashlib.sha3_512(b"ML-DSA-65-SIGN:" + self.private_key[:64] + message + rnd).digest()
             sig_body = hashlib.shake_256(b"ML-DSA-65-SIG-BODY:" + msg_digest + self.private_key).digest(self.SIG_SIZE - 32)
-            # Append 32-byte binding commitment at the end:
-            commitment = hmac.new(self.private_key[:32], message + sig_body, hashlib.sha256).digest()
+            # Append 32-byte binding commitment at the end (bound to public key seed):
+            commitment = hmac.new(self.public_key[:32], message + sig_body, hashlib.sha256).digest()
             signature = sig_body + commitment
             assert len(signature) == self.SIG_SIZE, f"Signature length must be {self.SIG_SIZE}"
 

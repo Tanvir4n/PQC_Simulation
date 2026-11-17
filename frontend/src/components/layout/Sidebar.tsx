@@ -13,11 +13,13 @@ import {
   BookOpen,
   Sparkles,
   ExternalLink,
-  Lock
+  Lock,
+  Zap
 } from "lucide-react";
 import { QuantumLogo } from "@/components/brand/QuantumLogo";
 
 export type TabType =
+  | "pipeline"
   | "overview"
   | "network"
   | "crypto"
@@ -41,6 +43,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setIsLiveMode
 }) => {
   const navItems = [
+    {
+      id: "pipeline" as TabType,
+      label: "Master Pipeline (E2E)",
+      moduleNum: "★",
+      icon: Zap,
+      badge: "Creation→EVM"
+    },
     {
       id: "overview" as TabType,
       label: "Research Overview",

@@ -11,6 +11,7 @@ import { MigrationModule } from "@/components/modules/MigrationModule";
 import { SecurityModule } from "@/components/modules/SecurityModule";
 import { EVMModule } from "@/components/modules/EVMModule";
 import { OverviewModule } from "@/components/modules/OverviewModule";
+import { PipelineModule } from "@/components/modules/PipelineModule";
 
 interface ModuleModalProps {
   moduleId: string | null;
@@ -30,6 +31,7 @@ export const ModuleModal: React.FC<ModuleModalProps> = ({
   if (!moduleId) return null;
 
   const titles: Record<string, string> = {
+    pipeline: "Master Module: Full End-to-End Hybrid Transaction Lifecycle Simulator",
     overview: "Research Overview & Baseline Telemetry",
     crypto: "Module 02: Hybrid Cryptography & Byte Envelope Simulator",
     network: "Module 01: 100-Node Network Simulator & Directed Routing",
@@ -106,6 +108,7 @@ export const ModuleModal: React.FC<ModuleModalProps> = ({
 
         {/* Modal Content Scrollable Area */}
         <div className="flex-1 overflow-y-auto dark:bg-[#080b10] bg-[#f8fafc] text-slate-900 dark:text-slate-100 transition-colors">
+          {moduleId === "pipeline" && <PipelineModule isLiveMode={isLiveMode} />}
           {moduleId === "overview" && (
             <OverviewModule setActiveTab={onSelectModule as any} isLiveMode={isLiveMode} />
           )}

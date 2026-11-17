@@ -21,7 +21,7 @@ export default function Home() {
       <BentoHeader
         isLiveMode={isLiveMode}
         setIsLiveMode={setIsLiveMode}
-        onOpenQuickLab={() => setActiveModalModule("overview")}
+        onOpenQuickLab={() => setActiveModalModule("pipeline")}
       />
 
       {/* 2. Main Bento Grid (Inspired by Source / Vercel Dark & Day UI) */}
@@ -68,7 +68,7 @@ export default function Home() {
 
             <div className="pt-2">
               <button
-                onClick={() => setActiveModalModule("overview")}
+                onClick={() => setActiveModalModule("pipeline")}
                 className="w-full py-3.5 px-6 rounded-2xl bg-[#00dc82] hover:bg-[#00c574] text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-xl shadow-[#00dc82]/20 hover:scale-[1.01]"
               >
                 <span>Launch Interactive Simulation Lab</span>

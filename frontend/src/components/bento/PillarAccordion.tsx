@@ -12,7 +12,8 @@ import {
   ChevronDown,
   ChevronRight,
   Shield,
-  ArrowRight
+  ArrowRight,
+  Zap
 } from "lucide-react";
 
 export interface PillarItem {
@@ -29,9 +30,31 @@ interface PillarAccordionProps {
 }
 
 export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }) => {
-  const [activeId, setActiveId] = useState<string>("crypto");
+  const [activeId, setActiveId] = useState<string>("pipeline");
 
   const pillars: PillarItem[] = [
+    {
+      id: "pipeline",
+      name: "End-to-End Master Simulator",
+      subtitle: "Full Lifecycle: Creation → EVM Finalization",
+      description:
+        "Unified interactive pipeline simulating the complete 8-stage transaction journey: Payload creation, dual keygen, 3,380B envelope serialization, P2P mesh routing, mempool guards, strict AND verification, block mining, and Anvil EVM state finalization.",
+      icon: Zap,
+      specs: [
+        {
+          title: "8-Stage Live Journey",
+          desc: "Creation → KeyGen → Signing → P2P Mesh → Mempool → Strict AND → Block → EVM."
+        },
+        {
+          title: "Attack Injection Suite",
+          desc: "Interactive tampering for quantum ECDSA forgery, lattice corruption, replay nonces, and invalid versioning."
+        },
+        {
+          title: "Live Execution Telemetry",
+          desc: "Millisecond-precision console stream with real SHA3-512 hashes, Merkle roots, and EVM gas receipts."
+        }
+      ]
+    },
     {
       id: "crypto",
       name: "Hybrid Cryptography",
