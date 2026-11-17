@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/lib/theme";
 
 export const metadata: Metadata = {
   title: "QuantumResist | Hybrid Blockchain Research Simulator",
@@ -13,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark h-full antialiased">
-      <body className="min-h-full bg-[#080b11] text-slate-100 flex flex-col font-sans selection:bg-teal-500/30 selection:text-teal-200">
-        {children}
+    <html lang="en" className="dark h-full antialiased" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-sans selection:bg-[#00dc82]/30 selection:text-[#00dc82]">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

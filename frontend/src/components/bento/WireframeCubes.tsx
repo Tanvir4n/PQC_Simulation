@@ -102,7 +102,7 @@ export const WireframeCubes: React.FC<WireframeCubesProps> = ({ onInspectBlocks 
       onClick={onInspectBlocks}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="group cursor-pointer relative rounded-2xl bg-[#0b0e14] border border-[#161d27] hover:border-[#263344] p-5 flex flex-col justify-between overflow-hidden transition-all min-h-[260px]"
+      className="group cursor-pointer relative rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 hover:dark:border-[#263344] hover:border-slate-300 p-5 flex flex-col justify-between overflow-hidden transition-all min-h-[260px] shadow-md"
     >
       {/* Background ambient radial glow */}
       <div className="absolute inset-0 bg-radial from-[#00dc82]/5 via-transparent to-transparent pointer-events-none" />
@@ -111,11 +111,11 @@ export const WireframeCubes: React.FC<WireframeCubesProps> = ({ onInspectBlocks 
       <div className="relative z-10 flex items-center justify-between text-xs font-mono">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#00dc82] animate-pulse" />
-          <span className="text-[11px] text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] dark:text-slate-400 text-slate-500 uppercase tracking-wider font-semibold">
             SHA3-512 Block Architecture
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[#00dc82] bg-[#00dc82]/10 px-2 py-0.5 rounded border border-[#00dc82]/20">
+        <span className="text-[10px] font-mono text-[#00dc82] dark:bg-[#00dc82]/10 bg-emerald-50 px-2 py-0.5 rounded border border-[#00dc82]/20 font-bold">
           Merkle Engine
         </span>
       </div>
@@ -423,9 +423,9 @@ export const WireframeCubes: React.FC<WireframeCubesProps> = ({ onInspectBlocks 
       </div>
 
       {/* Footer Commitments Tag */}
-      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t border-[#161d27] pt-2">
-        <span className="text-slate-400">Merkle Tree Commitments</span>
-        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1">
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#161d27] border-slate-100 pt-2">
+        <span className="dark:text-slate-400 text-slate-500">Merkle Tree Commitments</span>
+        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1 font-bold">
           <span>[Inspect Blocks]</span>
           <span>→</span>
         </span>

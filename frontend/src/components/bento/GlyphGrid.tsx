@@ -40,10 +40,10 @@ export const GlyphGrid: React.FC<{ onSelectGlyph?: (id: string) => void }> = ({ 
   ];
 
   return (
-    <div className="h-full rounded-2xl bg-[#0b0e14] border border-[#161d27] p-4 flex flex-col justify-between">
-      <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
-        <span className="uppercase tracking-wider">Cryptographic Primitives</span>
-        <span className="text-[#00dc82]">12 Primitives</span>
+    <div className="h-full rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-4 flex flex-col justify-between shadow-md">
+      <div className="flex items-center justify-between text-[11px] font-mono dark:text-slate-400 text-slate-500 mb-2">
+        <span className="uppercase tracking-wider font-semibold">Cryptographic Primitives</span>
+        <span className="text-[#00dc82] font-bold">12 Primitives</span>
       </div>
 
       {/* 3x4 Glyph Grid */}
@@ -58,18 +58,18 @@ export const GlyphGrid: React.FC<{ onSelectGlyph?: (id: string) => void }> = ({ 
               onClick={() => onSelectGlyph?.(g.id)}
               className={`cursor-pointer rounded-xl h-14 flex flex-col items-center justify-center border transition-all ${
                 isActive
-                  ? "bg-[#00dc82]/10 border-[#00dc82] shadow-sm shadow-[#00dc82]/30 scale-105"
-                  : "bg-[#080b0f] border-[#161d27] hover:border-[#263344]"
+                  ? "dark:bg-[#00dc82]/10 bg-emerald-50 border-[#00dc82] shadow-sm shadow-[#00dc82]/30 scale-105"
+                  : "dark:bg-[#080b0f] bg-slate-50 dark:border-[#161d27] border-slate-200 hover:border-slate-300 dark:hover:border-[#263344]"
               }`}
             >
               <span
                 className={`text-base font-bold transition-colors flex items-center justify-center h-5 ${
-                  isActive ? "text-[#00dc82]" : "text-slate-300"
+                  isActive ? "text-[#00dc82]" : "dark:text-slate-300 text-slate-700"
                 }`}
               >
                 {g.symbol}
               </span>
-              <span className="text-[8px] font-mono text-slate-500 truncate max-w-[48px] mt-0.5">
+              <span className="text-[8px] font-mono dark:text-slate-500 text-slate-500 truncate max-w-[48px] mt-0.5">
                 {g.label}
               </span>
             </div>
@@ -78,11 +78,11 @@ export const GlyphGrid: React.FC<{ onSelectGlyph?: (id: string) => void }> = ({ 
       </div>
 
       {/* Active Glyph Info Footer */}
-      <div className="mt-2 pt-2 border-t border-[#161d27] text-[10px] font-mono flex items-center justify-between">
-        <span className="text-slate-400 truncate">
+      <div className="mt-2 pt-2 border-t dark:border-[#161d27] border-slate-100 text-[10px] font-mono flex items-center justify-between">
+        <span className="dark:text-slate-400 text-slate-500 truncate">
           {activeIdx !== null ? glyphs[activeIdx].desc : "Hover over primitive"}
         </span>
-        <span className="text-[#00dc82]">NIST/FIPS</span>
+        <span className="text-[#00dc82] font-bold">NIST/FIPS</span>
       </div>
     </div>
   );

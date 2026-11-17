@@ -10,7 +10,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
   return (
     <div
       onClick={onInspectCrypto}
-      className="group cursor-pointer relative h-full min-h-[260px] rounded-2xl bg-[#0b0e14] border border-[#161d27] hover:border-[#263344] p-5 flex flex-col justify-between overflow-hidden transition-all"
+      className="group cursor-pointer relative h-full min-h-[260px] rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 hover:dark:border-[#263344] hover:border-slate-300 p-5 flex flex-col justify-between overflow-hidden transition-all shadow-md"
     >
       {/* Ambient radial background glow */}
       <div className="absolute inset-0 bg-radial from-[#00dc82]/5 via-transparent to-transparent pointer-events-none" />
@@ -19,11 +19,11 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
       <div className="relative z-10 flex items-center justify-between text-xs font-mono">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#00dc82] animate-pulse" />
-          <span className="text-[11px] text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] dark:text-slate-400 text-slate-500 uppercase tracking-wider font-semibold">
             Hybrid Dual-Key Engine
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[#00dc82] bg-[#00dc82]/10 px-2 py-0.5 rounded border border-[#00dc82]/20">
+        <span className="text-[10px] font-mono text-[#00dc82] dark:bg-[#00dc82]/10 bg-emerald-50 px-2 py-0.5 rounded border border-[#00dc82]/20 font-bold">
           Strict AND Rule
         </span>
       </div>
@@ -31,7 +31,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
       {/* Central Visual: Monogram ASCII Fingerprint + Glowing Quantum Shield */}
       <div className="relative z-10 flex-1 flex items-center justify-center gap-6 py-4">
         {/* Left ASCII Monogram Art Box */}
-        <div className="p-3.5 rounded-xl bg-[#07090d] border border-[#141a24] font-mono text-[11px] leading-tight text-[#00dc82] select-none shadow-inner shadow-black/50 group-hover:border-[#00dc82]/40 transition-colors">
+        <div className="p-3.5 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#141a24] border-slate-200 font-mono text-[11px] leading-tight text-[#00dc82] select-none shadow-inner group-hover:border-[#00dc82]/40 transition-colors">
           <div className="opacity-90 hover:opacity-100 transition-opacity">|\ \ / /|</div>
           <div className="opacity-90 hover:opacity-100 transition-opacity">| \ V / |</div>
           <div className="opacity-70 text-[#00dc82]/70">|  | |  |</div>
@@ -73,7 +73,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
             {/* Outer Hexagon Shield */}
             <polygon
               points="50 4, 89 25, 89 75, 50 96, 11 75, 11 25"
-              fill="#080c10"
+              className="dark:fill-[#080c10] fill-white"
               stroke="url(#hexGrad)"
               strokeWidth="2.4"
             >
@@ -139,9 +139,9 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
       </div>
 
       {/* Footer Tag matching other bento cards */}
-      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t border-[#161d27] pt-2">
-        <span className="text-slate-400">ECDSA secp256k1 + ML-DSA-65</span>
-        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1">
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#161d27] border-slate-100 pt-2">
+        <span className="dark:text-slate-400 text-slate-500">ECDSA secp256k1 + ML-DSA-65</span>
+        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1 font-bold">
           <span>[Inspect Hybrid Auth]</span>
           <span>→</span>
         </span>

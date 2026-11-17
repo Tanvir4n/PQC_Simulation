@@ -60,81 +60,74 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
         setNodesData(data.nodes);
         setEdgesData(data.edges);
         setComposition(data.composition);
-        if (data.nodes.length > 0 && !selectedNode) {
-          setSelectedNode(data.nodes[0]);
-        }
+        setSelectedNode(data.nodes[0] || null);
       } else {
-        // Generate fallback 100 nodes locally if backend is offline
-        generateFallbackTopology(classicalRatio, hybridRatio, pqcRatio);
+        generateFallbackTopology(50, 50, 0);
       }
     } catch {
-      generateFallbackTopology(classicalRatio, hybridRatio, pqcRatio);
+      generateFallbackTopology(50, 50, 0);
     }
   };
 
-  const generateFallbackTopology = (cPct: number, hPct: number, pPct: number) => {
-    const total = cPct + hPct + pPct || 100;
-    const nC = Math.round(100 * (cPct / total));
-    const nH = Math.round(100 * (hPct / total));
-    const nP = 100 - (nC + nH);
+  const generateFallbackTopology = (c: number, h: number, p: number) => {
+    const total = 100;
+    const cCount = Math.round((c / 100) * total);
+    const hCount = Math.round((h / 100) * total);
+    const pCount = total - cCount - hCount;
 
-    const types = [
-      ...Array(nC).fill("classical"),
-      ...Array(nH).fill("hybrid"),
-      ...Array(nP).fill("pqc")
-    ];
+    const nodes: any[] = [];
+    const edges: any[] = [];
 
-    const fallbackNodes: any[] = [];
-    const fallbackEdges: any[] = [];
+    for (let i = 0; i < total; i++) {
+      let type = "classical";
+      if (i >= cCount && i < cCount + hCount) type = "hybrid";
+      else if (i >= cCount + hCount) type = "pqc";
 
-    const clusters = [
-      { cx: 300, cy: 300 },
-      { cx: 700, cy: 300 },
-      { cx: 500, cy: 600 },
-      { cx: 250, cy: 750 },
-      { cx: 750, cy: 750 }
-    ];
+      // Arrange in concentric spiral or circular mesh
+      const angle = (i / total) * 2 * Math.PI * 3;
+      const radius = 120 + (i / total) * 350;
+      const x = 500 + radius * Math.cos(angle);
+      const y = 400 + radius * Math.sin(angle);
 
-    for (let i = 0; i < 100; i++) {
-      const c = clusters[i % 5];
-      const r = 60 + Math.floor(i / 5) * 14;
-      const angle = i * 137.5 * (Math.PI / 180.0);
-      const x = c.cx + r * Math.cos(angle);
-      const y = c.cy + r * Math.sin(angle);
-
-      fallbackNodes.push({
+      nodes.push({
         id: `node-${i}`,
         numeric_id: i,
-        label: `Node #${i < 10 ? "0" + i : i} (${types[i].toUpperCase()})`,
-        type: types[i],
-        position: { x: Math.round(x), y: Math.round(y) },
-        ip: `192.168.${Math.floor(i / 25) + 1}.${(i % 25) + 10}`,
-        address: `0x7a${(i * 1234567).toString(16).padStart(38, "0")}`,
-        peers: [(i + 1) % 100, (i + 5) % 100],
-        processed_tx: Math.floor(Math.random() * 120),
-        rejected_tx: types[i] === "classical" ? Math.floor(Math.random() * 18) : 0
+        type,
+        x,
+        y,
+        ip: `10.240.${Math.floor(i / 254)}.${(i % 254) + 1}`,
+        address: `0x${i.toString(16).padStart(4, "0")}...${(i * 37).toString(16).padStart(4, "0")}`,
+        processed_tx: 100 + (i % 20) * 15,
+        rejected_tx: type === "classical" ? 42 : 0,
+        peers: [(i + 1) % total, (i + 5) % total, (i + 13) % total]
       });
 
-      if (i < 99) {
-        fallbackEdges.push({
-          id: `e${i}-${i + 1}`,
-          source: `node-${i}`,
-          target: `node-${i + 1}`,
-          delay_ms: 2.1
+      if (i > 0) {
+        edges.push({
+          id: `edge-${i - 1}-${i}`,
+          source: `node-${i - 1}`,
+          target: `node-${i}`
+        });
+      }
+      if (i % 5 === 0 && i >= 5) {
+        edges.push({
+          id: `edge-${i - 5}-${i}`,
+          source: `node-${i - 5}`,
+          target: `node-${i}`
         });
       }
     }
 
-    setNodesData(fallbackNodes);
-    setEdgesData(fallbackEdges);
-    setComposition({ classical: nC, hybrid: nH, pqc: nP });
-    setSelectedNode(fallbackNodes[0]);
+    setNodesData(nodes);
+    setEdgesData(edges);
+    setComposition({ classical: cCount, hybrid: hCount, pqc: pCount });
+    setSelectedNode(nodes[0]);
   };
 
   const handleUpdateRatios = async () => {
     try {
       const res = await apiFetch<any>(
-        "/network/update-ratios",
+        "/network/regenerate",
         {
           method: "POST",
           body: JSON.stringify({
@@ -189,6 +182,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
           receiver,
           path: [`node-${senderId}`, `node-${receiverId}`],
           numeric_path: [senderId, receiverId],
+          total_latency_ms: 2.45,
           hops: [
             {
               from: senderId,
@@ -200,50 +194,51 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
                 : null
             }
           ],
-          total_latency_ms: 2.45,
           rejection_reason: isFail
-            ? `Incompatible: Classical receiver Node #${receiverId} cannot parse ML-DSA-65.`
+            ? `Asymmetric Incompatibility: Receiver Node #${receiverId} is Classical (ECDSA only) and rejected the 3,380B Hybrid envelope.`
             : null
         });
       }
-    } catch (e: any) {
-      console.error(e);
+    } catch {
+      // Fallback
     } finally {
       setIsRouting(false);
     }
   };
 
-  // Convert nodes to React Flow format
+  // React Flow elements mapping
   const flowNodes: Node[] = useMemo(() => {
     return nodesData.map((n) => {
-      let bg = "bg-cyan-950/80 border-cyan-400 text-cyan-200 shadow-cyan-500/20";
-      let dotColor = "bg-cyan-400";
-      if (n.type === "hybrid") {
-        bg = "bg-teal-950/80 border-teal-400 text-teal-200 shadow-teal-500/20";
-        dotColor = "bg-teal-400";
-      } else if (n.type === "pqc") {
-        bg = "bg-purple-950/80 border-purple-400 text-purple-200 shadow-purple-500/20";
-        dotColor = "bg-purple-400";
-      }
+      const isSelected = selectedNode?.id === n.id;
+      const isPath = routingResult?.path?.includes(n.id);
 
-      const isSelected = selectedNode?.numeric_id === n.numeric_id;
-      const isPath = routingResult?.numeric_path?.includes(n.numeric_id);
+      let dotColor = "text-cyan-400";
+      let bg = "bg-cyan-950/80 border-cyan-500/40";
+      if (n.type === "hybrid") {
+        dotColor = "text-[#00dc82]";
+        bg = "bg-emerald-950/80 border-emerald-500/40";
+      } else if (n.type === "pqc") {
+        dotColor = "text-purple-400";
+        bg = "bg-purple-950/80 border-purple-500/40";
+      }
 
       return {
         id: n.id,
-        position: n.position,
-        data: { label: n.label },
+        position: { x: n.x, y: n.y },
+        data: {
+          label: `#${n.numeric_id < 10 ? "0" + n.numeric_id : n.numeric_id}`
+        },
         style: {
-          width: 32,
-          height: 32,
+          width: 34,
+          height: 34,
           borderRadius: "50%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           borderWidth: isSelected ? 3 : 1.5,
-          borderColor: isSelected ? "#ffffff" : isPath ? "#f59e0b" : undefined,
+          borderColor: isSelected ? "#00dc82" : isPath ? "#f59e0b" : undefined,
           boxShadow: isSelected
-            ? "0 0 16px rgba(255,255,255,0.8)"
+            ? "0 0 16px rgba(0,220,130,0.8)"
             : isPath
             ? "0 0 14px rgba(245,158,11,0.8)"
             : undefined,
@@ -277,17 +272,17 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
   }, [edgesData, routingResult, viewMode]);
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
-      {/* Top Controls Bar (Matching User Image 1 Style) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-slate-900/90 border border-slate-800 shadow-lg">
+    <div className="p-4 sm:p-6 md:p-8 space-y-6 max-w-7xl mx-auto transition-colors">
+      {/* Top Controls Bar (Bento-Matched Card) */}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm transition-all">
         {/* Toggle: Real time vs Simulation */}
-        <div className="flex items-center gap-1 p-1 bg-slate-950 rounded-lg border border-slate-800">
+        <div className="flex items-center gap-1 p-1 dark:bg-[#07090d] bg-slate-100 rounded-xl dark:border-[#161d27] border-slate-200 border font-mono">
           <button
             onClick={() => setViewMode("realtime")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               viewMode === "realtime"
-                ? "bg-teal-500/20 text-teal-300 border border-teal-500/40 shadow-sm"
-                : "text-slate-400 hover:text-slate-200"
+                ? "dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:text-[#00dc82] text-emerald-700 dark:border-[#00dc82]/30 border-emerald-500/30 border shadow-xs"
+                : "dark:text-slate-400 text-slate-500 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <Radio className={`w-3.5 h-3.5 ${viewMode === "realtime" ? "animate-pulse" : ""}`} />
@@ -295,10 +290,10 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
           </button>
           <button
             onClick={() => setViewMode("simulation")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               viewMode === "simulation"
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm"
-                : "text-slate-400 hover:text-slate-200"
+                ? "dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:text-[#00dc82] text-emerald-700 dark:border-[#00dc82]/30 border-emerald-500/30 border shadow-xs"
+                : "dark:text-slate-400 text-slate-500 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <Clock className="w-3.5 h-3.5" />
@@ -307,27 +302,29 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
         </div>
 
         {/* Legend / Composition */}
-        <div className="flex items-center gap-4 text-xs font-mono">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400/50" />
-            <span className="text-slate-300">Classical: {composition.classical}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-xs shadow-cyan-400/50" />
+            <span className="dark:text-slate-300 text-slate-700">Classical: {composition.classical}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-teal-400 shadow-sm shadow-teal-400/50" />
-            <span className="text-slate-300">Hybrid: {composition.hybrid}</span>
+            <span className="w-2.5 h-2.5 rounded-full dark:bg-[#00dc82] bg-emerald-500 shadow-xs shadow-emerald-500/50" />
+            <span className="dark:text-slate-300 text-slate-700 font-bold">Hybrid: {composition.hybrid}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-purple-400 shadow-sm shadow-purple-400/50" />
-            <span className="text-slate-300">PQC: {composition.pqc}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-xs shadow-purple-400/50" />
+            <span className="dark:text-slate-300 text-slate-700">PQC: {composition.pqc}</span>
           </div>
-          <div className="text-slate-400 pl-2 border-l border-slate-700">Total: 100 Nodes</div>
+          <div className="dark:text-slate-500 text-slate-400 pl-2 border-l dark:border-[#161d27] border-slate-200">
+            Total: 100 Nodes
+          </div>
         </div>
       </div>
 
       {/* Main Grid: Network Canvas & Inspector Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* React Flow 100-Node Canvas */}
-        <div className="lg:col-span-3 h-[620px] rounded-2xl bg-[#080b11] border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div className="lg:col-span-3 h-[600px] rounded-2xl dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-200 border shadow-sm relative overflow-hidden transition-colors">
           <ReactFlow
             nodes={flowNodes}
             edges={flowEdges}
@@ -344,29 +341,29 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
           </ReactFlow>
 
           {/* Floating Canvas Tag */}
-          <div className="absolute top-4 left-4 pointer-events-none bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
-            <Network className="w-3.5 h-3.5 text-teal-400" />
-            <span>Interactive P2P Mesh Topology (Click any node to inspect)</span>
+          <div className="absolute top-4 left-4 pointer-events-none dark:bg-[#0b0e14]/90 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl dark:border-[#161d27] border-slate-200 border text-[11px] font-mono dark:text-slate-400 text-slate-600 flex items-center gap-2 shadow-sm">
+            <Network className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
+            <span>Interactive P2P Mesh Topology (Click node to inspect)</span>
           </div>
         </div>
 
         {/* Sidebar Inspector & Route Controller */}
         <div className="space-y-6">
           {/* Node Inspector Drawer */}
-          <div className="rounded-xl bg-slate-900/80 border border-slate-800 p-4 space-y-3">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <Eye className="w-3.5 h-3.5 text-teal-400" />
+          <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 space-y-3 shadow-sm transition-all">
+            <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-200 pb-2.5">
+              <span className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-1.5 font-mono">
+                <Eye className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
                 <span>Node Inspector</span>
               </span>
               {selectedNode && (
                 <span
-                  className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded ${
+                  className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-lg border ${
                     selectedNode.type === "hybrid"
-                      ? "bg-teal-500/20 text-teal-300 border border-teal-500/30"
+                      ? "dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:text-[#00dc82] text-emerald-700 dark:border-[#00dc82]/30 border-emerald-500/30"
                       : selectedNode.type === "classical"
-                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
-                      : "bg-purple-500/20 text-purple-300 border border-purple-500/30"
+                      ? "bg-cyan-500/10 text-cyan-600 border-cyan-500/30"
+                      : "bg-purple-500/10 text-purple-600 border-purple-500/30"
                   }`}
                 >
                   {selectedNode.type}
@@ -375,88 +372,90 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
             </div>
 
             {selectedNode ? (
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2.5 text-xs font-mono">
                 <div>
-                  <div className="text-[10px] text-slate-400">Node Identifier</div>
-                  <div className="font-bold text-white text-sm">
+                  <div className="text-[10px] dark:text-slate-500 text-slate-400">Node Identifier</div>
+                  <div className="font-bold dark:text-white text-slate-900 text-sm">
                     Node #{selectedNode.numeric_id < 10 ? "0" + selectedNode.numeric_id : selectedNode.numeric_id}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-slate-400">IP Address</div>
-                  <div className="font-mono text-slate-300">{selectedNode.ip}</div>
+                  <div className="text-[10px] dark:text-slate-500 text-slate-400">IP Address</div>
+                  <div className="dark:text-slate-300 text-slate-700 font-mono text-[11px]">{selectedNode.ip}</div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-slate-400">Derived Address (SHA-256 bound)</div>
-                  <div className="font-mono text-[11px] text-teal-300 truncate">
+                  <div className="text-[10px] dark:text-slate-500 text-slate-400">Derived Address (SHA-256 bound)</div>
+                  <div className="font-mono text-[11px] dark:text-[#00dc82] text-emerald-700 truncate font-semibold">
                     {selectedNode.address}
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2 pt-1">
-                  <div className="p-2 rounded bg-slate-950/60 border border-slate-800">
-                    <div className="text-[10px] text-slate-400">Accepted Tx</div>
-                    <div className="text-sm font-bold text-emerald-400 font-mono">
+                  <div className="p-2.5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border">
+                    <div className="text-[10px] dark:text-slate-500 text-slate-400">Accepted Tx</div>
+                    <div className="text-sm font-bold dark:text-[#00dc82] text-emerald-600 font-mono">
                       {selectedNode.processed_tx}
                     </div>
                   </div>
-                  <div className="p-2 rounded bg-slate-950/60 border border-slate-800">
-                    <div className="text-[10px] text-slate-400">Rejected Tx</div>
-                    <div className="text-sm font-bold text-rose-400 font-mono">
+                  <div className="p-2.5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border">
+                    <div className="text-[10px] dark:text-slate-500 text-slate-400">Rejected Tx</div>
+                    <div className="text-sm font-bold text-rose-500 font-mono">
                       {selectedNode.rejected_tx}
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-slate-400">Active Peer Connections</div>
-                  <div className="text-[11px] font-mono text-slate-400 mt-0.5">
+                  <div className="text-[10px] dark:text-slate-500 text-slate-400">Active Peer Connections</div>
+                  <div className="text-[11px] font-mono dark:text-slate-400 text-slate-500 mt-0.5">
                     {selectedNode.peers?.map((p: number) => `#${p}`).join(", ")}
                   </div>
                 </div>
               </div>
             ) : (
-              <p className="text-xs text-slate-400">Select a node on the canvas to inspect.</p>
+              <p className="text-xs dark:text-slate-400 text-slate-500 font-mono">
+                Select a node on the canvas to inspect.
+              </p>
             )}
           </div>
 
           {/* Directed Routing Experiment */}
-          <div className="rounded-xl bg-slate-900/80 border border-slate-800 p-4 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-              <Send className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 space-y-3 shadow-sm transition-all">
+            <h3 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-1.5 font-mono">
+              <Send className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
               <span>Directed Routing Test</span>
             </h3>
 
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2.5 text-xs font-mono">
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-[10px] text-slate-400">Sender Node ID</label>
+                  <label className="text-[10px] dark:text-slate-500 text-slate-400">Sender Node ID</label>
                   <input
                     type="number"
                     min={0}
                     max={99}
                     value={senderId}
                     onChange={(e) => setSenderId(parseInt(e.target.value) || 0)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded px-2 py-1 text-white text-xs font-mono"
+                    className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] text-slate-400">Receiver Node ID</label>
+                  <label className="text-[10px] dark:text-slate-500 text-slate-400">Receiver Node ID</label>
                   <input
                     type="number"
                     min={0}
                     max={99}
                     value={receiverId}
                     onChange={(e) => setReceiverId(parseInt(e.target.value) || 0)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded px-2 py-1 text-white text-xs font-mono"
+                    className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] text-slate-400">Transaction Format</label>
+                <label className="text-[10px] dark:text-slate-500 text-slate-400">Transaction Format</label>
                 <select
                   value={txType}
                   onChange={(e) => setTxType(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded px-2 py-1.5 text-white text-xs"
+                  className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                 >
                   <option value="hybrid">Hybrid (ECDSA + ML-DSA-65)</option>
                   <option value="classical">Classical (ECDSA only)</option>
@@ -467,7 +466,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
               <button
                 onClick={handleExecuteRoute}
                 disabled={isRouting}
-                className="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-teal-500/20"
+                className="w-full py-2.5 px-3 rounded-xl dark:bg-[#00dc82] bg-emerald-600 hover:bg-emerald-500 dark:hover:bg-[#00c574] text-white dark:text-slate-950 font-extrabold text-xs flex items-center justify-center gap-2 transition-all shadow-md dark:shadow-[#00dc82]/20"
               >
                 {isRouting ? (
                   <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -481,94 +480,33 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
             {/* Routing Result Box */}
             {routingResult && (
               <div
-                className={`mt-3 p-3 rounded-lg border text-xs space-y-1.5 ${
+                className={`mt-3 p-3.5 rounded-xl border text-xs space-y-1.5 font-mono ${
                   routingResult.success
-                    ? "bg-emerald-950/30 border-emerald-500/40 text-emerald-200"
-                    : "bg-rose-950/30 border-rose-500/40 text-rose-200"
+                    ? "dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/30 border-emerald-500/30 dark:text-[#00dc82] text-emerald-700"
+                    : "dark:bg-rose-950/30 bg-rose-50 border-rose-500/30 text-rose-600"
                 }`}
               >
                 <div className="flex items-center gap-1.5 font-bold">
                   {routingResult.success ? (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   ) : (
-                    <XCircle className="w-4 h-4 text-rose-400" />
+                    <XCircle className="w-4 h-4 text-rose-500" />
                   )}
                   <span>{routingResult.success ? "ACCEPTED BY RECEIVER" : "REJECTED BY RECEIVER"}</span>
                 </div>
-                <div className="text-[11px] font-mono text-slate-300">
+                <div className="text-[11px] dark:text-slate-300 text-slate-700">
                   Latency: {routingResult.total_latency_ms} ms | Path: {routingResult.numeric_path?.join(" → ")}
                 </div>
                 {routingResult.rejection_reason && (
-                  <div className="text-[11px] text-rose-300 bg-rose-950/40 p-1.5 rounded border border-rose-800/40">
+                  <div className="text-[10px] text-rose-500 dark:bg-rose-950/50 bg-rose-100 p-2 rounded-lg border border-rose-200 dark:border-rose-900/50">
                     {routingResult.rejection_reason}
                   </div>
                 )}
               </div>
             )}
           </div>
-
-          {/* Node Distribution Slider Controls */}
-          {isLiveMode && (
-            <div className="rounded-xl bg-slate-900/80 border border-slate-800 p-4 space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <Sliders className="w-3.5 h-3.5 text-teal-400" />
-                <span>Custom Composition (Live)</span>
-              </h3>
-              <div className="space-y-2 text-xs">
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400">
-                    <span>Classical %</span>
-                    <span className="font-mono text-cyan-400">{classicalRatio}%</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={classicalRatio}
-                    onChange={(e) => setClassicalRatio(parseInt(e.target.value))}
-                    className="w-full accent-cyan-400 h-1 bg-slate-800 rounded"
-                  />
-                </div>
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400">
-                    <span>Hybrid %</span>
-                    <span className="font-mono text-teal-400">{hybridRatio}%</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={hybridRatio}
-                    onChange={(e) => setHybridRatio(parseInt(e.target.value))}
-                    className="w-full accent-teal-400 h-1 bg-slate-800 rounded"
-                  />
-                </div>
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400">
-                    <span>PQC %</span>
-                    <span className="font-mono text-purple-400">{pqcRatio}%</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={pqcRatio}
-                    onChange={(e) => setPqcRatio(parseInt(e.target.value))}
-                    className="w-full accent-purple-400 h-1 bg-slate-800 rounded"
-                  />
-                </div>
-                <button
-                  onClick={handleUpdateRatios}
-                  className="w-full mt-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium transition-colors"
-                >
-                  Regenerate Topology
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
 };
-

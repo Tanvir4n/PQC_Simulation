@@ -100,52 +100,52 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
     },
     {
       id: "scalability",
-      name: "Scalability & Performance",
-      subtitle: "100 to 10k Workload Scaling",
+      name: "Workload Performance",
+      subtitle: "1,054 TPS & 0.949 ms Latency",
       description:
-        "Evaluates transaction execution, throughput, and CPU load across 100 to 10,000 transactions. Documents the 1,054 TPS peak and saturation behavior.",
+        "Evaluates five repeated workloads (100 to 10,000 transactions). Peak throughput of 1,054 TPS achieved at 1,000 transactions.",
       icon: LineChart,
       specs: [
         {
-          title: "1,054.00 TPS Peak",
-          desc: "Achieved at 1,000 hybrid transactions with 0.9490 ms per-tx latency."
+          title: "Peak: 1,054.00 TPS",
+          desc: "Observed at N=1,000 hybrid transactions across 5 repeated runs."
         },
         {
-          title: "27.04 Mbps Bandwidth",
-          desc: "Signature-only serialization requirement at 1,000 TPS (48.3x vs ECDSA)."
+          title: "0.9490 ms Mean Latency",
+          desc: "Fast cryptographic pipelining with parallel sub-routine dispatch."
         },
         {
-          title: "3.38 GB Ledger Projections",
-          desc: "Signature storage lower bound per 1,000,000 transactions."
+          title: "Ledger Footprint",
+          desc: "Equation 7: 3.38 GB signature storage per 1M hybrid transactions."
         }
       ]
     },
     {
       id: "migration",
-      name: "7-Phase Migration Model",
-      subtitle: "P1 Classical to P7 Post-Quantum",
+      name: "Seven-Phase Migration",
+      subtitle: "75.4% Parity Trough (P3)",
       description:
-        "Simulates staged transition across seven phases. Proves and visualizes the mathematical 75.4% compatibility parity trough.",
+        "Models ecosystem transition from pure classical (P1) to pure post-quantum (P7) across 7 progressive milestone phases.",
       icon: GitBranch,
       specs: [
         {
-          title: "Parity Trough at P3",
-          desc: "P_compat = 1 - p_H * p_C yields 75% theoretical minimum at 50/50 parity."
+          title: "75.4% Parity Trough",
+          desc: "Asymmetric rejection causes compatibility dip when 50% hybrid nodes are active."
         },
         {
-          title: "Classical Retirement (P5)",
-          desc: "100% compatibility restored once classical-only receivers are retired."
+          title: "Zero Soft-Fork Regressions",
+          desc: "Phases P1-P2 maintain 100% backward acceptance on legacy nodes."
         },
         {
-          title: "PQC Speedup (P7)",
-          desc: "Peak throughput of 4,107.50 TPS achieved in pure ML-DSA-65 mode."
+          title: "Smooth Phase 5 Recovery",
+          desc: "Full compatibility restored once classical nodes transition to hybrid wrappers."
         }
       ]
     },
     {
       id: "security",
-      name: "Security & Protocol Ablation",
-      subtitle: "6 Threat Classes & Table 11",
+      name: "Adversarial Attack Suite",
+      subtitle: "Ablation Matrix & Threat Tests",
       description:
         "Evaluates Replay, Forgery, MITM, Duplicate, Key-Misbinding, and Downgrade attacks across six cumulative protocol configurations.",
       icon: Bug,
@@ -189,7 +189,7 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
   ];
 
   return (
-    <div className="rounded-2xl bg-[#0b0e14] border border-[#161d27] divide-y divide-[#161d27] overflow-hidden">
+    <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 divide-y dark:divide-[#161d27] divide-slate-100 overflow-hidden shadow-md">
       {pillars.map((p) => {
         const isExpanded = activeId === p.id;
         const Icon = p.icon;
@@ -199,27 +199,27 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
             {/* Header row */}
             <div
               onClick={() => setActiveId(isExpanded ? "" : p.id)}
-              className="cursor-pointer p-4 hover:bg-[#0f141c] flex items-center justify-between group transition-all"
+              className="cursor-pointer p-4 hover:dark:bg-[#0f141c] hover:bg-slate-50 flex items-center justify-between group transition-all"
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`p-1.5 rounded-lg transition-colors ${
+                  className={`p-2 rounded-xl transition-colors ${
                     isExpanded
                       ? "bg-[#00dc82]/20 text-[#00dc82]"
-                      : "bg-[#141a24] text-slate-400 group-hover:text-slate-200"
+                      : "dark:bg-[#141a24] bg-slate-100 text-slate-500 group-hover:dark:text-slate-200 group-hover:text-slate-900"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white group-hover:text-[#00dc82] transition-colors">
+                  <h4 className="text-xs font-bold dark:text-white text-slate-900 group-hover:text-[#00dc82] transition-colors">
                     {p.name}
                   </h4>
-                  <div className="text-[10px] text-slate-500 font-mono">{p.subtitle}</div>
+                  <div className="text-[10px] dark:text-slate-500 text-slate-500 font-mono">{p.subtitle}</div>
                 </div>
               </div>
 
-              <div className="text-slate-500 group-hover:text-slate-300">
+              <div className="dark:text-slate-500 text-slate-400 group-hover:dark:text-slate-300 group-hover:text-slate-700">
                 {isExpanded ? (
                   <ChevronDown className="w-4 h-4 text-[#00dc82]" />
                 ) : (
@@ -228,28 +228,28 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
               </div>
             </div>
 
-            {/* Expanded content (Matching user image 1 & 2 left side) */}
+            {/* Expanded content */}
             {isExpanded && (
-              <div className="px-5 pb-5 pt-1 space-y-3 bg-[#080b10] border-t border-[#141a24]">
-                <p className="text-xs text-slate-400 leading-relaxed">{p.description}</p>
+              <div className="px-5 pb-5 pt-2 space-y-3 dark:bg-[#080b10] bg-slate-50/70 border-t dark:border-[#141a24] border-slate-200">
+                <p className="text-xs dark:text-slate-400 text-slate-600 leading-relaxed">{p.description}</p>
 
                 {/* Inspect Action Header */}
-                <div className="flex items-center justify-between pt-1 border-t border-[#161d27]">
+                <div className="flex items-center justify-between pt-2 border-t dark:border-[#161d27] border-slate-200">
                   <button
                     onClick={() => onOpenModule(p.id)}
                     className="text-xs font-mono font-semibold text-[#00dc82] hover:underline flex items-center gap-1.5"
                   >
                     <span>→ [Inspect: {p.name}]</span>
                   </button>
-                  <span className="text-[11px] font-mono text-slate-500">[-]</span>
+                  <span className="text-[11px] font-mono dark:text-slate-500 text-slate-400">[-]</span>
                 </div>
 
                 {/* Left Green Line Bullet List */}
-                <div className="space-y-2.5 pl-3 border-l border-[#00dc82]/50 text-xs font-mono">
+                <div className="space-y-2.5 pl-3 border-l-2 border-[#00dc82] text-xs font-mono">
                   {p.specs.map((s, idx) => (
                     <div key={idx} className="space-y-0.5">
-                      <div className="text-slate-200 font-bold">{s.title}</div>
-                      <div className="text-[11px] text-slate-500 leading-normal">{s.desc}</div>
+                      <div className="dark:text-slate-200 text-slate-800 font-bold">{s.title}</div>
+                      <div className="text-[11px] dark:text-slate-500 text-slate-500 leading-normal">{s.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -257,7 +257,7 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
                 {/* Launch Button */}
                 <button
                   onClick={() => onOpenModule(p.id)}
-                  className="w-full mt-2 py-2 px-3 rounded-xl bg-[#00dc82] hover:bg-[#00c574] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-[#00dc82]/10"
+                  className="w-full mt-2 py-2.5 px-3 rounded-xl bg-[#00dc82] hover:bg-[#00c574] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-[#00dc82]/15"
                 >
                   <span>Open Interactive Lab</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -270,4 +270,3 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
     </div>
   );
 };
-

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Shield, Sparkles, BookOpen, ExternalLink, ArrowRight } from "lucide-react";
+import { Shield, Sparkles, BookOpen, ArrowRight, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/lib/theme";
 
 interface BentoHeaderProps {
   isLiveMode: boolean;
@@ -14,8 +15,10 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
   setIsLiveMode,
   onOpenQuickLab,
 }) => {
+  const { isDark, toggleTheme } = useTheme();
+
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-[#0b0e14] border border-[#161d27]">
+    <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 shadow-sm border transition-all">
       {/* macOS Style Traffic Dots + Active Tab Pill */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1.5 pl-1">
@@ -25,31 +28,51 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
         </div>
 
         {/* Tab Pill */}
-        <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-[#121721] border border-[#1e2736] text-xs font-semibold text-white">
-          <div className="w-4 h-4 rounded bg-[#00dc82]/20 border border-[#00dc82]/40 flex items-center justify-center text-[#00dc82]">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-xl dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 border text-xs font-semibold dark:text-white text-slate-800">
+          <div className="w-4 h-4 rounded dark:bg-[#00dc82]/20 bg-emerald-500/20 dark:border-[#00dc82]/40 border-emerald-500/40 border flex items-center justify-center dark:text-[#00dc82] text-emerald-600">
             <Shield className="w-2.5 h-2.5" />
           </div>
           <span>QuantumResist</span>
-          <span className="text-[10px] text-[#00dc82] font-mono px-1 py-0.2 rounded bg-[#00dc82]/10">
+          <span className="text-[10px] dark:text-[#00dc82] text-emerald-600 font-mono px-1 py-0.2 rounded dark:bg-[#00dc82]/10 bg-emerald-500/10">
             FIPS 204
           </span>
         </div>
 
         {/* URL Address Bar */}
-        <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-xl bg-[#07090d] border border-[#141a24] text-[11px] font-mono text-slate-500 max-w-xs truncate">
+        <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border text-[11px] font-mono text-slate-400 dark:text-slate-500 max-w-xs truncate">
           <span>https://quantumresist.diu.edu.bd/research-simulator</span>
         </div>
       </div>
 
-      {/* Mode Switcher & Quick Launch */}
+      {/* Right Controls: Mode Switcher, Day/Night Toggle, & Quick Launch */}
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1 p-0.5 rounded-xl bg-[#07090d] border border-[#161d27]">
+        {/* Day / Night Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          title={isDark ? "Switch to Day Mode (Light Theme)" : "Switch to Night Mode (Dark Theme)"}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl dark:bg-[#07090d] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#141b24] dark:border-[#161d27] border-slate-200 border text-xs font-mono transition-all"
+        >
+          {isDark ? (
+            <>
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline text-[11px] text-slate-400 font-medium">Day</span>
+            </>
+          ) : (
+            <>
+              <Moon className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="hidden sm:inline text-[11px] text-slate-600 font-medium">Night</span>
+            </>
+          )}
+        </button>
+
+        {/* Reference / Live Lab Mode Switcher */}
+        <div className="flex items-center gap-1 p-0.5 rounded-xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border">
           <button
             onClick={() => setIsLiveMode(false)}
             className={`px-3 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
               !isLiveMode
-                ? "bg-[#141b24] text-[#00dc82] border border-[#1f2937]"
-                : "text-slate-400 hover:text-white"
+                ? "dark:bg-[#141b24] bg-white dark:text-[#00dc82] text-emerald-600 border dark:border-[#1f2937] border-slate-200 shadow-xs"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <BookOpen className="w-3 h-3" />
@@ -59,8 +82,8 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
             onClick={() => setIsLiveMode(true)}
             className={`px-3 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
               isLiveMode
-                ? "bg-[#00dc82] text-black font-bold shadow-md shadow-[#00dc82]/20"
-                : "text-slate-400 hover:text-white"
+                ? "dark:bg-[#00dc82] bg-emerald-600 text-black dark:text-black text-white font-bold shadow-md dark:shadow-[#00dc82]/20 shadow-emerald-600/20"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <Sparkles className="w-3 h-3" />
@@ -68,15 +91,15 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           </button>
         </div>
 
+        {/* Quick Lab CTA */}
         <button
           onClick={onOpenQuickLab}
-          className="px-3 py-1.5 rounded-xl bg-[#141b24] hover:bg-[#1a2330] border border-[#222d3d] text-xs font-semibold text-slate-200 flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl dark:bg-[#141b24] bg-slate-900 hover:bg-slate-800 dark:hover:bg-[#1a2330] border dark:border-[#222d3d] border-slate-800 text-xs font-semibold text-white flex items-center gap-1.5 transition-all shadow-xs"
         >
           <span>Quick Lab</span>
-          <ArrowRight className="w-3 h-3 text-[#00dc82]" />
+          <ArrowRight className="w-3 h-3 dark:text-[#00dc82] text-emerald-400" />
         </button>
       </div>
     </div>
   );
 };
-

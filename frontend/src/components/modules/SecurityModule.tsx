@@ -140,42 +140,47 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
 
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
-      {/* Header Banner */}
-      <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 shadow-xl space-y-3">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 font-mono text-xs border border-emerald-500/20 font-bold">
+      {/* Header Banner - Bento Styled */}
+      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-xl space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <span className="px-2.5 py-1 rounded bg-[#00dc82]/10 dark:text-[#00dc82] text-emerald-700 font-mono text-xs border border-[#00dc82]/30 font-bold">
               Section 4.5.2 & Table 11
             </span>
-            <h3 className="text-sm font-bold text-white tracking-wide">
+            <h3 className="text-sm font-bold dark:text-white text-slate-900 tracking-wide">
               Cumulative Protocol Ablation & Adversarial Attack Simulation
             </h3>
           </div>
-          <span className="text-xs font-mono text-emerald-400 font-bold">
-            Full Framework: 100% Resistance
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#00dc82] animate-pulse" />
+            <span className="text-xs font-mono font-bold dark:text-[#00dc82] text-emerald-600">
+              Full Framework: 100% Resistance
+            </span>
+          </div>
         </div>
-        <p className="text-xs text-slate-400 leading-relaxed max-w-4xl">
+        <p className="text-xs dark:text-slate-400 text-slate-600 leading-relaxed max-w-4xl">
           Evaluates six cumulative protocol configurations (Baseline to Full Framework) against six attack categories.
-          Adding <strong className="text-teal-300">Key Binding</strong> blocks key misbinding (+100 pp),{" "}
-          <strong className="text-teal-300">AND Verification</strong> blocks partial signatures (+100 pp), and{" "}
-          <strong className="text-teal-300">Replay Protection</strong> blocks retransmitted transactions (+100 pp).
+          Adding <strong className="dark:text-[#00dc82] text-emerald-600 font-bold">Key Binding</strong> blocks key misbinding (+100 pp),{" "}
+          <strong className="dark:text-[#00dc82] text-emerald-600 font-bold">AND Verification</strong> blocks partial signatures (+100 pp), and{" "}
+          <strong className="dark:text-[#00dc82] text-emerald-600 font-bold">Replay Protection</strong> blocks retransmitted transactions (+100 pp).
         </p>
       </div>
 
       {/* Table 11: Cumulative Protocol Ablation Matrix */}
-      <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-xl">
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-emerald-400" />
+      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 overflow-hidden shadow-xl">
+        <div className="p-5 border-b dark:border-[#161d27] border-slate-100 flex items-center justify-between">
+          <h4 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
+            <Shield className="w-4 h-4 text-[#00dc82]" />
             <span>Table 11: Cumulative Protocol Ablation Results</span>
           </h4>
-          <span className="text-[11px] font-mono text-slate-400">Tested Attack-Blocking Rates (%)</span>
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded dark:bg-[#07090d] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#161d27] border-slate-200">
+            Tested Attack-Blocking Rates (%)
+          </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-slate-950/80 text-slate-400 border-b border-slate-800">
+            <thead className="dark:bg-[#07090d] bg-slate-50 dark:text-slate-400 text-slate-500 border-b dark:border-[#161d27] border-slate-200">
               <tr>
                 <th className="py-3 px-4">Configuration</th>
                 <th className="py-3 px-3 text-center">Key-Misbinding</th>
@@ -186,36 +191,36 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
                 <th className="py-3 px-3 text-center">Forgery</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y dark:divide-[#161d27] divide-slate-100 dark:text-slate-300 text-slate-700">
               {ablationConfigs.map((c) => (
                 <tr
                   key={c.id}
-                  className={`hover:bg-slate-800/40 transition-colors ${
-                    c.id === "C5" ? "bg-emerald-950/20 font-bold text-emerald-300" : ""
+                  className={`hover:dark:bg-[#111722]/60 hover:bg-slate-50 transition-colors ${
+                    c.id === "C5" ? "dark:bg-[#00dc82]/10 bg-emerald-50/70 font-bold dark:text-[#00dc82] text-emerald-700" : ""
                   }`}
                 >
-                  <td className="py-3 px-4 font-bold text-white flex items-center gap-2">
-                    <span className="text-teal-400">{c.id}</span>
+                  <td className="py-3 px-4 font-bold dark:text-white text-slate-900 flex items-center gap-2">
+                    <span className="text-cyan-600 dark:text-cyan-400 font-bold">{c.id}</span>
                     <span>{c.name}</span>
                   </td>
                   <td className="py-3 px-3 text-center">
-                    <span className={c.misbinding === 100 ? "text-emerald-400" : "text-rose-400"}>
+                    <span className={c.misbinding === 100 ? "dark:text-[#00dc82] text-emerald-600 font-bold" : "text-rose-600 dark:text-rose-400 font-semibold"}>
                       {c.misbinding}%
                     </span>
                   </td>
-                  <td className="py-3 px-3 text-center text-emerald-400">{c.crossDomain}%</td>
-                  <td className="py-3 px-3 text-center text-emerald-400">{c.downgrade}%</td>
+                  <td className="py-3 px-3 text-center dark:text-[#00dc82] text-emerald-600 font-bold">{c.crossDomain}%</td>
+                  <td className="py-3 px-3 text-center dark:text-[#00dc82] text-emerald-600 font-bold">{c.downgrade}%</td>
                   <td className="py-3 px-3 text-center">
-                    <span className={c.partialSig === 100 ? "text-emerald-400" : "text-rose-400"}>
+                    <span className={c.partialSig === 100 ? "dark:text-[#00dc82] text-emerald-600 font-bold" : "text-rose-600 dark:text-rose-400 font-semibold"}>
                       {c.partialSig}%
                     </span>
                   </td>
                   <td className="py-3 px-3 text-center">
-                    <span className={c.replay === 100 ? "text-emerald-400" : "text-rose-400"}>
+                    <span className={c.replay === 100 ? "dark:text-[#00dc82] text-emerald-600 font-bold" : "text-rose-600 dark:text-rose-400 font-semibold"}>
                       {c.replay}%
                     </span>
                   </td>
-                  <td className="py-3 px-3 text-center text-emerald-400">{c.forgery}%</td>
+                  <td className="py-3 px-3 text-center dark:text-[#00dc82] text-emerald-600 font-bold">{c.forgery}%</td>
                 </tr>
               ))}
             </tbody>
@@ -226,13 +231,13 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
       {/* Interactive Attack Execution Console & Defense Sandbox */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Attack Vector Launcher */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 space-y-4">
-          <h4 className="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-            <Bug className="w-4 h-4 text-rose-400" />
+        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-5 shadow-xl">
+          <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2 border-b dark:border-[#161d27] border-slate-100 pb-3">
+            <Bug className="w-4 h-4 text-rose-500" />
             <span>Adversarial Attack Vector Launcher</span>
           </h4>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {[
               { id: "replay", name: "Replay Attack", sub: "Retransmit signed transaction" },
               { id: "forgery", name: "Signature Forgery", sub: "Tamper ECDSA/ML-DSA bit" },
@@ -244,58 +249,58 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
                 key={atk.id}
                 onClick={() => handleRunAttack(atk.id)}
                 disabled={isExecuting}
-                className={`w-full p-3 rounded-xl border text-left transition-all flex items-center justify-between ${
+                className={`w-full p-3.5 rounded-xl border text-left transition-all flex items-center justify-between shadow-sm ${
                   activeAttack === atk.id
-                    ? "bg-slate-800/90 border-rose-500/50 shadow-md shadow-rose-500/10"
-                    : "bg-slate-950/60 border-slate-800 hover:border-slate-700"
+                    ? "dark:bg-rose-950/20 bg-rose-50 border-rose-500/50 shadow-rose-500/10 ring-1 ring-rose-500/30"
+                    : "dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 <div>
-                  <div className="text-xs font-bold text-white">{atk.name}</div>
-                  <div className="text-[10px] text-slate-400">{atk.sub}</div>
+                  <div className="text-xs font-bold dark:text-white text-slate-900">{atk.name}</div>
+                  <div className="text-[10px] dark:text-slate-400 text-slate-500">{atk.sub}</div>
                 </div>
-                <Play className="w-3.5 h-3.5 text-rose-400" />
+                <Play className="w-3.5 h-3.5 text-rose-500" />
               </button>
             ))}
           </div>
 
           {/* Defense Toggles */}
-          <div className="pt-3 border-t border-slate-800 space-y-2">
-            <div className="text-[11px] font-bold uppercase text-slate-400">Defense Controls:</div>
-            <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer">
+          <div className="pt-3 border-t dark:border-[#161d27] border-slate-100 space-y-3">
+            <div className="text-[11px] font-bold uppercase dark:text-slate-400 text-slate-600">Defense Controls:</div>
+            <label className="flex items-center justify-between text-xs dark:text-slate-300 text-slate-700 cursor-pointer">
               <span>Replay Freshness Nonce:</span>
               <input
                 type="checkbox"
                 checked={replayProt}
                 onChange={(e) => setReplayProt(e.target.checked)}
-                className="accent-teal-400"
+                className="accent-[#00dc82] w-4 h-4 cursor-pointer"
               />
             </label>
-            <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer">
+            <label className="flex items-center justify-between text-xs dark:text-slate-300 text-slate-700 cursor-pointer">
               <span>Key-Address Binding:</span>
               <input
                 type="checkbox"
                 checked={keyBinding}
                 onChange={(e) => setKeyBinding(e.target.checked)}
-                className="accent-teal-400"
+                className="accent-[#00dc82] w-4 h-4 cursor-pointer"
               />
             </label>
           </div>
         </div>
 
         {/* Live Attack Terminal Logs */}
-        <div className="lg:col-span-2 rounded-2xl bg-slate-950 border border-slate-800 p-6 space-y-4 font-mono">
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-            <div className="flex items-center gap-2 text-xs text-slate-400">
-              <Terminal className="w-4 h-4 text-teal-400" />
+        <div className="lg:col-span-2 rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-4 font-mono shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+            <div className="flex items-center gap-2 text-xs dark:text-slate-400 text-slate-600 font-bold">
+              <Terminal className="w-4 h-4 text-[#00dc82]" />
               <span>Real-time Attack Execution Telemetry</span>
             </div>
             {attackStatus && (
               <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${
                   attackStatus.includes("BLOCKED")
-                    ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/30"
-                    : "bg-rose-500/10 text-rose-300 border-rose-500/30"
+                    ? "dark:bg-[#00dc82]/10 bg-emerald-50 dark:text-[#00dc82] text-emerald-700 border-[#00dc82]/30"
+                    : "dark:bg-rose-500/10 bg-rose-50 text-rose-600 dark:text-rose-400 border-rose-500/30"
                 }`}
               >
                 {attackStatus}
@@ -303,14 +308,14 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
             )}
           </div>
 
-          <div className="h-64 overflow-y-auto space-y-2 text-xs p-3 rounded-xl bg-[#090d14] border border-slate-800/60">
+          <div className="h-64 overflow-y-auto space-y-2 text-xs p-4 rounded-xl dark:bg-[#05070a] bg-slate-900 text-slate-200 border dark:border-[#161d27] border-slate-800">
             {attackLogs.length > 0 ? (
               attackLogs.map((log, i) => (
                 <div
                   key={i}
                   className={`leading-relaxed ${
                     log.includes("REJECTED") || log.includes("DROPPED")
-                      ? "text-emerald-400 font-bold"
+                      ? "text-[#00dc82] font-bold"
                       : log.includes("VULNERABLE")
                       ? "text-rose-400 font-bold"
                       : log.includes("Attacker")
@@ -329,14 +334,14 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
           </div>
 
           {/* Formal Reductions Callout */}
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs space-y-2">
-            <div className="text-[11px] font-bold text-teal-400 uppercase">
+          <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 text-xs space-y-2">
+            <div className="text-[11px] font-bold dark:text-[#00dc82] text-emerald-700 uppercase tracking-wide">
               Theorem 1: Formal Security Reduction Summary (Section 3.3)
             </div>
-            <div className="text-slate-300 text-[11px] leading-relaxed">
+            <div className="dark:text-slate-300 text-slate-700 text-[11px] leading-relaxed">
               <strong>Classical EUF-CMA:</strong> Adv_H^C(A_C) ≤ min&#123;Adv_e^C(B_e), Adv_pq^C(B_pq)&#125; + ε_coll^C
             </div>
-            <div className="text-slate-300 text-[11px] leading-relaxed">
+            <div className="dark:text-slate-300 text-slate-700 text-[11px] leading-relaxed">
               <strong>Quantum EUF-CMA_Q:</strong> Adv_H^Q(A_Q) ≤ Adv_pq^Q(B_pq^Q) + ε_coll^Q. Post-quantum unforgeability
               holds even if the adversary obtains the classical private key <code>ske</code>, relying strictly on ML-DSA-65 hardness.
             </div>
@@ -346,4 +351,3 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
     </div>
   );
 };
-

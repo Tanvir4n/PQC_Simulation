@@ -10,7 +10,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
   return (
     <div
       onClick={onInspectNetwork}
-      className="group cursor-pointer relative h-full min-h-[260px] rounded-2xl bg-[#0b0e14] border border-[#161d27] hover:border-[#263344] transition-all p-5 flex flex-col justify-between overflow-hidden"
+      className="group cursor-pointer relative h-full min-h-[260px] rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 hover:dark:border-[#263344] hover:border-slate-300 transition-all p-5 flex flex-col justify-between overflow-hidden shadow-md"
     >
       {/* Background radial gradient */}
       <div className="absolute inset-0 bg-radial from-[#00dc82]/5 via-transparent to-transparent pointer-events-none" />
@@ -19,11 +19,11 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
       <div className="relative z-10 flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#00dc82] animate-pulse" />
-          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+          <span className="text-[11px] font-mono dark:text-slate-400 text-slate-500 uppercase tracking-wider font-semibold">
             100-Node Simulated Network
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[#00dc82] bg-[#00dc82]/10 px-2 py-0.5 rounded border border-[#00dc82]/20">
+        <span className="text-[10px] font-mono text-[#00dc82] dark:bg-[#00dc82]/10 bg-emerald-50 px-2 py-0.5 rounded border border-[#00dc82]/20 font-bold">
           Mesh Topology
         </span>
       </div>
@@ -69,23 +69,15 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
 
           {/* ============================================================ */}
           {/* LAYER 2: EARTH SOLID BODY (Middle Occlusion Layer)           */}
-          {/* Solid fill="#0b0e14" covers the top/back arc cleanly         */}
+          {/* Solid fill covers the top/back arc cleanly                   */}
           {/* ============================================================ */}
           <circle
             cx="120"
             cy="120"
             r="60"
-            fill="#0b0e14"
-            stroke="#1e293b"
+            className="dark:fill-[#0b0e14] fill-white dark:stroke-[#1e293b] stroke-slate-200"
             strokeWidth="1.2"
-          >
-            <animate
-              attributeName="stroke"
-              values="#1e293b;#2d3d54;#1e293b"
-              dur="4s"
-              repeatCount="indefinite"
-            />
-          </circle>
+          />
 
           {/* ============================================================ */}
           {/* LAYER 3: EARTH WIREFRAME & NODES (Latitudes & Longitudes)    */}
@@ -98,7 +90,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             rx="60"
             ry="24"
             fill="none"
-            stroke="#1e293b"
+            className="dark:stroke-[#1e293b] stroke-slate-300"
             strokeWidth="1"
             strokeDasharray="3 3"
           >
@@ -116,7 +108,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             rx="60"
             ry="45"
             fill="none"
-            stroke="#1e293b"
+            className="dark:stroke-[#1e293b] stroke-slate-300"
             strokeWidth="1"
           />
 
@@ -127,18 +119,12 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             rx="24"
             ry="60"
             fill="none"
-            stroke="#1e293b"
+            className="dark:stroke-[#1e293b] stroke-slate-300"
             strokeWidth="1"
           >
             <animate
               attributeName="rx"
               values="0; 24; 48; 60; 48; 24; 0"
-              dur="9s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="stroke"
-              values="#1a2332;#2d3d54;#3b4f6b;#2d3d54;#1a2332"
               dur="9s"
               repeatCount="indefinite"
             />
@@ -149,7 +135,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             rx="45"
             ry="60"
             fill="none"
-            stroke="#1e293b"
+            className="dark:stroke-[#1e293b] stroke-slate-300"
             strokeWidth="1"
             strokeDasharray="3 3"
           >
@@ -258,7 +244,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
                 y="-6"
                 width="12"
                 height="12"
-                fill="#0b0e14"
+                className="dark:fill-[#0b0e14] fill-white"
                 stroke="#00dc82"
                 strokeWidth="1.2"
               />
@@ -287,9 +273,9 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
       </div>
 
       {/* Footer Details */}
-      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t border-[#161d27] pt-2">
-        <span className="text-slate-400">Classical / Hybrid / PQC</span>
-        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1">
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#161d27] border-slate-100 pt-2">
+        <span className="dark:text-slate-400 text-slate-500">Classical / Hybrid / PQC</span>
+        <span className="text-[#00dc82] group-hover:underline flex items-center gap-1 font-bold">
           <span>[Inspect 100 Nodes]</span>
           <span>→</span>
         </span>

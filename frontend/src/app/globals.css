@@ -1,45 +1,63 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --bg-black: #05070a;
-    --bento-card: #0b0e14;
-    --bento-card-hover: #0f141c;
-    --bento-border: #161d27;
-    --bento-border-hover: #263344;
+    --bg-app: #030507;
+    --bg-card: #0b0e14;
+    --bg-card-sub: #07090d;
+    --bg-card-hover: #121721;
+    --border-card: #161d27;
+    --border-card-hover: #263344;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
     --emerald-neon: #00dc82;
     --emerald-glow: rgba(0, 220, 130, 0.25);
-    --text-primary: #f8fafc;
+  }
+
+  html.light {
+    --bg-app: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-card-sub: #f8fafc;
+    --bg-card-hover: #f1f5f9;
+    --border-card: #e2e8f0;
+    --border-card-hover: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
     --text-muted: #64748b;
-    --text-dim: #475569;
+    --emerald-neon: #059669;
+    --emerald-glow: rgba(5, 150, 105, 0.2);
   }
 }
 
 body {
-  background-color: #030507;
-  color: #f8fafc;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Custom crisp dark scrollbar */
+/* Custom crisp scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #030507;
+  background: var(--bg-app);
 }
 ::-webkit-scrollbar-thumb {
-  background: #161d27;
-  border-radius: 3px;
+  background: var(--border-card);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00dc82;
+  background: var(--emerald-neon);
 }
 
-/* Neon Glow Utilities matching user images */
+/* Neon Glow Utilities */
 .glow-emerald {
   box-shadow: 0 0 25px rgba(0, 220, 130, 0.2);
 }
@@ -59,19 +77,19 @@ body {
 
 /* React Flow Canvas overrides for sleek wireframe */
 .react-flow__background {
-  background-color: #05070a !important;
+  background-color: var(--bg-card-sub) !important;
 }
 .react-flow__controls {
-  background: #0b0e14 !important;
-  border: 1px solid #161d27 !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-card) !important;
   border-radius: 8px !important;
 }
 .react-flow__controls-button {
-  background: #0b0e14 !important;
-  border-bottom: 1px solid #161d27 !important;
-  color: #64748b !important;
+  background: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-card) !important;
+  color: var(--text-muted) !important;
 }
 .react-flow__controls-button:hover {
-  background: #161d27 !important;
-  color: #00dc82 !important;
+  background: var(--border-card) !important;
+  color: var(--emerald-neon) !important;
 }
