@@ -34,12 +34,85 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           viewBox="0 0 240 240"
           className="w-48 h-48 group-hover:scale-105 transition-transform duration-500"
         >
-          {/* Outer circle with subtle breathing pulse */}
+          {/* ========================================================= */}
+          {/* LAYER 1: BEHIND EARTH (Orbit Path & Orbiting Satellite)   */}
+          {/* Placed first so the Earth body occludes it from the front */}
+          {/* ========================================================= */}
+
+          {/* Complete Orbiting Green Trajectory Line (Rendered behind Earth) */}
+          <path
+            id="orbitTrajectory"
+            d="M 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 Z"
+            fill="none"
+            stroke="#00dc82"
+            strokeWidth="1.2"
+            strokeDasharray="4 2"
+            opacity="0.85"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-24"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </path>
+
+          {/* Satellite Object: Travels along orbit and goes BEHIND the Earth */}
+          <g>
+            <animateMotion
+              dur="8s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#orbitTrajectory" />
+            </animateMotion>
+
+            {/* Satellite Body */}
+            <g transform="rotate(-25)">
+              {/* Center Satellite Cube */}
+              <rect
+                x="-6"
+                y="-6"
+                width="12"
+                height="12"
+                fill="#0b0e14"
+                stroke="#00dc82"
+                strokeWidth="1.2"
+              />
+              {/* Solar Panels (Left and Right Wings) */}
+              <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
+              <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
+
+              {/* Pulsing Center Transponder Dot */}
+              <circle cx="0" cy="0" r="2" fill="#00dc82">
+                <animate
+                  attributeName="opacity"
+                  values="1; 0.3; 1"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="1.8; 2.5; 1.8"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          </g>
+
+          {/* ========================================================= */}
+          {/* LAYER 2: IN FRONT (Earth Body, Wireframe & Surface Nodes) */}
+          {/* Solid fill="#0b0e14" cleanly covers satellite when behind */}
+          {/* ========================================================= */}
+
+          {/* Earth Body Base (Solid #0b0e14 covers the orbit behind it) */}
           <circle
             cx="120"
             cy="120"
             r="60"
-            fill="none"
+            fill="#0b0e14"
             stroke="#1e293b"
             strokeWidth="1.2"
           >
@@ -128,25 +201,6 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             />
           </ellipse>
 
-          {/* Complete Non-overlapping 360-degree Orbit Path (Strictly outside Earth map, minimum 14px clearance) */}
-          <path
-            id="orbitTrajectory"
-            d="M 205.2 80.3 C 222.5 117.3, 198.3 165.1, 151.3 187.1 C 104.2 209.0, 52.1 196.8, 34.8 159.7 C 17.5 122.7, 41.7 74.9, 88.7 52.9 C 135.8 31.0, 187.9 43.2, 205.2 80.3 Z"
-            fill="none"
-            stroke="#00dc82"
-            strokeWidth="1.2"
-            strokeDasharray="4 2"
-            opacity="0.85"
-          >
-            <animate
-              attributeName="stroke-dashoffset"
-              from="0"
-              to="-24"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-          </path>
-
           {/* Beacon Green Nodes on Globe Surface with radar ripple wave animations */}
           {/* Node 1: Classical Green */}
           <circle cx="95" cy="110" r="3.5" fill="#00dc82">
@@ -183,50 +237,6 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             <animate attributeName="r" values="2.5; 11" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
           </circle>
-
-          {/* Satellite Object: Smoothly orbiting along the complete trajectory outside Earth */}
-          <g>
-            <animateMotion
-              dur="8s"
-              repeatCount="indefinite"
-              rotate="auto"
-            >
-              <mpath href="#orbitTrajectory" />
-            </animateMotion>
-
-            {/* Satellite Body */}
-            <g transform="rotate(-25)">
-              {/* Center Satellite Cube */}
-              <rect
-                x="-6"
-                y="-6"
-                width="12"
-                height="12"
-                fill="#0b0e14"
-                stroke="#00dc82"
-                strokeWidth="1.2"
-              />
-              {/* Solar Panels (Left and Right Wings) */}
-              <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
-              <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
-
-              {/* Pulsing Center Transponder Dot */}
-              <circle cx="0" cy="0" r="2" fill="#00dc82">
-                <animate
-                  attributeName="opacity"
-                  values="1; 0.3; 1"
-                  dur="1.2s"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="r"
-                  values="1.8; 2.5; 1.8"
-                  dur="1.2s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </g>
-          </g>
         </svg>
       </div>
 
