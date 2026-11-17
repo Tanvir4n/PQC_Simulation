@@ -862,3 +862,4 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
     </div>
   );
 };
+
