@@ -34,15 +34,6 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           viewBox="0 0 240 240"
           className="w-48 h-48 group-hover:scale-105 transition-transform duration-500"
         >
-          <defs>
-            {/* Full 360 degree orbit path for continuous satellite motion */}
-            <path
-              id="orbitTrajectory"
-              d="M 60 70 A 90 60 0 1 1 180 170 A 90 60 0 0 1 60 70"
-              fill="none"
-            />
-          </defs>
-
           {/* Outer circle with subtle breathing pulse */}
           <circle
             cx="120"
@@ -137,14 +128,15 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             />
           </ellipse>
 
-          {/* Orbiting Green Trajectory Line with active flowing dash animation */}
+          {/* Complete 360-degree Orbiting Green Trajectory Line with active flowing dash animation */}
           <path
-            d="M 60 70 A 90 60 0 1 1 180 170"
+            id="orbitTrajectory"
+            d="M 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 Z"
             fill="none"
             stroke="#00dc82"
             strokeWidth="1.2"
             strokeDasharray="4 2"
-            opacity="0.8"
+            opacity="0.85"
           >
             <animate
               attributeName="stroke-dashoffset"
@@ -192,9 +184,8 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
           </circle>
 
-          {/* Satellite Object: Smoothly orbiting along the trajectory */}
+          {/* Satellite Object: Smoothly orbiting along the complete trajectory */}
           <g>
-            {/* Automatic motion along the full 360 degree orbit path */}
             <animateMotion
               dur="8s"
               repeatCount="indefinite"
@@ -202,15 +193,6 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             >
               <mpath href="#orbitTrajectory" />
             </animateMotion>
-
-            {/* Subtle depth opacity (full brightness in front, slightly dimmed when passing behind) */}
-            <animate
-              attributeName="opacity"
-              values="1; 1; 0.45; 0.45; 1"
-              keyTimes="0; 0.52; 0.58; 0.94; 1"
-              dur="8s"
-              repeatCount="indefinite"
-            />
 
             {/* Satellite Body */}
             <g transform="rotate(-25)">
