@@ -34,20 +34,26 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           viewBox="0 0 240 240"
           className="w-48 h-48 group-hover:scale-105 transition-transform duration-500"
         >
-          {/* ========================================================= */}
-          {/* LAYER 1: BEHIND EARTH (Orbit Path & Orbiting Satellite)   */}
-          {/* Placed first so the Earth body occludes it from the front */}
-          {/* ========================================================= */}
+          <defs>
+            {/* Complete 360-degree closed orbit path for continuous satellite motion */}
+            <path
+              id="orbitTrajectory"
+              d="M 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 Z"
+              fill="none"
+            />
+          </defs>
 
-          {/* Complete Orbiting Green Trajectory Line (Rendered behind Earth) */}
+          {/* ========================================================= */}
+          {/* LAYER 1: BACK ORBIT ARC (Rendered BEHIND Earth)           */}
+          {/* Passes behind Earth from bottom-left (42.3, 161.3) to top */}
+          {/* ========================================================= */}
           <path
-            id="orbitTrajectory"
-            d="M 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 Z"
+            d="M 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9"
             fill="none"
             stroke="#00dc82"
             strokeWidth="1.2"
             strokeDasharray="4 2"
-            opacity="0.85"
+            opacity="0.4"
           >
             <animate
               attributeName="stroke-dashoffset"
@@ -58,56 +64,10 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             />
           </path>
 
-          {/* Satellite Object: Travels along orbit and goes BEHIND the Earth */}
-          <g>
-            <animateMotion
-              dur="8s"
-              repeatCount="indefinite"
-              rotate="auto"
-            >
-              <mpath href="#orbitTrajectory" />
-            </animateMotion>
-
-            {/* Satellite Body */}
-            <g transform="rotate(-25)">
-              {/* Center Satellite Cube */}
-              <rect
-                x="-6"
-                y="-6"
-                width="12"
-                height="12"
-                fill="#0b0e14"
-                stroke="#00dc82"
-                strokeWidth="1.2"
-              />
-              {/* Solar Panels (Left and Right Wings) */}
-              <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
-              <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
-
-              {/* Pulsing Center Transponder Dot */}
-              <circle cx="0" cy="0" r="2" fill="#00dc82">
-                <animate
-                  attributeName="opacity"
-                  values="1; 0.3; 1"
-                  dur="1.2s"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="r"
-                  values="1.8; 2.5; 1.8"
-                  dur="1.2s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </g>
-          </g>
-
           {/* ========================================================= */}
-          {/* LAYER 2: IN FRONT (Earth Body, Wireframe & Surface Nodes) */}
-          {/* Solid fill="#0b0e14" cleanly covers satellite when behind */}
+          {/* LAYER 2: EARTH BODY (Middle Layer)                        */}
+          {/* Solid fill="#0b0e14" covers the back arc behind it        */}
           {/* ========================================================= */}
-
-          {/* Earth Body Base (Solid #0b0e14 covers the orbit behind it) */}
           <circle
             cx="120"
             cy="120"
@@ -237,6 +197,83 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             <animate attributeName="r" values="2.5; 11" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
           </circle>
+
+          {/* ========================================================= */}
+          {/* LAYER 3: FRONT ORBIT ARC (Rendered ON TOP of Earth)       */}
+          {/* Curves seamlessly over the top, across right & bottom     */}
+          {/* ========================================================= */}
+          <path
+            d="M 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3"
+            fill="none"
+            stroke="#00dc82"
+            strokeWidth="1.2"
+            strokeDasharray="4 2"
+            opacity="0.85"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-24"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </path>
+
+          {/* ========================================================= */}
+          {/* LAYER 4: SATELLITE (Orbits smoothly on top of front arc,  */}
+          {/* passes behind Earth on the back arc)                      */}
+          {/* ========================================================= */}
+          <g>
+            <animateMotion
+              dur="8s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#orbitTrajectory" />
+            </animateMotion>
+
+            {/* Seamless 3D depth: Fully visible on front arc (0 to 0.74), dives behind Earth (0.75 to 0.98) */}
+            <animate
+              attributeName="opacity"
+              values="1; 1; 0; 0; 1"
+              keyTimes="0; 0.74; 0.76; 0.98; 1"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+
+            {/* Satellite Body */}
+            <g transform="rotate(-25)">
+              {/* Center Satellite Cube */}
+              <rect
+                x="-6"
+                y="-6"
+                width="12"
+                height="12"
+                fill="#0b0e14"
+                stroke="#00dc82"
+                strokeWidth="1.2"
+              />
+              {/* Solar Panels (Left and Right Wings) */}
+              <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
+              <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
+
+              {/* Pulsing Center Transponder Dot */}
+              <circle cx="0" cy="0" r="2" fill="#00dc82">
+                <animate
+                  attributeName="opacity"
+                  values="1; 0.3; 1"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="1.8; 2.5; 1.8"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          </g>
         </svg>
       </div>
 
