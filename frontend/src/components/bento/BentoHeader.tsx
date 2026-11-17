@@ -37,11 +37,6 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
             FIPS 204
           </span>
         </div>
-
-        {/* URL Address Bar */}
-        <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border text-[11px] font-mono text-slate-400 dark:text-slate-500 max-w-xs truncate">
-          <span>https://quantumresist.diu.edu.bd/research-simulator</span>
-        </div>
       </div>
 
       {/* Right Controls: Mode Switcher, Day/Night Toggle, & Quick Launch */}
