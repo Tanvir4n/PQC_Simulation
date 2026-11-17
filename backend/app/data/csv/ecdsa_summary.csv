@@ -1,0 +1,2 @@
+Method,KeyGen(ms),Sign(ms),Verify(ms),Signature Size(Bytes),Public Key(Bytes),Private Key(Bytes)
+ECDSA,4.871315158015932,0.42549043397957576,0.41236860000000003,70,65,135

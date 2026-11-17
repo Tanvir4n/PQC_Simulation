@@ -1,0 +1,4 @@
+Method,Key Generation (ms),Signing (ms),Verification (ms),Signature Size (Bytes),Public Key (Bytes),Private Key (Bytes)
+ECDSA,0.4398,0.4774,0.3985,70,65,135
+ML-DSA-65,0.055,0.1374,0.0624,3309,1952,4032
+Proposed Hybrid (ECDSA + ML-DSA-65),0.5488,0.6434,0.5248,3379,2017,4167

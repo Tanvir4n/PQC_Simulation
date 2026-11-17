@@ -1,0 +1,2 @@
+timestamp,chain_id,deployer,contract_address,deployment_tx,deployment_block,gas_used,status,initial_block
+2026-09-07T02:18:32.602859,31337,0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266,0x5FbDB2315678afecb367f032d93F642f64180aa3,36dc81ade435988d7e8db009af8f6dcd1e59db71db60c3dc0ea89fea928d4b14,1,240028,1,0

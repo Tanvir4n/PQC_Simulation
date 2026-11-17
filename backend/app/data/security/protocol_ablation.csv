@@ -1,0 +1,7 @@
+Configuration,Key Binding,Domain Separation,Versioning,AND Verification,Replay Protection,Key-Misbinding Blocked (%),Cross-Domain Blocked (%),Downgrade Blocked (%),Partial-Signature Blocked (%),Replay Blocked (%),Forgery Blocked (%)
+Baseline,No,No,No,No,No,0.0,100.0,100.0,0.0,0.0,100.0
++ Key Binding,Yes,No,No,No,No,100.0,100.0,100.0,0.0,0.0,100.0
++ Domain Separation,Yes,Yes,No,No,No,100.0,100.0,100.0,0.0,0.0,100.0
++ Versioning,Yes,Yes,Yes,No,No,100.0,100.0,100.0,0.0,0.0,100.0
++ AND Verification,Yes,Yes,Yes,Yes,No,100.0,100.0,100.0,100.0,0.0,100.0
+Full Framework,Yes,Yes,Yes,Yes,Yes,100.0,100.0,100.0,100.0,100.0,100.0

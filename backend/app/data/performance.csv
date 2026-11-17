@@ -1,0 +1,4 @@
+metric,value
+avg_sign_time,0.0010661864280700683
+avg_verify_time,0.003570857048034668
+signature_size,2484

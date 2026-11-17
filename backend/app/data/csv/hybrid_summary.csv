@@ -1,0 +1,2 @@
+Method,KeyGen(ms),Sign(ms),Verify(ms),Signature Size(Bytes),Public Key(Bytes),Private Key(Bytes)
+Proposed Hybrid,0.510752878,0.624482914,0.4906667639999999,3380,2017,4167

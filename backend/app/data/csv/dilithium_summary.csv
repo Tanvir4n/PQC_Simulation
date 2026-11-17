@@ -1,0 +1,2 @@
+Method,KeyGen(ms),Sign(ms),Verify(ms),Signature Size(Bytes),Public Key(Bytes),Private Key(Bytes)
+ML-DSA-65,0.065036994,0.15351255500000002,0.06839730899999999,3309,1952,4032
