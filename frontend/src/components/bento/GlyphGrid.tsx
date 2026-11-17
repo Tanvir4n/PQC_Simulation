@@ -2,20 +2,35 @@
 
 import React, { useState } from "react";
 
-interface GlyphGridProps {
-  onSelectGlyph?: (id: string) => void;
+interface GlyphItem {
+  id: string;
+  label: string;
+  symbol: React.ReactNode;
+  desc: string;
 }
 
-export const GlyphGrid: React.FC<GlyphGridProps> = ({ onSelectGlyph }) => {
+export const GlyphGrid: React.FC<{ onSelectGlyph?: (id: string) => void }> = ({ onSelectGlyph }) => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
-  const glyphs = [
+  const glyphs: GlyphItem[] = [
     { id: "secp", label: "SECP256K1", symbol: "∿", desc: "Classical Elliptic Curve" },
     { id: "mldsa", label: "ML-DSA-65", symbol: "❖", desc: "NIST FIPS 204 Lattice" },
     { id: "sha3", label: "SHA3-512", symbol: "⎔", desc: "Canonical Digest Sponge" },
     { id: "and", label: "STRICT AND", symbol: "∧", desc: "Dual Verification Rule" },
     { id: "env", label: "3,380 B", symbol: "⧉", desc: "Hybrid Signature Envelope" },
-    { id: "tps", label: "1,054 TPS", symbol: "⚡", desc: "Peak Tested Throughput" },
+    {
+      id: "tps",
+      label: "1,054 TPS",
+      symbol: (
+        <svg
+          viewBox="0 0 24 24"
+          className="w-4 h-4 fill-current inline-block translate-y-[-1px]"
+        >
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+      ),
+      desc: "Peak Tested Throughput",
+    },
     { id: "mig", label: "P1 → P7", symbol: "⇄", desc: "7-Phase Migration Curve" },
     { id: "trough", label: "75.4%", symbol: "∐", desc: "P3 Parity Compatibility" },
     { id: "anvil", label: "ANVIL EVM", symbol: "⬡", desc: "Chain ID 31337 Layer" },
@@ -48,7 +63,7 @@ export const GlyphGrid: React.FC<GlyphGridProps> = ({ onSelectGlyph }) => {
               }`}
             >
               <span
-                className={`text-base font-bold transition-colors ${
+                className={`text-base font-bold transition-colors flex items-center justify-center h-5 ${
                   isActive ? "text-[#00dc82]" : "text-slate-300"
                 }`}
               >
@@ -72,4 +87,3 @@ export const GlyphGrid: React.FC<GlyphGridProps> = ({ onSelectGlyph }) => {
     </div>
   );
 };
-
