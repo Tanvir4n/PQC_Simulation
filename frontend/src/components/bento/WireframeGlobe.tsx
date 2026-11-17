@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Radio } from "lucide-react";
 
 interface WireframeGlobeProps {
   onInspectNetwork: () => void;
@@ -35,7 +34,16 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
           viewBox="0 0 240 240"
           className="w-48 h-48 group-hover:scale-105 transition-transform duration-500"
         >
-          {/* Outer circle */}
+          <defs>
+            {/* Full 360 degree orbit path for continuous satellite motion */}
+            <path
+              id="orbitTrajectory"
+              d="M 60 70 A 90 60 0 1 1 180 170 A 90 60 0 0 1 60 70"
+              fill="none"
+            />
+          </defs>
+
+          {/* Outer circle with subtle breathing pulse */}
           <circle
             cx="120"
             cy="120"
@@ -43,7 +51,14 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             fill="none"
             stroke="#1e293b"
             strokeWidth="1.2"
-          />
+          >
+            <animate
+              attributeName="stroke"
+              values="#1e293b;#2d3d54;#1e293b"
+              dur="4s"
+              repeatCount="indefinite"
+            />
+          </circle>
 
           {/* Latitude ellipses */}
           <ellipse
@@ -55,7 +70,15 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             stroke="#1e293b"
             strokeWidth="1"
             strokeDasharray="3 3"
-          />
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="24"
+              dur="6s"
+              repeatCount="indefinite"
+            />
+          </ellipse>
           <ellipse
             cx="120"
             cy="120"
@@ -66,7 +89,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             strokeWidth="1"
           />
 
-          {/* Longitude ellipses */}
+          {/* Longitude ellipses with 3D rotation animation */}
           <ellipse
             cx="120"
             cy="120"
@@ -75,7 +98,20 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             fill="none"
             stroke="#1e293b"
             strokeWidth="1"
-          />
+          >
+            <animate
+              attributeName="rx"
+              values="0; 24; 48; 60; 48; 24; 0"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke"
+              values="#1a2332;#2d3d54;#3b4f6b;#2d3d54;#1a2332"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+          </ellipse>
           <ellipse
             cx="120"
             cy="120"
@@ -85,9 +121,23 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             stroke="#1e293b"
             strokeWidth="1"
             strokeDasharray="3 3"
-          />
+          >
+            <animate
+              attributeName="rx"
+              values="48; 60; 48; 24; 0; 24; 48"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-24"
+              dur="6s"
+              repeatCount="indefinite"
+            />
+          </ellipse>
 
-          {/* Orbiting Green Trajectory Line */}
+          {/* Orbiting Green Trajectory Line with active flowing dash animation */}
           <path
             d="M 60 70 A 90 60 0 1 1 180 170"
             fill="none"
@@ -95,30 +145,105 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             strokeWidth="1.2"
             strokeDasharray="4 2"
             opacity="0.8"
-          />
-
-          {/* Beacon Green Nodes on Globe Surface */}
-          <circle cx="95" cy="110" r="3.5" fill="#00dc82" className="animate-pulse" />
-          <circle cx="145" cy="130" r="3.5" fill="#00dc82" />
-          <circle cx="120" cy="80" r="2.5" fill="#38bdf8" />
-          <circle cx="125" cy="160" r="2.5" fill="#a855f7" />
-
-          {/* Satellite Object on Orbit */}
-          <g transform="translate(180, 70) rotate(-25)">
-            {/* Center Satellite Cube */}
-            <rect
-              x="-6"
-              y="-6"
-              width="12"
-              height="12"
-              fill="#0b0e14"
-              stroke="#00dc82"
-              strokeWidth="1.2"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-24"
+              dur="2s"
+              repeatCount="indefinite"
             />
-            {/* Solar Panels */}
-            <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
-            <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
-            <circle cx="0" cy="0" r="2" fill="#00dc82" />
+          </path>
+
+          {/* Beacon Green Nodes on Globe Surface with radar ripple wave animations */}
+          {/* Node 1: Classical Green */}
+          <circle cx="95" cy="110" r="3.5" fill="#00dc82">
+            <animate attributeName="r" values="3.2; 4; 3.2" dur="2s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="95" cy="110" r="3.5" fill="none" stroke="#00dc82" strokeWidth="1">
+            <animate attributeName="r" values="3.5; 14" dur="2.4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8; 0" dur="2.4s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Node 2: Hybrid Green */}
+          <circle cx="145" cy="130" r="3.5" fill="#00dc82">
+            <animate attributeName="r" values="3.2; 4; 3.2" dur="2.2s" begin="0.7s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="145" cy="130" r="3.5" fill="none" stroke="#00dc82" strokeWidth="1">
+            <animate attributeName="r" values="3.5; 14" dur="2.4s" begin="0.7s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.7s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Node 3: Cyan */}
+          <circle cx="120" cy="80" r="2.5" fill="#38bdf8">
+            <animate attributeName="r" values="2.2; 3.2; 2.2" dur="1.8s" begin="1.2s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="120" cy="80" r="2.5" fill="none" stroke="#38bdf8" strokeWidth="1">
+            <animate attributeName="r" values="2.5; 11" dur="2.4s" begin="1.2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="1.2s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Node 4: Purple */}
+          <circle cx="125" cy="160" r="2.5" fill="#a855f7">
+            <animate attributeName="r" values="2.2; 3.2; 2.2" dur="2s" begin="0.4s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="125" cy="160" r="2.5" fill="none" stroke="#a855f7" strokeWidth="1">
+            <animate attributeName="r" values="2.5; 11" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Satellite Object: Smoothly orbiting along the trajectory */}
+          <g>
+            {/* Automatic motion along the full 360 degree orbit path */}
+            <animateMotion
+              dur="8s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#orbitTrajectory" />
+            </animateMotion>
+
+            {/* Subtle depth opacity (full brightness in front, slightly dimmed when passing behind) */}
+            <animate
+              attributeName="opacity"
+              values="1; 1; 0.45; 0.45; 1"
+              keyTimes="0; 0.52; 0.58; 0.94; 1"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+
+            {/* Satellite Body */}
+            <g transform="rotate(-25)">
+              {/* Center Satellite Cube */}
+              <rect
+                x="-6"
+                y="-6"
+                width="12"
+                height="12"
+                fill="#0b0e14"
+                stroke="#00dc82"
+                strokeWidth="1.2"
+              />
+              {/* Solar Panels (Left and Right Wings) */}
+              <line x1="-16" y1="0" x2="-6" y2="0" stroke="#00dc82" strokeWidth="2" />
+              <line x1="6" y1="0" x2="16" y2="0" stroke="#00dc82" strokeWidth="2" />
+
+              {/* Pulsing Center Transponder Dot */}
+              <circle cx="0" cy="0" r="2" fill="#00dc82">
+                <animate
+                  attributeName="opacity"
+                  values="1; 0.3; 1"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="1.8; 2.5; 1.8"
+                  dur="1.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
           </g>
         </svg>
       </div>
@@ -134,4 +259,3 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
     </div>
   );
 };
-
