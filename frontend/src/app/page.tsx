@@ -8,7 +8,6 @@ import { GlyphGrid } from "@/components/bento/GlyphGrid";
 import { HexBadge } from "@/components/bento/HexBadge";
 import { WireframeCubes } from "@/components/bento/WireframeCubes";
 import { ModuleModal } from "@/components/bento/ModuleModal";
-import { QuantumLogo } from "@/components/brand/QuantumLogo";
 import { Shield, Sparkles, ArrowRight, Zap, ExternalLink, Terminal } from "lucide-react";
 
 export default function Home() {
@@ -95,15 +94,24 @@ export default function Home() {
 
           {/* Card 5: Hero Branding Box (Swapped to bottom-left) */}
           <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 flex flex-col justify-between shadow-md">
-            <div className="flex items-center gap-3.5">
-              <div className="w-13 h-13 p-1.5 rounded-2xl dark:bg-[#080c10] bg-emerald-50 border dark:border-[#00dc82]/30 border-[#00dc82]/40 flex items-center justify-center shadow-lg shadow-[#00dc82]/10">
-                <QuantumLogo size={40} />
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl dark:bg-[#080c10] bg-emerald-50 border dark:border-[#00dc82]/30 border-[#00dc82]/40 flex items-center justify-center text-[#00dc82] shadow-lg shadow-[#00dc82]/10">
+                <svg viewBox="0 0 40 40" className="w-7 h-7">
+                  <path
+                    d="M 10 14 C 10 8, 20 8, 24 14 C 28 20, 20 28, 14 32 C 10 35, 20 35, 26 31"
+                    fill="none"
+                    stroke="#00dc82"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="28" cy="12" r="2.5" fill="#00dc82" />
+                </svg>
               </div>
               <div>
                 <h1 className="text-2xl font-extrabold tracking-tight dark:text-white text-slate-900 flex items-center gap-2">
                   <span>QuantumResist</span>
                 </h1>
-                <span className="text-[10px] font-mono dark:text-slate-500 text-slate-500 uppercase tracking-wider font-semibold">
+                <span className="text-[10px] font-mono dark:text-slate-500 text-slate-500 uppercase tracking-wider">
                   Hybrid Classical-Post-Quantum Platform
                 </span>
               </div>

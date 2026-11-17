@@ -16,39 +16,27 @@ export const QuantumLogo: React.FC<QuantumLogoProps> = ({
   return (
     <div
       style={{ width: size, height: size }}
-      className={`relative inline-flex items-center justify-center shrink-0 ${className} ${
-        glow ? "drop-shadow-[0_0_12px_rgba(0,220,130,0.35)]" : ""
+      className={`relative inline-flex items-center justify-center shrink-0 select-none ${className} ${
+        glow ? "drop-shadow-[0_0_14px_rgba(0,220,130,0.4)]" : ""
       }`}
     >
       <svg
-        viewBox="0 0 44 44"
+        viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
         <defs>
           {/* Neon Emerald to Electric Cyan Gradient */}
-          <linearGradient id="qrShieldBorder" x1="6" y1="3" x2="38" y2="42" gradientUnits="userSpaceOnUse">
+          <linearGradient id="qrShieldGrad" x1="4" y1="3" x2="44" y2="44" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#00dc82" />
-            <stop offset="60%" stopColor="#059669" />
+            <stop offset="55%" stopColor="#059669" />
             <stop offset="100%" stopColor="#38bdf8" />
           </linearGradient>
 
-          {/* Left Facet Gradient (Classical secp256k1) */}
-          <linearGradient id="qrFacetLeft" x1="6" y1="3" x2="22" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00dc82" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#059669" stopOpacity="0.04" />
-          </linearGradient>
-
-          {/* Right Facet Gradient (Post-Quantum ML-DSA-65) */}
-          <linearGradient id="qrFacetRight" x1="22" y1="3" x2="38" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.30" />
-            <stop offset="100%" stopColor="#00dc82" stopOpacity="0.08" />
-          </linearGradient>
-
-          {/* Core Glow Filter */}
-          <filter id="coreGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="1" result="blur" />
+          {/* Core Spark Radial Glow */}
+          <filter id="qrSparkGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.2" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -56,75 +44,53 @@ export const QuantumLogo: React.FC<QuantumLogoProps> = ({
           </filter>
         </defs>
 
-        {/* 1. Left Facet (Classical Cryptography Wing) */}
-        <path
-          d="M22 3.5L7 9V22.5C7 31.8 13.5 39.2 22 41.5V3.5Z"
-          fill="url(#qrFacetLeft)"
-          stroke="url(#qrShieldBorder)"
-          strokeWidth="2.2"
+        {/* 1. Outer Hexagonal Quantum Shield */}
+        <polygon
+          points="24 3, 43 11.5, 43 27.5, 24 43.5, 5 27.5, 5 11.5"
+          className="dark:fill-[#00dc82]/12 fill-emerald-500/10"
+          stroke="url(#qrShieldGrad)"
+          strokeWidth="2.8"
           strokeLinejoin="round"
         />
 
-        {/* 2. Right Facet (Post-Quantum Lattice Wing) */}
+        {/* 2. Precision Crystalline Lattice Facet Lines (Geometric Depth) */}
         <path
-          d="M22 3.5L37 9V22.5C37 31.8 30.5 39.2 22 41.5V3.5Z"
-          fill="url(#qrFacetRight)"
-          stroke="url(#qrShieldBorder)"
-          strokeWidth="2.2"
-          strokeLinejoin="round"
-        />
-
-        {/* 3. Center Facet Seam / Dual-Key Suture Line */}
-        <line
-          x1="22"
-          y1="4"
-          x2="22"
-          y2="41"
-          stroke="#00dc82"
-          strokeWidth="1.2"
-          strokeOpacity="0.4"
-        />
-
-        {/* 4. Outer Dashed Quantum Orbit (Lattice Orbital Track) */}
-        <circle
-          cx="22"
-          cy="20.5"
-          r="10.5"
+          d="M24 3 L24 20 M43 11.5 L24 20 M5 11.5 L24 20 M24 20 L24 43.5 M43 27.5 L24 20 M5 27.5 L24 20"
           stroke="#00dc82"
           strokeWidth="0.8"
+          strokeOpacity="0.35"
           strokeDasharray="2.5 2.5"
-          strokeOpacity="0.45"
         />
 
-        {/* 5. Quantum 'Q' Central Resilient Ring */}
+        {/* 3. Bold Geometric Quantum 'Q' Resilient Ring */}
         <circle
-          cx="22"
-          cy="20.5"
-          r="6.8"
-          className="dark:stroke-white stroke-slate-900 dark:fill-[#080c10] fill-white"
-          strokeWidth="2.4"
-        />
-
-        {/* 6. Central Quantum Nexus Spark (Lattice Diamond Core) */}
-        <polygon
-          points="22 17, 24.8 20.5, 22 24, 19.2 20.5"
-          fill="#00dc82"
-          filter="url(#coreGlow)"
-        />
-
-        {/* 7. Quantum 'Q' Dynamic Laser Tail (Cutting through Classical / Quantum plane) */}
-        <path
-          d="M26.5 25L34 33"
-          stroke="#00dc82"
+          cx="24"
+          cy="19.5"
+          r="8"
+          className="dark:stroke-white stroke-slate-900 dark:fill-[#070a0e] fill-white"
           strokeWidth="3.2"
+        />
+
+        {/* 4. Central Radiant Quantum Nexus Spark (✦) */}
+        <polygon
+          points="24 15, 27.5 19.5, 24 24, 20.5 19.5"
+          fill="#00dc82"
+          filter="url(#qrSparkGlow)"
+        />
+
+        {/* 5. Dynamic High-Energy 'Q' Laser Tail (Breaks out of the shield) */}
+        <path
+          d="M29.5 24.5 L39.5 36.5"
+          stroke="#00dc82"
+          strokeWidth="4"
           strokeLinecap="round"
         />
 
-        {/* 8. Quantum Entanglement Terminal Particle */}
+        {/* 6. Electric Cyan Quantum Node */}
         <circle
-          cx="34"
-          cy="33"
-          r="1.8"
+          cx="39.5"
+          cy="36.5"
+          r="2.2"
           fill="#38bdf8"
         />
       </svg>
