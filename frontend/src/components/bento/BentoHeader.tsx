@@ -42,12 +42,12 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
       </div>
 
       {/* Right Controls: Mode Switcher, Day/Night Toggle, & Quick Launch */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-2.5 shrink-0">
         {/* Day / Night Theme Toggle */}
         <button
           onClick={toggleTheme}
           title={isDark ? "Switch to Day Mode (Light Theme)" : "Switch to Night Mode (Dark Theme)"}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl dark:bg-[#07090d] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#141b24] dark:border-[#161d27] border-slate-200 border text-xs font-mono transition-all shadow-xs"
+          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl dark:bg-[#07090d] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#141b24] dark:border-[#161d27] border-slate-200 border text-xs font-mono transition-all shadow-xs shrink-0"
         >
           {isDark ? (
             <>
@@ -62,9 +62,9 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           )}
         </button>
 
-        {/* Reference / Live Lab Mode Switcher with Fluid Spring Slider Transition */}
-        <div className="relative flex items-center p-1 rounded-2xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border shadow-inner select-none">
-          {/* Animated Sliding Pill Highlight */}
+        {/* Reference / Live Lab Mode Switcher with Fixed Rigid Dimensions & Fluid Slider */}
+        <div className="relative flex items-center p-1 rounded-2xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border shadow-inner select-none w-[228px] h-[38px] shrink-0">
+          {/* Animated Sliding Pill Highlight - Exactly 50% width minus padding */}
           <div
             className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLiveMode
@@ -73,51 +73,47 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
             }`}
           />
 
-          {/* Reference Button */}
+          {/* Reference Button - Exactly 50% fixed width */}
           <button
+            type="button"
             onClick={() => setIsLiveMode(false)}
-            className={`relative z-10 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 min-w-[100px] ${
+            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${
               !isLiveMode
                 ? "dark:text-[#00dc82] text-emerald-700 font-bold"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <BookOpen
-              className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                !isLiveMode ? "scale-110 dark:text-[#00dc82] text-emerald-600" : ""
+              className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                !isLiveMode ? "scale-105 dark:text-[#00dc82] text-emerald-600" : ""
               }`}
             />
             <span>Reference</span>
-            {!isLiveMode && (
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00dc82] animate-pulse" />
-            )}
           </button>
 
-          {/* Live Lab Button */}
+          {/* Live Lab Button - Exactly 50% fixed width */}
           <button
+            type="button"
             onClick={() => setIsLiveMode(true)}
-            className={`relative z-10 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 min-w-[100px] ${
+            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${
               isLiveMode
                 ? "text-slate-950 font-extrabold"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             <Sparkles
-              className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                isLiveMode ? "scale-110 text-slate-950" : ""
+              className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                isLiveMode ? "scale-105 text-slate-950" : ""
               }`}
             />
             <span>Live Lab</span>
-            {isLiveMode && (
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping" />
-            )}
           </button>
         </div>
 
         {/* Quick Lab CTA */}
         <button
           onClick={onOpenQuickLab}
-          className="px-4 py-2 rounded-xl dark:bg-[#141b24] bg-slate-900 hover:bg-slate-800 dark:hover:bg-[#1a2330] border dark:border-[#222d3d] border-slate-800 text-xs font-bold text-white flex items-center gap-1.5 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+          className="px-4 py-2 rounded-xl dark:bg-[#141b24] bg-slate-900 hover:bg-slate-800 dark:hover:bg-[#1a2330] border dark:border-[#222d3d] border-slate-800 text-xs font-bold text-white flex items-center gap-1.5 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98] shrink-0"
         >
           <span>Quick Lab</span>
           <ArrowRight className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-400" />
