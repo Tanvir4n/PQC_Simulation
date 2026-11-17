@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { Shield, Sparkles, BookOpen, ArrowRight, Sun, Moon } from "lucide-react";
+import { Sparkles, BookOpen, ArrowRight, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/theme";
+import { QuantumLogo } from "@/components/brand/QuantumLogo";
 
 interface BentoHeaderProps {
   isLiveMode: boolean;
@@ -29,8 +30,8 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
 
         {/* Large Prominent Brand Heading Pill */}
         <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-2xl dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 border shadow-xs transition-all">
-          <div className="w-7 h-7 rounded-xl dark:bg-[#00dc82]/15 bg-emerald-500/15 dark:border-[#00dc82]/30 border-emerald-500/30 border flex items-center justify-center dark:text-[#00dc82] text-emerald-600 shadow-sm">
-            <Shield className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-xl dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/25 border-emerald-500/25 border flex items-center justify-center shadow-xs shrink-0">
+            <QuantumLogo size={22} glow={false} />
           </div>
           <span className="text-base sm:text-lg font-extrabold tracking-tight dark:text-white text-slate-900">
             QuantumResist

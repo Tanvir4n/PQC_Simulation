@@ -15,6 +15,7 @@ import {
   ExternalLink,
   Lock
 } from "lucide-react";
+import { QuantumLogo } from "@/components/brand/QuantumLogo";
 
 export type TabType =
   | "overview"
@@ -104,8 +105,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="p-5 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-teal-500 to-purple-600 flex items-center justify-center shadow-lg shadow-teal-500/20">
-              <Lock className="w-5 h-5 text-slate-950 font-bold" />
+            <div className="w-10 h-10 rounded-xl dark:bg-[#070a0e] bg-slate-900 border border-teal-500/30 flex items-center justify-center shadow-lg shadow-teal-500/20">
+              <QuantumLogo size={24} glow={true} />
             </div>
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
