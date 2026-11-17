@@ -128,10 +128,10 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             />
           </ellipse>
 
-          {/* Complete 360-degree Orbiting Green Trajectory Line with active flowing dash animation */}
+          {/* Complete Non-overlapping 360-degree Orbit Path (Strictly outside Earth map, minimum 14px clearance) */}
           <path
             id="orbitTrajectory"
-            d="M 197.7 78.7 C 208.6 99.2, 182.6 134.3, 139.7 157.1 C 96.8 179.9, 53.2 181.8, 42.3 161.3 C 31.4 140.8, 57.4 105.7, 100.3 82.9 C 143.2 60.1, 186.8 58.2, 197.7 78.7 Z"
+            d="M 205.2 80.3 C 222.5 117.3, 198.3 165.1, 151.3 187.1 C 104.2 209.0, 52.1 196.8, 34.8 159.7 C 17.5 122.7, 41.7 74.9, 88.7 52.9 C 135.8 31.0, 187.9 43.2, 205.2 80.3 Z"
             fill="none"
             stroke="#00dc82"
             strokeWidth="1.2"
@@ -184,7 +184,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
             <animate attributeName="opacity" values="0.8; 0" dur="2.4s" begin="0.4s" repeatCount="indefinite" />
           </circle>
 
-          {/* Satellite Object: Smoothly orbiting along the complete trajectory */}
+          {/* Satellite Object: Smoothly orbiting along the complete trajectory outside Earth */}
           <g>
             <animateMotion
               dur="8s"
