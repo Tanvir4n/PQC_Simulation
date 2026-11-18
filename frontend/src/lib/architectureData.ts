@@ -338,3 +338,4 @@ export const ARCHITECTURE_NODES: Record<string, ArchitectureNodeDetail> = {
     mathematicalFormula: "Gas_accept = 70,442, Gas_deploy = 240,028"
   }
 };
+

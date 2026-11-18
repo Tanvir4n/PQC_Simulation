@@ -1,35 +1,31 @@
 "use client";
 
 import React from "react";
-import { Sparkles, BookOpen, ArrowRight, Sun, Moon } from "lucide-react";
+import { Sparkles, LayoutGrid, ArrowRight, Sun, Moon, Cpu } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { QuantumLogo } from "@/components/brand/QuantumLogo";
 
 interface BentoHeaderProps {
-  isLiveMode: boolean;
-  setIsLiveMode: (live: boolean) => void;
+  currentView: "overview" | "simulation";
+  setCurrentView: (view: "overview" | "simulation") => void;
   onOpenQuickLab: () => void;
 }
 
 export const BentoHeader: React.FC<BentoHeaderProps> = ({
-  isLiveMode,
-  setIsLiveMode,
+  currentView,
+  setCurrentView,
   onOpenQuickLab,
 }) => {
   const { isDark, toggleTheme } = useTheme();
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 p-3 sm:px-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 shadow-sm border transition-all">
-      {/* macOS Style Traffic Dots + Prominent Brand Heading */}
-      <div className="flex items-center gap-3.5">
-        <div className="flex items-center gap-1.5 pl-1">
-          <span className="w-3 h-3 rounded-full bg-[#ff5f56] shadow-xs" />
-          <span className="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-xs" />
-          <span className="w-3 h-3 rounded-full bg-[#27c93f] shadow-xs" />
-        </div>
-
-        {/* Large Prominent Brand Heading Pill */}
-        <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-2xl dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 border shadow-xs transition-all">
+      {/* Prominent Brand Identity (Clean, traffic dots removed) */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setCurrentView("overview")}
+          className="flex items-center gap-2.5 px-3 py-1.5 rounded-2xl dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 border shadow-xs hover:opacity-95 transition-all text-left"
+        >
           <div className="w-8 h-8 rounded-xl dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/25 border-emerald-500/25 border flex items-center justify-center shadow-xs shrink-0">
             <QuantumLogo size={22} glow={false} />
           </div>
@@ -39,10 +35,10 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           <span className="text-[11px] dark:text-[#00dc82] text-emerald-700 font-mono font-bold px-2 py-0.5 rounded-md dark:bg-[#00dc82]/10 bg-emerald-100/80 border dark:border-[#00dc82]/25 border-emerald-300 uppercase tracking-wide">
             FIPS 204
           </span>
-        </div>
+        </button>
       </div>
 
-      {/* Right Controls: Mode Switcher, Day/Night Toggle, & Quick Launch */}
+      {/* Right Controls: View Switcher (Overview vs Simulation), Day/Night, & Quick Launch */}
       <div className="flex items-center gap-2.5 shrink-0">
         {/* Day / Night Theme Toggle */}
         <button
@@ -63,51 +59,43 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           )}
         </button>
 
-        {/* Reference / Live Lab Mode Switcher with Fixed Rigid Dimensions & Fluid Slider */}
-        <div className="relative flex items-center p-1 rounded-2xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border shadow-inner select-none w-[228px] h-[38px] shrink-0">
-          {/* Animated Sliding Pill Highlight - Exactly 50% width minus padding */}
+        {/* Overview / Simulation Lab Switcher - Fixed Rigid Dimensions, No Dots */}
+        <div className="relative flex items-center p-1 rounded-2xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border shadow-inner select-none w-[240px] h-[38px] shrink-0">
+          {/* Animated Sliding Pill Highlight */}
           <div
             className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLiveMode
+              currentView === "simulation"
                 ? "left-[calc(50%+2px)] bg-gradient-to-r from-[#00dc82] to-[#059669] shadow-[0_0_20px_rgba(0,220,130,0.45)]"
                 : "left-1 dark:bg-[#141b24] bg-white border dark:border-[#1f2937] border-slate-200 shadow-sm"
             }`}
           />
 
-          {/* Reference Button - Exactly 50% fixed width */}
+          {/* Overview Button */}
           <button
             type="button"
-            onClick={() => setIsLiveMode(false)}
-            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${
-              !isLiveMode
+            onClick={() => setCurrentView("overview")}
+            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 ${
+              currentView === "overview"
                 ? "dark:text-[#00dc82] text-emerald-700 font-bold"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <BookOpen
-              className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                !isLiveMode ? "scale-105 dark:text-[#00dc82] text-emerald-600" : ""
-              }`}
-            />
-            <span>Reference</span>
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Overview</span>
           </button>
 
-          {/* Live Lab Button - Exactly 50% fixed width */}
+          {/* Simulation Lab Button */}
           <button
             type="button"
-            onClick={() => setIsLiveMode(true)}
-            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${
-              isLiveMode
+            onClick={() => setCurrentView("simulation")}
+            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 ${
+              currentView === "simulation"
                 ? "text-slate-950 font-extrabold"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <Sparkles
-              className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                isLiveMode ? "scale-105 text-slate-950" : ""
-              }`}
-            />
-            <span>Live Lab</span>
+            <Cpu className="w-3.5 h-3.5" />
+            <span>Simulation</span>
           </button>
         </div>
 
