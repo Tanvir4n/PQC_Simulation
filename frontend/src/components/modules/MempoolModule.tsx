@@ -185,10 +185,10 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
   return (
     <div className="p-4 sm:p-6 md:p-8 space-y-6 max-w-7xl mx-auto transition-colors">
       {/* Mempool 3D Cubic Block Visualizer Header (Bento Style) */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 md:p-6 space-y-4 shadow-sm transition-all">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-200 pb-3">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 md:p-6 space-y-4 shadow-sm transition-all">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl dark:bg-[#07090d] bg-slate-100 dark:border-[#141a24] border-slate-200 border flex items-center justify-center dark:text-[#00dc82] text-emerald-600">
+            <div className="w-8 h-8 rounded-xl dark:bg-[#0f110e] bg-slate-100 dark:border-[#23271f] border-[#e6e4da] border flex items-center justify-center dark:text-[#00dc82] text-emerald-600">
               <Box className="w-4 h-4" />
             </div>
             <div>
@@ -207,7 +207,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
             <button
               onClick={handleGenerateBatch}
               disabled={isGenerating}
-              className="px-3 py-1.5 rounded-xl dark:bg-[#141b24] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#1a2330] dark:text-[#00dc82] text-emerald-600 text-xs font-semibold flex items-center gap-1.5 dark:border-[#1e2736] border-slate-200 border transition-colors"
+              className="px-3 py-1.5 rounded-xl dark:bg-[#1c2019] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#1a2330] dark:text-[#00dc82] text-emerald-600 text-xs font-semibold flex items-center gap-1.5 dark:border-[#30352b] border-[#e6e4da] border transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Generate 5 Tx</span>
@@ -228,13 +228,13 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
           {blocks.slice(0, 6).map((b, idx) => (
             <div
               key={idx}
-              className="relative rounded-xl p-3.5 dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border dark:hover:border-[#263344] hover:border-slate-300 transition-all group shadow-xs"
+              className="relative rounded-xl p-3.5 dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border dark:hover:border-[#263344] hover:border-slate-300 transition-all group shadow-xs"
             >
               <div className="flex items-center justify-between text-[11px] font-mono dark:text-slate-400 text-slate-500 mb-2">
                 <span className="dark:text-[#00dc82] text-emerald-600 font-bold">#{b.index}</span>
                 <span>{b.size_kb} KB</span>
               </div>
-              <div className="w-full h-11 rounded-lg dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border flex items-center justify-center mb-2 group-hover:border-[#00dc82]/40 transition-colors">
+              <div className="w-full h-11 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border flex items-center justify-center mb-2 group-hover:border-[#00dc82]/40 transition-colors">
                 <span className="text-[10px] font-bold dark:text-[#00dc82] text-emerald-700 font-mono">
                   {b.tx_count} HYBRID TX
                 </span>
@@ -249,7 +249,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
 
       {/* Mempool Telemetry & Metrics Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm space-y-1">
+        <div className="p-4 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border shadow-sm space-y-1">
           <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
             Mempool Count
           </div>
@@ -261,7 +261,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm space-y-1">
+        <div className="p-4 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border shadow-sm space-y-1">
           <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
             Total Chain Height
           </div>
@@ -273,7 +273,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm space-y-1">
+        <div className="p-4 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border shadow-sm space-y-1">
           <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
             Duplicate Protection
           </div>
@@ -285,7 +285,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm space-y-1">
+        <div className="p-4 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border shadow-sm space-y-1">
           <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
             Block Hash Function
           </div>
@@ -299,8 +299,8 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
       </div>
 
       {/* Interactive Merkle Tree Visualizer in Bento Card */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 md:p-6 space-y-4 shadow-sm transition-all">
-        <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-200 pb-3">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 md:p-6 space-y-4 shadow-sm transition-all">
+        <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
           <div className="flex items-center gap-2">
             <GitCommit className="w-4 h-4 dark:text-[#00dc82] text-emerald-600" />
             <h4 className="text-sm font-bold dark:text-white text-slate-900 font-mono">
@@ -313,7 +313,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
         </div>
 
         {activeMerkleTree ? (
-          <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border space-y-4">
+          <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border space-y-4">
             {/* Merkle Root Highlight */}
             <div className="p-3.5 rounded-xl dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/30 border-emerald-500/30 border space-y-1">
               <div className="text-[10px] uppercase font-bold dark:text-[#00dc82] text-emerald-800 tracking-wider font-mono">
@@ -337,7 +337,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
                       node.is_root
                         ? "dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/30 border-emerald-500/30 dark:text-[#00dc82] text-emerald-700"
                         : node.is_leaf
-                        ? "dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 dark:text-slate-300 text-slate-700"
+                        ? "dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] dark:text-slate-300 text-slate-700"
                         : "dark:bg-purple-950/20 bg-purple-50 dark:border-purple-800/30 border-purple-200 dark:text-purple-300 text-purple-700"
                     }`}
                   >
@@ -352,7 +352,7 @@ export const MempoolModule: React.FC<MempoolModuleProps> = ({ isLiveMode }) => {
             </div>
           </div>
         ) : (
-          <div className="p-8 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border text-center text-xs dark:text-slate-400 text-slate-500 font-mono">
+          <div className="p-8 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border text-center text-xs dark:text-slate-400 text-slate-500 font-mono">
             Mine a block or generate transactions above to render the live SHA3-512 Merkle tree.
           </div>
         )}

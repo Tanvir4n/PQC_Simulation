@@ -31,7 +31,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
       {/* Central Visual: Monogram ASCII Fingerprint + Glowing Quantum Shield */}
       <div className="relative z-10 flex-1 flex items-center justify-center gap-6 py-4">
         {/* Left ASCII Monogram Art Box */}
-        <div className="p-3.5 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#141a24] border-slate-200 font-mono text-[11px] leading-tight text-[#00dc82] select-none shadow-inner group-hover:border-[#00dc82]/40 transition-colors">
+        <div className="p-3.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] font-mono text-[11px] leading-tight text-[#00dc82] select-none shadow-inner group-hover:border-[#00dc82]/40 transition-colors">
           <div className="opacity-90 hover:opacity-100 transition-opacity">|\ \ / /|</div>
           <div className="opacity-90 hover:opacity-100 transition-opacity">| \ V / |</div>
           <div className="opacity-70 text-[#00dc82]/70">|  | |  |</div>
@@ -139,7 +139,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
       </div>
 
       {/* Footer Tag matching other bento cards */}
-      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#161d27] border-slate-100 pt-2">
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#23271f] border-[#e6e4da] pt-2">
         <span className="dark:text-slate-400 text-slate-500">ECDSA secp256k1 + ML-DSA-65</span>
         <span className="text-[#00dc82] group-hover:underline flex items-center gap-1 font-bold">
           <span>[Inspect Hybrid Auth]</span>

@@ -76,8 +76,8 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Header Banner - Bento Styled */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-xl space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-100 pb-4">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 shadow-xl space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#23271f] border-[#e6e4da] pb-4">
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono text-xs border border-cyan-500/20 font-bold">
               Section 4.3 & Tables 6, 7, 8
@@ -102,20 +102,20 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
       </div>
 
       {/* Workload Data Table (Table 6 from Paper) */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 overflow-hidden shadow-xl">
-        <div className="p-5 border-b dark:border-[#161d27] border-slate-100 flex items-center justify-between">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] overflow-hidden shadow-xl">
+        <div className="p-5 border-b dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between">
           <h4 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
             <Activity className="w-4 h-4 text-[#00dc82]" />
             <span>Table 6: Five-Run Hybrid ECDSA-ML-DSA-65 Workload Results</span>
           </h4>
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded dark:bg-[#07090d] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#161d27] border-slate-200">
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded dark:bg-[#0f110e] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#23271f] border-[#e6e4da]">
             100% Success Rate Across All Batches
           </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="dark:bg-[#07090d] bg-slate-50 dark:text-slate-400 text-slate-500 border-b dark:border-[#161d27] border-slate-200">
+            <thead className="dark:bg-[#0f110e] bg-[#f6f5ef] dark:text-slate-400 text-slate-500 border-b dark:border-[#23271f] border-[#e6e4da]">
               <tr>
                 <th className="py-3 px-4">Workload Size</th>
                 <th className="py-3 px-4">Success Rate</th>
@@ -125,11 +125,11 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
                 <th className="py-3 px-4">CPU Utilization (%)</th>
               </tr>
             </thead>
-            <tbody className="divide-y dark:divide-[#161d27] divide-slate-100 dark:text-slate-300 text-slate-700">
+            <tbody className="divide-y dark:divide-[#23271f] divide-slate-100 dark:text-slate-300 text-slate-700">
               {workloads.map((w, idx) => (
                 <tr
                   key={idx}
-                  className={`hover:dark:bg-[#111722]/60 hover:bg-slate-50 transition-colors ${
+                  className={`hover:dark:bg-[#111722]/60 hover:bg-[#f6f5ef] transition-colors ${
                     w.size === 1000 ? "dark:bg-[#00dc82]/10 bg-emerald-50/70 font-bold dark:text-[#00dc82] text-emerald-700" : ""
                   }`}
                 >
@@ -156,8 +156,8 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
       {/* Visual Graphs: TPS & Latency Comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Throughput Curve */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-4 shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <span className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-[#00dc82]" />
               <span>(a) Throughput Scaling Curve (TPS)</span>
@@ -193,8 +193,8 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
         </div>
 
         {/* Latency Curve */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-4 shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <span className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-500" />
               <span>(b) Per-Transaction Latency (ms)</span>
@@ -232,8 +232,8 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
       {/* Analytical Storage & Serialization Bandwidth Calculators (Equations 5-8) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Storage Growth Projections */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-5 shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-5 shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2">
               <HardDrive className="w-4 h-4 text-purple-500 dark:text-purple-400" />
               <span>Signature Ledger Growth (Eq. 7)</span>
@@ -268,7 +268,7 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
                 <div className="text-xl font-bold dark:text-white text-slate-900 font-mono">{hybridStorageGB} GB</div>
                 <div className="text-[10px] dark:text-slate-400 text-slate-500">3,380 bytes / transaction</div>
               </div>
-              <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+              <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
                 <div className="text-[10px] uppercase font-bold dark:text-slate-400 text-slate-500">
                   Classical ECDSA Baseline
                 </div>
@@ -277,7 +277,7 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
               </div>
             </div>
 
-            <div className="p-3.5 rounded-xl dark:bg-[#07090d] bg-slate-50 text-xs dark:text-slate-400 text-slate-600 leading-relaxed border dark:border-[#161d27] border-slate-200">
+            <div className="p-3.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] text-xs dark:text-slate-400 text-slate-600 leading-relaxed border dark:border-[#23271f] border-[#e6e4da]">
               At 1,000,000 hybrid transactions, pure signature storage requires{" "}
               <strong className="dark:text-[#00dc82] text-emerald-600 font-mono font-bold">3.38 GB</strong> per complete ledger replica (versus 70 MB for ECDSA; a 48.3-fold increase).
             </div>
@@ -285,8 +285,8 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
         </div>
 
         {/* Serialization Bandwidth & Live Benchmark */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-5 shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-5 shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2">
               <Zap className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
               <span>Serialization Bandwidth (Eq. 6) & Live Runner</span>
@@ -319,7 +319,7 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
                 <div className="text-xl font-bold dark:text-white text-slate-900 font-mono">{bandwidthMbps} Mbps</div>
                 <div className="text-[10px] dark:text-slate-400 text-slate-500">27.04 Mbps at 1,000 TPS</div>
               </div>
-              <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+              <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
                 <div className="text-[10px] uppercase font-bold dark:text-slate-400 text-slate-500">
                   ECDSA Bandwidth
                 </div>
@@ -329,7 +329,7 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
             </div>
 
             {/* Live Benchmark Execution Button */}
-            <div className="pt-3 border-t dark:border-[#161d27] border-slate-100">
+            <div className="pt-3 border-t dark:border-[#23271f] border-[#e6e4da]">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold dark:text-slate-300 text-slate-700">Run Live Local Benchmark</span>
                 <span className="text-xs font-mono dark:text-[#00dc82] text-emerald-600">{benchTxCount} tx</span>
@@ -341,7 +341,7 @@ export const ScalabilityModule: React.FC<ScalabilityModuleProps> = ({ isLiveMode
                   max={500}
                   value={benchTxCount}
                   onChange={(e) => setBenchTxCount(parseInt(e.target.value) || 10)}
-                  className="w-24 dark:bg-[#07090d] bg-slate-100 border dark:border-[#161d27] border-slate-300 rounded-lg px-3 py-2 text-xs dark:text-white text-slate-900 font-mono"
+                  className="w-24 dark:bg-[#0f110e] bg-slate-100 border dark:border-[#23271f] border-slate-300 rounded-lg px-3 py-2 text-xs dark:text-white text-slate-900 font-mono"
                 />
                 <button
                   onClick={handleRunLiveBenchmark}

@@ -132,7 +132,7 @@ export const OverviewModule: React.FC<OverviewModuleProps> = ({
   return (
     <div className="p-4 sm:p-6 md:p-8 space-y-6 max-w-7xl mx-auto transition-colors">
       {/* Paper Hero Section (Bento Master Card) */}
-      <div className="relative rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-6 md:p-8 shadow-sm overflow-hidden transition-all">
+      <div className="relative rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-6 md:p-8 shadow-sm overflow-hidden transition-all">
         <div className="absolute top-0 right-0 w-96 h-96 dark:bg-[#00dc82]/5 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/20 border-emerald-500/30 border text-xs dark:text-[#00dc82] text-emerald-700 font-mono font-medium">
@@ -193,7 +193,7 @@ export const OverviewModule: React.FC<OverviewModuleProps> = ({
             return (
               <div
                 key={i}
-                className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-4 flex flex-col justify-between transition-all hover:scale-[1.02] shadow-sm"
+                className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-4 flex flex-col justify-between transition-all hover:scale-[1.02] shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-[11px] font-mono font-medium dark:text-slate-400 text-slate-500 truncate">
@@ -231,14 +231,14 @@ export const OverviewModule: React.FC<OverviewModuleProps> = ({
               <div
                 key={m.id}
                 onClick={() => setActiveTab(m.id)}
-                className="group cursor-pointer rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 dark:hover:border-[#263344] hover:border-slate-300 dark:hover:bg-[#121721] hover:bg-slate-50 transition-all flex flex-col justify-between shadow-sm min-h-[180px]"
+                className="group cursor-pointer rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 dark:hover:border-[#263344] hover:border-slate-300 dark:hover:bg-[#121721] hover:bg-[#f6f5ef] transition-all flex flex-col justify-between shadow-sm min-h-[180px]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-lg dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:text-[#00dc82] text-emerald-700 dark:border-[#00dc82]/20 border-emerald-500/30 border">
                       Module {m.num}
                     </span>
-                    <div className="w-8 h-8 rounded-xl dark:bg-[#07090d] bg-slate-100 dark:border-[#141a24] border-slate-200 border flex items-center justify-center dark:text-[#00dc82] text-emerald-600 group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-xl dark:bg-[#0f110e] bg-slate-100 dark:border-[#23271f] border-[#e6e4da] border flex items-center justify-center dark:text-[#00dc82] text-emerald-600 group-hover:scale-110 transition-transform">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>
@@ -250,7 +250,7 @@ export const OverviewModule: React.FC<OverviewModuleProps> = ({
                   </p>
                 </div>
 
-                <div className="pt-4 border-t dark:border-[#161d27] border-slate-200 flex items-center justify-between text-xs font-mono">
+                <div className="pt-4 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between text-xs font-mono">
                   <span className="dark:text-slate-500 text-slate-400 text-[10px]">DIU CSE Paper</span>
                   <span className="dark:text-[#00dc82] text-emerald-600 font-semibold group-hover:underline flex items-center gap-1 text-[11px]">
                     <span>[Inspect]</span>

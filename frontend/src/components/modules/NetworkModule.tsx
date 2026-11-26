@@ -274,9 +274,9 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
   return (
     <div className="p-4 sm:p-6 md:p-8 space-y-6 max-w-7xl mx-auto transition-colors">
       {/* Top Controls Bar (Bento-Matched Card) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border shadow-sm transition-all">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border shadow-sm transition-all">
         {/* Toggle: Real time vs Simulation */}
-        <div className="flex items-center gap-1 p-1 dark:bg-[#07090d] bg-slate-100 rounded-xl dark:border-[#161d27] border-slate-200 border font-mono">
+        <div className="flex items-center gap-1 p-1 dark:bg-[#0f110e] bg-slate-100 rounded-xl dark:border-[#23271f] border-[#e6e4da] border font-mono">
           <button
             onClick={() => setViewMode("realtime")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
@@ -315,7 +315,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
             <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-xs shadow-purple-400/50" />
             <span className="dark:text-slate-300 text-slate-700">PQC: {composition.pqc}</span>
           </div>
-          <div className="dark:text-slate-500 text-slate-400 pl-2 border-l dark:border-[#161d27] border-slate-200">
+          <div className="dark:text-slate-500 text-slate-400 pl-2 border-l dark:border-[#23271f] border-[#e6e4da]">
             Total: 100 Nodes
           </div>
         </div>
@@ -324,7 +324,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
       {/* Main Grid: Network Canvas & Inspector Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* React Flow 100-Node Canvas */}
-        <div className="lg:col-span-3 h-[600px] rounded-2xl dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-200 border shadow-sm relative overflow-hidden transition-colors">
+        <div className="lg:col-span-3 h-[600px] rounded-2xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border shadow-sm relative overflow-hidden transition-colors">
           <ReactFlow
             nodes={flowNodes}
             edges={flowEdges}
@@ -341,7 +341,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
           </ReactFlow>
 
           {/* Floating Canvas Tag */}
-          <div className="absolute top-4 left-4 pointer-events-none dark:bg-[#0b0e14]/90 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl dark:border-[#161d27] border-slate-200 border text-[11px] font-mono dark:text-slate-400 text-slate-600 flex items-center gap-2 shadow-sm">
+          <div className="absolute top-4 left-4 pointer-events-none dark:bg-[#141712]/90 bg-[#fdfdfa]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl dark:border-[#23271f] border-[#e6e4da] border text-[11px] font-mono dark:text-slate-400 text-slate-600 flex items-center gap-2 shadow-sm">
             <Network className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
             <span>Interactive P2P Mesh Topology (Click node to inspect)</span>
           </div>
@@ -350,8 +350,8 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
         {/* Sidebar Inspector & Route Controller */}
         <div className="space-y-6">
           {/* Node Inspector Drawer */}
-          <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 space-y-3 shadow-sm transition-all">
-            <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-200 pb-2.5">
+          <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 space-y-3 shadow-sm transition-all">
+            <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-2.5">
               <span className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-1.5 font-mono">
                 <Eye className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
                 <span>Node Inspector</span>
@@ -390,13 +390,13 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2 pt-1">
-                  <div className="p-2.5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border">
+                  <div className="p-2.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border">
                     <div className="text-[10px] dark:text-slate-500 text-slate-400">Accepted Tx</div>
                     <div className="text-sm font-bold dark:text-[#00dc82] text-emerald-600 font-mono">
                       {selectedNode.processed_tx}
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border">
+                  <div className="p-2.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border">
                     <div className="text-[10px] dark:text-slate-500 text-slate-400">Rejected Tx</div>
                     <div className="text-sm font-bold text-rose-500 font-mono">
                       {selectedNode.rejected_tx}
@@ -418,7 +418,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
           </div>
 
           {/* Directed Routing Experiment */}
-          <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 space-y-3 shadow-sm transition-all">
+          <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 space-y-3 shadow-sm transition-all">
             <h3 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-1.5 font-mono">
               <Send className="w-3.5 h-3.5 dark:text-[#00dc82] text-emerald-600" />
               <span>Directed Routing Test</span>
@@ -434,7 +434,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
                     max={99}
                     value={senderId}
                     onChange={(e) => setSenderId(parseInt(e.target.value) || 0)}
-                    className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
+                    className="w-full mt-1 dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                   />
                 </div>
                 <div>
@@ -445,7 +445,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
                     max={99}
                     value={receiverId}
                     onChange={(e) => setReceiverId(parseInt(e.target.value) || 0)}
-                    className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
+                    className="w-full mt-1 dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                   />
                 </div>
               </div>
@@ -455,7 +455,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({ isLiveMode }) => {
                 <select
                   value={txType}
                   onChange={(e) => setTxType(e.target.value)}
-                  className="w-full mt-1 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
+                  className="w-full mt-1 dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-slate-300 rounded-xl px-2.5 py-1.5 dark:text-white text-slate-900 text-xs font-mono outline-none"
                 >
                   <option value="hybrid">Hybrid (ECDSA + ML-DSA-65)</option>
                   <option value="classical">Classical (ECDSA only)</option>

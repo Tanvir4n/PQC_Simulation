@@ -207,9 +207,9 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
   return (
     <div className="p-4 sm:p-6 md:p-8 space-y-6 max-w-7xl mx-auto transition-colors">
       {/* Visual Envelope Diagram Header (Standard Bento Box Style) */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 md:p-6 shadow-sm space-y-4 transition-all">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 md:p-6 shadow-sm space-y-4 transition-all">
         {/* Header Tag matching Bento Header */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b dark:border-[#161d27] border-slate-200 pb-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full dark:bg-[#00dc82] bg-emerald-600 animate-pulse" />
             <span className="px-2 py-0.5 rounded dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:text-[#00dc82] text-emerald-700 font-mono text-[10px] sm:text-xs border dark:border-[#00dc82]/20 border-emerald-500/30 font-bold">
@@ -225,7 +225,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
         </div>
 
         {/* Byte Envelope Visualizer (Bento-Matched Cards) */}
-        <div className="p-4 sm:p-5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border space-y-4">
+        <div className="p-4 sm:p-5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
             <span className="dark:text-slate-300 text-slate-700 font-semibold">
               Total Serialized Hybrid Signature:{" "}
@@ -237,14 +237,14 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
           </div>
 
           {/* 3-Section Byte Envelope Horizontal Bar */}
-          <div className="grid grid-cols-12 gap-2 p-1.5 rounded-xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border font-mono text-[11px]">
+          <div className="grid grid-cols-12 gap-2 p-1.5 rounded-xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border font-mono text-[11px]">
             {/* Version Byte */}
-            <div className="col-span-12 sm:col-span-2 md:col-span-1 p-2.5 rounded-lg dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-300 border text-center flex flex-col justify-between">
+            <div className="col-span-12 sm:col-span-2 md:col-span-1 p-2.5 rounded-lg dark:bg-[#1c2019] bg-slate-100 dark:border-[#30352b] border-slate-300 border text-center flex flex-col justify-between">
               <span className="font-bold dark:text-white text-slate-900">v</span>
               <span className="text-[10px] dark:text-slate-400 text-slate-500">1 B</span>
             </div>
             {/* ECDSA DER */}
-            <div className="col-span-12 sm:col-span-4 md:col-span-3 p-2.5 rounded-lg dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-300 border text-center flex flex-col justify-between">
+            <div className="col-span-12 sm:col-span-4 md:col-span-3 p-2.5 rounded-lg dark:bg-[#1c2019] bg-slate-100 dark:border-[#30352b] border-slate-300 border text-center flex flex-col justify-between">
               <span className="font-bold dark:text-white text-slate-900">DER(r, s) ECDSA</span>
               <span className="text-[10px] dark:text-slate-400 text-slate-500">~70 B (ASN.1 DER)</span>
             </div>
@@ -261,7 +261,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
 
           {/* Key representations comparison cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
-            <div className="p-3.5 rounded-xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border space-y-1">
+            <div className="p-3.5 rounded-xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border space-y-1">
               <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
                 Public Key Binding
               </div>
@@ -273,7 +273,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border space-y-1">
+            <div className="p-3.5 rounded-xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border space-y-1">
               <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
                 Raw Secret Material
               </div>
@@ -285,7 +285,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border space-y-1">
+            <div className="p-3.5 rounded-xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border space-y-1">
               <div className="text-[11px] dark:text-slate-400 text-slate-500 font-mono uppercase tracking-wider">
                 Serialized Private Key
               </div>
@@ -303,15 +303,15 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
       {/* Interactive Workbench: Dual KeyGen & Signing */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column: Key Generation & Message Signing */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 md:p-6 space-y-4 shadow-sm transition-all">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-200 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 md:p-6 space-y-4 shadow-sm transition-all">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2">
               <KeyRound className="w-4 h-4 dark:text-[#00dc82] text-emerald-600" />
               <span>Interactive Dual Signing Workbench</span>
             </h4>
             <button
               onClick={handleGenerateKeys}
-              className="text-xs px-2.5 py-1 rounded-xl dark:bg-[#141b24] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#1a2330] dark:text-[#00dc82] text-emerald-600 dark:border-[#1e2736] border-slate-200 border flex items-center gap-1.5 transition-all font-mono"
+              className="text-xs px-2.5 py-1 rounded-xl dark:bg-[#1c2019] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#1a2330] dark:text-[#00dc82] text-emerald-600 dark:border-[#30352b] border-[#e6e4da] border flex items-center gap-1.5 transition-all font-mono"
             >
               <RefreshCw className="w-3 h-3" />
               <span>Generate Keys</span>
@@ -319,7 +319,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
           </div>
 
           {/* Bound Address Card */}
-          <div className="p-3.5 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border space-y-1.5">
+          <div className="p-3.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border space-y-1.5">
             <div className="flex items-center justify-between text-[11px] dark:text-slate-400 text-slate-500 font-mono">
               <span>Canonical Blockchain Address</span>
               <span className="text-[10px] dark:text-[#00dc82] text-emerald-600">
@@ -349,7 +349,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               rows={3}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl p-3 text-xs dark:text-white text-slate-900 font-mono dark:focus:border-[#00dc82] focus:border-emerald-600 outline-none transition-colors"
+              className="w-full dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-slate-300 rounded-xl p-3 text-xs dark:text-white text-slate-900 font-mono dark:focus:border-[#00dc82] focus:border-emerald-600 outline-none transition-colors"
             />
           </div>
 
@@ -369,25 +369,25 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
 
           {/* Signature Details Output */}
           {signatureData && (
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 dark:border-[#141a24] border-slate-200 border space-y-2.5 text-xs animate-in fade-in">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] border space-y-2.5 text-xs animate-in fade-in">
               <div className="flex items-center justify-between font-semibold dark:text-slate-300 text-slate-700">
                 <span>Domain-Separated Canonical Digest</span>
                 <span className="text-[10px] dark:text-[#00dc82] text-emerald-600 font-mono">
                   SHA3-512
                 </span>
               </div>
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border font-mono text-[11px] dark:text-[#00dc82] text-emerald-700 truncate">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border font-mono text-[11px] dark:text-[#00dc82] text-emerald-700 truncate">
                 {signatureData.digest_hex}
               </div>
 
               <div className="grid grid-cols-2 gap-2 pt-1 font-mono text-[11px]">
-                <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border">
+                <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border">
                   <div className="dark:text-slate-400 text-slate-500 text-[10px]">ECDSA DER Size</div>
                   <div className="dark:text-cyan-400 text-cyan-600 font-bold">
                     {signatureData.envelope_breakdown.ecdsa_der_bytes} Bytes
                   </div>
                 </div>
-                <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border">
+                <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border">
                   <div className="dark:text-slate-400 text-slate-500 text-[10px]">ML-DSA-65 Size</div>
                   <div className="dark:text-[#00dc82] text-emerald-600 font-bold">
                     {signatureData.envelope_breakdown.mldsa_bytes} Bytes
@@ -399,7 +399,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               <button
                 onClick={handleVerify}
                 disabled={isVerifying}
-                className="w-full mt-2 py-2.5 rounded-xl dark:bg-[#141b24] bg-slate-900 hover:bg-slate-800 dark:hover:bg-[#1a2330] text-white font-bold text-xs flex items-center justify-center gap-2 border dark:border-[#222d3d] border-slate-800 transition-colors"
+                className="w-full mt-2 py-2.5 rounded-xl dark:bg-[#1c2019] bg-slate-900 hover:bg-slate-800 dark:hover:bg-[#1a2330] text-white font-bold text-xs flex items-center justify-center gap-2 border dark:border-[#222d3d] border-slate-800 transition-colors"
               >
                 {isVerifying ? (
                   <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -428,8 +428,8 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
         </div>
 
         {/* Right Column: Bit-Tampering & Security Sandbox */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 border p-5 md:p-6 space-y-4 shadow-sm transition-all">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-200 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] border p-5 md:p-6 space-y-4 shadow-sm transition-all">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-rose-500" />
               <span>Signature Tampering & Corruption Sandbox</span>
@@ -453,7 +453,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               <select
                 value={tamperTarget}
                 onChange={(e) => setTamperTarget(e.target.value)}
-                className="w-full mt-1.5 dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-300 rounded-xl p-2.5 text-xs dark:text-white text-slate-900 font-mono outline-none"
+                className="w-full mt-1.5 dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-slate-300 rounded-xl p-2.5 text-xs dark:text-white text-slate-900 font-mono outline-none"
               >
                 <option value="ecdsa">Corrupt ECDSA Signature (Bit Flip at byte 5)</option>
                 <option value="mldsa">Corrupt ML-DSA-65 Signature (Bit Flip at byte 3,250)</option>
@@ -468,7 +468,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               className={`w-full py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all ${
                 signatureData
                   ? "dark:bg-rose-500/20 bg-rose-100 hover:bg-rose-200 dark:hover:bg-rose-500/30 text-rose-600 dark:text-rose-300 border border-rose-500/30 shadow-lg shadow-rose-500/10 cursor-pointer"
-                  : "dark:bg-[#141b24] bg-slate-100 dark:text-slate-500 text-slate-400 cursor-not-allowed border dark:border-[#1e2736] border-slate-200"
+                  : "dark:bg-[#1c2019] bg-slate-100 dark:text-slate-500 text-slate-400 cursor-not-allowed border dark:border-[#30352b] border-[#e6e4da]"
               }`}
             >
               {isTampering ? (
@@ -486,7 +486,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
 
           {/* Tamper Result Report */}
           {tamperResult && (
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-rose-50/50 dark:border-rose-500/30 border-rose-200 border space-y-2 text-xs animate-in fade-in">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-rose-50/50 dark:border-rose-500/30 border-rose-200 border space-y-2 text-xs animate-in fade-in">
               <div className="flex items-center gap-2 text-rose-500 font-bold">
                 <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0" />
                 <span>ATTACK PREVENTED: Transaction Rejected</span>
@@ -494,7 +494,7 @@ export const CryptoModule: React.FC<CryptoModuleProps> = ({ isLiveMode }) => {
               <p className="text-[11px] dark:text-slate-300 text-slate-700 font-mono">
                 {tamperResult.tamper_description}
               </p>
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white border dark:border-rose-500/30 border-rose-200 font-mono text-[11px] text-rose-500 font-bold">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] border dark:border-rose-500/30 border-rose-200 font-mono text-[11px] text-rose-500 font-bold">
                 Status: {tamperResult.verification_result.valid ? "UNSAFE ACCEPT" : "CORRUPT SIGNATURE DROPPED"}
               </div>
               <div className="text-[10px] dark:text-slate-400 text-slate-500 font-mono">

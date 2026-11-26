@@ -200,14 +200,14 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
   return (
     <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-6">
       {/* 1. Header Banner */}
-      <div className="rounded-3xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#00dc82] animate-pulse" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#00dc82]">
               Unified Master Pipeline Simulator
             </span>
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded-md dark:bg-[#141b24] bg-slate-100 text-slate-400 border dark:border-[#1e2736] border-slate-200">
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-md dark:bg-[#1c2019] bg-slate-100 text-slate-400 border dark:border-[#30352b] border-[#e6e4da]">
               Stages 01 → 08
             </span>
           </div>
@@ -230,7 +230,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 ? "dark:bg-rose-500/10 bg-rose-50 text-rose-500 border-rose-500/30"
                 : isRunning
                 ? "dark:bg-cyan-500/10 bg-cyan-50 text-cyan-600 border-cyan-500/30 animate-pulse"
-                : "dark:bg-[#141b24] bg-slate-100 text-slate-400 border-slate-300 dark:border-slate-800"
+                : "dark:bg-[#1c2019] bg-slate-100 text-slate-400 border-slate-300 dark:border-slate-800"
             }`}
           >
             {simulationResult?.success ? (
@@ -264,8 +264,8 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
       {/* 2. Interactive Controls & Attack Scenario Configuration */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Left: Transaction Parameters (Span 7) */}
-        <div className="lg:col-span-7 rounded-3xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-5 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="lg:col-span-7 rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-5 shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <div className="flex items-center gap-2 text-xs font-mono font-bold dark:text-slate-300 text-slate-700">
               <FileCode className="w-4 h-4 text-[#00dc82]" />
               <span>TRANSACTION PAYLOAD PARAMETERS</span>
@@ -280,7 +280,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 type="text"
                 value={sender}
                 onChange={(e) => setSender(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 dark:text-white text-slate-900 font-mono text-[11px] focus:outline-none focus:border-[#00dc82]"
+                className="w-full px-3 py-2 rounded-xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] dark:text-white text-slate-900 font-mono text-[11px] focus:outline-none focus:border-[#00dc82]"
               />
             </div>
             <div className="space-y-1.5">
@@ -289,7 +289,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 type="text"
                 value={receiver}
                 onChange={(e) => setReceiver(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 dark:text-white text-slate-900 font-mono text-[11px] focus:outline-none focus:border-[#00dc82]"
+                className="w-full px-3 py-2 rounded-xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] dark:text-white text-slate-900 font-mono text-[11px] focus:outline-none focus:border-[#00dc82]"
               />
             </div>
           </div>
@@ -305,7 +305,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                     className={`px-2.5 py-1 rounded-lg text-xs font-mono border transition-all ${
                       amount === val
                         ? "bg-[#00dc82]/15 border-[#00dc82] text-[#00dc82] font-bold"
-                        : "dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 text-slate-500 hover:text-slate-300"
+                        : "dark:bg-[#1c2019] bg-slate-100 dark:border-[#30352b] border-[#e6e4da] text-slate-500 hover:text-slate-300"
                     }`}
                   >
                     {val} ETH
@@ -319,7 +319,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
               <select
                 value={autoPlaySpeed}
                 onChange={(e) => setAutoPlaySpeed(Number(e.target.value))}
-                className="px-2.5 py-1 rounded-lg dark:bg-[#121721] bg-slate-100 border dark:border-[#1e2736] border-slate-200 dark:text-slate-200 text-slate-700 text-xs font-mono focus:outline-none"
+                className="px-2.5 py-1 rounded-lg dark:bg-[#1c2019] bg-slate-100 border dark:border-[#30352b] border-[#e6e4da] dark:text-slate-200 text-slate-700 text-xs font-mono focus:outline-none"
               >
                 <option value={1200}>Slow (1.2s)</option>
                 <option value={750}>Normal (750ms)</option>
@@ -331,8 +331,8 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
         </div>
 
         {/* Right: Security & Attack Injection Knobs (Span 5) */}
-        <div className="lg:col-span-5 rounded-3xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-5 shadow-sm space-y-3">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-2.5">
+        <div className="lg:col-span-5 rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-5 shadow-sm space-y-3">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-2.5">
             <div className="flex items-center gap-2 text-xs font-mono font-bold dark:text-slate-300 text-slate-700">
               <ShieldAlert className="w-4 h-4 text-amber-500" />
               <span>ATTACK & SECURITY INJECTION</span>
@@ -378,8 +378,8 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 onClick={() => setTamperMode(opt.id)}
                 className={`w-full text-left px-3 py-2 rounded-xl border text-xs font-mono transition-all flex items-center justify-between ${
                   tamperMode === opt.id
-                    ? "dark:bg-[#141b24] bg-slate-100 border-[#00dc82] shadow-xs"
-                    : "dark:bg-[#070a0e] bg-slate-50 dark:border-[#161d27] border-slate-200 opacity-80 hover:opacity-100"
+                    ? "dark:bg-[#1c2019] bg-slate-100 border-[#00dc82] shadow-xs"
+                    : "dark:bg-[#070a0e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] opacity-80 hover:opacity-100"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -416,7 +416,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
           <button
             onClick={handleReset}
             disabled={isRunning}
-            className="py-3 px-4 rounded-xl dark:bg-[#141b24] bg-white border dark:border-[#1e2736] border-slate-300 dark:text-slate-300 text-slate-700 hover:dark:text-white hover:text-slate-950 text-xs font-mono transition-all flex items-center gap-2"
+            className="py-3 px-4 rounded-xl dark:bg-[#1c2019] bg-[#fdfdfa] border dark:border-[#30352b] border-slate-300 dark:text-slate-300 text-slate-700 hover:dark:text-white hover:text-slate-950 text-xs font-mono transition-all flex items-center gap-2"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
@@ -462,10 +462,10 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 onClick={() => setSelectedStageTab(st.num)}
                 className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between h-28 relative overflow-hidden ${
                   isSelected
-                    ? "dark:bg-[#141c28] bg-white border-[#00dc82] shadow-md ring-1 ring-[#00dc82]/30"
+                    ? "dark:bg-[#141c28] bg-[#fdfdfa] border-[#00dc82] shadow-md ring-1 ring-[#00dc82]/30"
                     : isCurrentActive
-                    ? "dark:bg-[#0f1722] bg-slate-50 border-cyan-500 shadow-sm"
-                    : "dark:bg-[#0b0e14] bg-white/70 dark:border-[#161d27] border-slate-200 hover:border-slate-400"
+                    ? "dark:bg-[#0f1722] bg-[#f6f5ef] border-cyan-500 shadow-sm"
+                    : "dark:bg-[#141712] bg-[#fdfdfa]/70 dark:border-[#23271f] border-[#e6e4da] hover:border-slate-400"
                 }`}
               >
                 {/* Top Row: Icon & Status Indicator */}
@@ -509,8 +509,8 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
       {/* 5. Deep-Dive Stage Inspector & Live Visualization Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Stage Deep Dive Card (Span 7) */}
-        <div className="lg:col-span-7 rounded-3xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-md space-y-5">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-4">
+        <div className="lg:col-span-7 rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 shadow-md space-y-5">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-4">
             <div className="flex items-center gap-3">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
@@ -549,7 +549,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
           {/* Dynamic Content based on selected Stage */}
           {selectedStageTab === 1 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2">
                 <div className="text-slate-400 text-[11px] font-bold">CANONICAL TRANSACTION STRUCTURE</div>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
@@ -585,18 +585,18 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
           {selectedStageTab === 2 && (
             <div className="space-y-3 font-mono text-xs">
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200">
+                <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da]">
                   <div className="text-slate-400 text-[11px] font-bold">CLASSICAL KEYPAIR (ECDSA)</div>
                   <div className="text-sm font-extrabold text-[#00dc82] mt-1">65 Bytes</div>
                   <div className="text-[11px] text-slate-500 mt-1">Curve: secp256k1 (256-bit)</div>
                 </div>
-                <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200">
+                <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da]">
                   <div className="text-slate-400 text-[11px] font-bold">POST-QUANTUM KEYPAIR (ML-DSA)</div>
                   <div className="text-sm font-extrabold text-purple-400 mt-1">1,952 Bytes</div>
                   <div className="text-[11px] text-slate-500 mt-1">NIST FIPS 204 Parameter Set 2</div>
                 </div>
               </div>
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da]">
                 <div className="text-slate-400 text-[11px] font-bold">COMBINED PUBLIC KEY BINDING</div>
                 <div className="text-xs dark:text-slate-300 text-slate-800 mt-1 font-bold">
                   |α_pk| = 65 B + 1,952 B = 2,017 Bytes
@@ -613,7 +613,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
               <div className="text-slate-400 text-[11px] font-bold">
                 CANONICAL 3,380-BYTE ENVELOPE STRIP (TABLE 4)
               </div>
-              <div className="flex h-12 rounded-xl overflow-hidden border dark:border-[#1e2736] border-slate-300 shadow-inner">
+              <div className="flex h-12 rounded-xl overflow-hidden border dark:border-[#30352b] border-slate-300 shadow-inner">
                 <div
                   className="w-[3%] bg-cyan-600 flex items-center justify-center text-[10px] text-white font-bold"
                   title="Version: 1 Byte (0x01)"
@@ -639,7 +639,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                 <span>ML-DSA: 3,309 B</span>
                 <span className="text-[#00dc82] font-bold">Total: Exactly 3,380 Bytes</span>
               </div>
-              <div className="p-3 rounded-xl dark:bg-[#121721] bg-slate-50 text-[11px] text-slate-400">
+              <div className="p-3 rounded-xl dark:bg-[#1c2019] bg-[#f6f5ef] text-[11px] text-slate-400">
                 Digest Context: SHA3-512(&apos;HYB-SIG&apos; || Enc(v, α_pk, m))
               </div>
             </div>
@@ -647,7 +647,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
 
           {selectedStageTab === 4 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2">
                 <div className="text-slate-400 text-[11px] font-bold">P2P MESH PROPAGATION ROUTE</div>
                 <div className="flex items-center gap-2 text-xs font-bold text-cyan-400">
                   <span>Node #{activeStageData?.sender_node || 4}</span>
@@ -670,7 +670,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
 
           {selectedStageTab === 5 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2">
                 <div className="text-slate-400 text-[11px] font-bold">MEMPOOL INGESTION GATES</div>
                 <div className="flex items-center justify-between text-[11px]">
                   <span>Anti-Replay Nonce Verification:</span>
@@ -707,11 +707,11 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
 
           {selectedStageTab === 6 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2.5">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2.5">
                 <div className="text-slate-400 text-[11px] font-bold">
                   STRICT CONJUNCTION DUAL LOGIC GATE (ALGORITHM 3)
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-xl dark:bg-[#070a0e] bg-white border dark:border-[#1a2332] border-slate-200">
+                <div className="flex items-center justify-between p-2 rounded-xl dark:bg-[#070a0e] bg-[#fdfdfa] border dark:border-[#1a2332] border-[#e6e4da]">
                   <span className="text-[11px]">Gate 1: ECDSA Classical (b_e):</span>
                   <span
                     className={`font-bold ${
@@ -725,7 +725,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                       : "PASS (1)"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-xl dark:bg-[#070a0e] bg-white border dark:border-[#1a2332] border-slate-200">
+                <div className="flex items-center justify-between p-2 rounded-xl dark:bg-[#070a0e] bg-[#fdfdfa] border dark:border-[#1a2332] border-[#e6e4da]">
                   <span className="text-[11px]">Gate 2: ML-DSA-65 Post-Quantum (b_pq):</span>
                   <span
                     className={`font-bold ${
@@ -755,7 +755,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
 
           {selectedStageTab === 7 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2">
                 <div className="text-slate-400 text-[11px] font-bold">MINED BLOCK DETAILS</div>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
@@ -784,7 +784,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
 
           {selectedStageTab === 8 && (
             <div className="space-y-3 font-mono text-xs">
-              <div className="p-3.5 rounded-2xl dark:bg-[#121721] bg-slate-50 border dark:border-[#1e2736] border-slate-200 space-y-2">
+              <div className="p-3.5 rounded-2xl dark:bg-[#1c2019] bg-[#f6f5ef] border dark:border-[#30352b] border-[#e6e4da] space-y-2">
                 <div className="text-slate-400 text-[11px] font-bold">ANVIL EVM EXECUTION RECEIPT</div>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
@@ -804,7 +804,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
                     <span className="text-slate-400">240,028 Gas</span>
                   </div>
                 </div>
-                <div className="pt-1 border-t dark:border-[#1a2332] border-slate-200">
+                <div className="pt-1 border-t dark:border-[#1a2332] border-[#e6e4da]">
                   <span className="text-slate-500 text-[11px]">State Transition:</span>{" "}
                   <span className="text-[#00dc82] font-bold">
                     Nonce 0 → 1 | Account Balance Transferred
@@ -816,7 +816,7 @@ export const PipelineModule: React.FC<PipelineModuleProps> = ({ isLiveMode }) =>
         </div>
 
         {/* Right Column: Live Terminal Log Feed (Span 5) */}
-        <div className="lg:col-span-5 rounded-3xl dark:bg-[#080b10] bg-slate-900 border dark:border-[#161d27] border-slate-800 p-5 shadow-md flex flex-col justify-between h-[420px]">
+        <div className="lg:col-span-5 rounded-3xl dark:bg-[#12140f] bg-slate-900 border dark:border-[#23271f] border-slate-800 p-5 shadow-md flex flex-col justify-between h-[420px]">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
             <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
               <Terminal className="w-4 h-4 text-[#00dc82]" />

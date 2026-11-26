@@ -273,7 +273,7 @@ export const WireframeGlobe: React.FC<WireframeGlobeProps> = ({ onInspectNetwork
       </div>
 
       {/* Footer Details */}
-      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#161d27] border-slate-100 pt-2">
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono border-t dark:border-[#23271f] border-[#e6e4da] pt-2">
         <span className="dark:text-slate-400 text-slate-500">Classical / Hybrid / PQC</span>
         <span className="text-[#00dc82] group-hover:underline flex items-center gap-1 font-bold">
           <span>[Inspect 100 Nodes]</span>

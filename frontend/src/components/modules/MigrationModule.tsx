@@ -78,8 +78,8 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Header Banner - Bento Styled */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-xl space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-100 pb-4">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 shadow-xl space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#23271f] border-[#e6e4da] pb-4">
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono text-xs border border-rose-500/20 font-bold">
               Section 3.4 & Table 12
@@ -125,7 +125,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
                     ? "dark:bg-[#00dc82]/10 bg-emerald-50 border-[#00dc82] ring-2 ring-[#00dc82]/40 shadow-[#00dc82]/10"
                     : isTrough
                     ? "dark:bg-rose-950/20 bg-rose-50/70 dark:border-rose-800/40 border-rose-200 hover:border-rose-400"
-                    : "dark:bg-[#0b0e14] bg-white dark:border-[#161d27] border-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
+                    : "dark:bg-[#141712] bg-[#fdfdfa] dark:border-[#23271f] border-[#e6e4da] hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 <div>
@@ -143,7 +143,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
                   </div>
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t dark:border-[#161d27] border-slate-100 flex items-center justify-between">
+                <div className="mt-3 pt-2.5 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between">
                   <div className="text-[9px] dark:text-slate-400 text-slate-500 uppercase font-mono">Compat</div>
                   <div
                     className={`text-xs font-mono font-bold ${
@@ -162,8 +162,8 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
       {/* Selected Phase Detail Card & Theoretical Formula Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Phase Details Card */}
-        <div className="lg:col-span-2 rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-5 shadow-xl">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="lg:col-span-2 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-5 shadow-xl">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <div>
               <span className="text-xs font-mono font-bold dark:text-[#00dc82] text-emerald-600">{selectedPhase.phase} Phase Inspection</span>
               <h4 className="text-base font-bold dark:text-white text-slate-900 mt-0.5">{selectedPhase.name}</h4>
@@ -182,7 +182,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
           <p className="text-xs dark:text-slate-300 text-slate-600 leading-relaxed">{selectedPhase.note}</p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-1">
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
               <div className="text-[10px] dark:text-slate-400 text-slate-500 uppercase font-semibold">Node Makeup</div>
               <div className="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold">
                 Classical: {selectedPhase.cPct}%
@@ -195,7 +195,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
               </div>
             </div>
 
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
               <div className="text-[10px] dark:text-slate-400 text-slate-500 uppercase font-semibold">Success Rate</div>
               <div className="text-2xl font-mono font-bold dark:text-[#00dc82] text-emerald-600">
                 {selectedPhase.success}%
@@ -203,7 +203,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
               <div className="text-[10px] dark:text-slate-400 text-slate-500">Completed tx share</div>
             </div>
 
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
               <div className="text-[10px] dark:text-slate-400 text-slate-500 uppercase font-semibold">Throughput</div>
               <div className="text-2xl font-mono font-bold text-cyan-600 dark:text-cyan-400">
                 {selectedPhase.tps.toFixed(1)} <span className="text-xs">TPS</span>
@@ -211,7 +211,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
               <div className="text-[10px] dark:text-slate-400 text-slate-500">Simulated rate</div>
             </div>
 
-            <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-1">
+            <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-1">
               <div className="text-[10px] dark:text-slate-400 text-slate-500 uppercase font-semibold">Processing Time</div>
               <div className="text-2xl font-mono font-bold text-amber-600 dark:text-amber-400">
                 {selectedPhase.procMs} <span className="text-xs">ms</span>
@@ -221,22 +221,22 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
           </div>
 
           {/* Asymmetric Directional Compatibility Rule Box */}
-          <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-2.5 text-xs font-mono">
+          <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-2.5 text-xs font-mono">
             <div className="dark:text-slate-300 text-slate-700 font-bold flex items-center gap-2">
               <Info className="w-4 h-4 text-cyan-500" />
               <span>Directional Policy Matrix (Equation 12):</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-[11px]">
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
                 <span>C → C :</span> <span>ACCEPT</span>
               </div>
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
                 <span>C → H :</span> <span>ACCEPT</span>
               </div>
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] dark:text-[#00dc82] text-emerald-700 border dark:border-[#00dc82]/30 border-emerald-200 font-bold flex items-center justify-between">
                 <span>H → H :</span> <span>ACCEPT</span>
               </div>
-              <div className="p-2.5 rounded-lg dark:bg-[#0b0e14] bg-white text-rose-600 dark:text-rose-400 border dark:border-rose-500/30 border-rose-200 font-bold flex items-center justify-between">
+              <div className="p-2.5 rounded-lg dark:bg-[#141712] bg-[#fdfdfa] text-rose-600 dark:text-rose-400 border dark:border-rose-500/30 border-rose-200 font-bold flex items-center justify-between">
                 <span>H → C :</span> <span>REJECT (FAIL)</span>
               </div>
             </div>
@@ -244,13 +244,13 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
         </div>
 
         {/* Live Monte-Carlo Migration Sandbox */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-4 shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <h4 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
               <Sliders className="w-4 h-4 text-[#00dc82]" />
               <span>Live Transition Sandbox</span>
             </h4>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded dark:bg-[#07090d] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#161d27] border-slate-200">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded dark:bg-[#0f110e] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#23271f] border-[#e6e4da]">
               1,000 Trials
             </span>
           </div>
@@ -315,7 +315,7 @@ export const MigrationModule: React.FC<MigrationModuleProps> = ({ isLiveMode }) 
             </button>
 
             {liveSimResult && (
-              <div className="mt-3 p-3.5 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 space-y-2 text-xs font-mono">
+              <div className="mt-3 p-3.5 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] space-y-2 text-xs font-mono">
                 <div className="flex justify-between">
                   <span className="dark:text-slate-400 text-slate-500">Empirical Compatibility:</span>
                   <span

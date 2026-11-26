@@ -66,11 +66,10 @@ export const AgentShieldHeader: React.FC<AgentShieldHeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                  isActive
-                    ? "bg-white dark:bg-[#1c2433] text-[#202124] dark:text-white shadow-xs font-semibold"
-                    : "text-[#777B78] hover:text-[#202124] dark:hover:text-slate-200"
-                }`}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${isActive
+                  ? "bg-white dark:bg-[#1c2433] text-[#202124] dark:text-white shadow-xs font-semibold"
+                  : "text-[#777B78] hover:text-[#202124] dark:hover:text-slate-200"
+                  }`}
               >
                 {item.label}
               </button>
@@ -129,11 +128,10 @@ export const AgentShieldHeader: React.FC<AgentShieldHeaderProps> = ({
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap border ${
-                isActive
-                  ? "bg-white dark:bg-[#1c2433] text-[#202124] dark:text-white border-[#00dc82] font-semibold"
-                  : "bg-white/60 dark:bg-[#0b0e14]/60 text-[#777B78] border-[#E6E8E5] dark:border-[#1e2736]"
-              }`}
+              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap border ${isActive
+                ? "bg-white dark:bg-[#1c2433] text-[#202124] dark:text-white border-[#00dc82] font-semibold"
+                : "bg-white/60 dark:bg-[#0b0e14]/60 text-[#777B78] border-[#E6E8E5] dark:border-[#1e2736]"
+                }`}
             >
               {item.label}
             </button>

@@ -141,8 +141,8 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Header Banner - Bento Styled */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 shadow-xl space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#161d27] border-slate-100 pb-4">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 shadow-xl space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b dark:border-[#23271f] border-[#e6e4da] pb-4">
           <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded bg-[#00dc82]/10 dark:text-[#00dc82] text-emerald-700 font-mono text-xs border border-[#00dc82]/30 font-bold">
               Section 4.5.2 & Table 11
@@ -167,20 +167,20 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
       </div>
 
       {/* Table 11: Cumulative Protocol Ablation Matrix */}
-      <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 overflow-hidden shadow-xl">
-        <div className="p-5 border-b dark:border-[#161d27] border-slate-100 flex items-center justify-between">
+      <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] overflow-hidden shadow-xl">
+        <div className="p-5 border-b dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between">
           <h4 className="text-xs font-bold uppercase tracking-wider dark:text-slate-400 text-slate-600 flex items-center gap-2">
             <Shield className="w-4 h-4 text-[#00dc82]" />
             <span>Table 11: Cumulative Protocol Ablation Results</span>
           </h4>
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded dark:bg-[#07090d] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#161d27] border-slate-200">
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded dark:bg-[#0f110e] bg-slate-100 dark:text-[#00dc82] text-emerald-600 border dark:border-[#23271f] border-[#e6e4da]">
             Tested Attack-Blocking Rates (%)
           </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="dark:bg-[#07090d] bg-slate-50 dark:text-slate-400 text-slate-500 border-b dark:border-[#161d27] border-slate-200">
+            <thead className="dark:bg-[#0f110e] bg-[#f6f5ef] dark:text-slate-400 text-slate-500 border-b dark:border-[#23271f] border-[#e6e4da]">
               <tr>
                 <th className="py-3 px-4">Configuration</th>
                 <th className="py-3 px-3 text-center">Key-Misbinding</th>
@@ -191,11 +191,11 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
                 <th className="py-3 px-3 text-center">Forgery</th>
               </tr>
             </thead>
-            <tbody className="divide-y dark:divide-[#161d27] divide-slate-100 dark:text-slate-300 text-slate-700">
+            <tbody className="divide-y dark:divide-[#23271f] divide-slate-100 dark:text-slate-300 text-slate-700">
               {ablationConfigs.map((c) => (
                 <tr
                   key={c.id}
-                  className={`hover:dark:bg-[#111722]/60 hover:bg-slate-50 transition-colors ${
+                  className={`hover:dark:bg-[#111722]/60 hover:bg-[#f6f5ef] transition-colors ${
                     c.id === "C5" ? "dark:bg-[#00dc82]/10 bg-emerald-50/70 font-bold dark:text-[#00dc82] text-emerald-700" : ""
                   }`}
                 >
@@ -231,8 +231,8 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
       {/* Interactive Attack Execution Console & Defense Sandbox */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Attack Vector Launcher */}
-        <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-5 shadow-xl">
-          <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2 border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-5 shadow-xl">
+          <h4 className="text-sm font-bold dark:text-white text-slate-900 flex items-center gap-2 border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <Bug className="w-4 h-4 text-rose-500" />
             <span>Adversarial Attack Vector Launcher</span>
           </h4>
@@ -252,7 +252,7 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
                 className={`w-full p-3.5 rounded-xl border text-left transition-all flex items-center justify-between shadow-sm ${
                   activeAttack === atk.id
                     ? "dark:bg-rose-950/20 bg-rose-50 border-rose-500/50 shadow-rose-500/10 ring-1 ring-rose-500/30"
-                    : "dark:bg-[#07090d] bg-slate-50 dark:border-[#161d27] border-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
+                    : "dark:bg-[#0f110e] bg-[#f6f5ef] dark:border-[#23271f] border-[#e6e4da] hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 <div>
@@ -265,7 +265,7 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
           </div>
 
           {/* Defense Toggles */}
-          <div className="pt-3 border-t dark:border-[#161d27] border-slate-100 space-y-3">
+          <div className="pt-3 border-t dark:border-[#23271f] border-[#e6e4da] space-y-3">
             <div className="text-[11px] font-bold uppercase dark:text-slate-400 text-slate-600">Defense Controls:</div>
             <label className="flex items-center justify-between text-xs dark:text-slate-300 text-slate-700 cursor-pointer">
               <span>Replay Freshness Nonce:</span>
@@ -289,8 +289,8 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
         </div>
 
         {/* Live Attack Terminal Logs */}
-        <div className="lg:col-span-2 rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 space-y-4 font-mono shadow-xl">
-          <div className="flex items-center justify-between border-b dark:border-[#161d27] border-slate-100 pb-3">
+        <div className="lg:col-span-2 rounded-2xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 space-y-4 font-mono shadow-xl">
+          <div className="flex items-center justify-between border-b dark:border-[#23271f] border-[#e6e4da] pb-3">
             <div className="flex items-center gap-2 text-xs dark:text-slate-400 text-slate-600 font-bold">
               <Terminal className="w-4 h-4 text-[#00dc82]" />
               <span>Real-time Attack Execution Telemetry</span>
@@ -308,7 +308,7 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
             )}
           </div>
 
-          <div className="h-64 overflow-y-auto space-y-2 text-xs p-4 rounded-xl dark:bg-[#05070a] bg-slate-900 text-slate-200 border dark:border-[#161d27] border-slate-800">
+          <div className="h-64 overflow-y-auto space-y-2 text-xs p-4 rounded-xl dark:bg-[#05070a] bg-slate-900 text-slate-200 border dark:border-[#23271f] border-slate-800">
             {attackLogs.length > 0 ? (
               attackLogs.map((log, i) => (
                 <div
@@ -334,7 +334,7 @@ export const SecurityModule: React.FC<SecurityModuleProps> = ({ isLiveMode }) =>
           </div>
 
           {/* Formal Reductions Callout */}
-          <div className="p-4 rounded-xl dark:bg-[#07090d] bg-slate-50 border dark:border-[#161d27] border-slate-200 text-xs space-y-2">
+          <div className="p-4 rounded-xl dark:bg-[#0f110e] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] text-xs space-y-2">
             <div className="text-[11px] font-bold dark:text-[#00dc82] text-emerald-700 uppercase tracking-wide">
               Theorem 1: Formal Security Reduction Summary (Section 3.3)
             </div>

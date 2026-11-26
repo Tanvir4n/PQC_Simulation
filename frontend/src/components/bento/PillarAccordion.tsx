@@ -253,26 +253,26 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
 
             {/* Expanded content */}
             {isExpanded && (
-              <div className="px-5 pb-5 pt-2 space-y-3 dark:bg-[#080b10] bg-slate-50/70 border-t dark:border-[#141a24] border-slate-200">
-                <p className="text-xs dark:text-slate-400 text-slate-600 leading-relaxed">{p.description}</p>
+              <div className="px-5 pb-5 pt-2 space-y-3 dark:bg-[#12140f] bg-[#f6f5ef] border-t dark:border-[#23271f] border-[#e6e4da]">
+                <p className="text-xs dark:text-[#b2b0a6] text-[#5c5a53] leading-relaxed">{p.description}</p>
 
                 {/* Inspect Action Header */}
-                <div className="flex items-center justify-between pt-2 border-t dark:border-[#161d27] border-slate-200">
+                <div className="flex items-center justify-between pt-2 border-t dark:border-[#23271f] border-[#e6e4da]">
                   <button
                     onClick={() => onOpenModule(p.id)}
-                    className="text-xs font-mono font-semibold text-[#00dc82] hover:underline flex items-center gap-1.5"
+                    className="text-xs font-mono font-semibold text-[#2e7d4f] dark:text-[#5fca8c] hover:underline flex items-center gap-1.5"
                   >
                     <span>→ [Inspect: {p.name}]</span>
                   </button>
-                  <span className="text-[11px] font-mono dark:text-slate-500 text-slate-400">[-]</span>
+                  <span className="text-[11px] font-mono dark:text-[#6f6d64] text-[#9a978c]">[-]</span>
                 </div>
 
                 {/* Left Green Line Bullet List */}
-                <div className="space-y-2.5 pl-3 border-l-2 border-[#00dc82] text-xs font-mono">
+                <div className="space-y-2.5 pl-3 border-l-2 border-[#7cc046] dark:border-[#9be05a] text-xs font-mono">
                   {p.specs.map((s, idx) => (
                     <div key={idx} className="space-y-0.5">
-                      <div className="dark:text-slate-200 text-slate-800 font-bold">{s.title}</div>
-                      <div className="text-[11px] dark:text-slate-500 text-slate-500 leading-normal">{s.desc}</div>
+                      <div className="dark:text-[#ecebe4] text-[#1d1d1a] font-bold">{s.title}</div>
+                      <div className="text-[11px] dark:text-[#6f6d64] text-[#5c5a53] leading-normal">{s.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -280,7 +280,7 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
                 {/* Launch Button */}
                 <button
                   onClick={() => onOpenModule(p.id)}
-                  className="w-full mt-2 py-2.5 px-3 rounded-xl bg-[#00dc82] hover:bg-[#00c574] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-[#00dc82]/15"
+                  className="w-full mt-2 py-2.5 px-4 rounded-full bg-[#96F34C] hover:bg-[#85e23b] text-[#141712] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-xs"
                 >
                   <span>Open Interactive Lab</span>
                   <ArrowRight className="w-3.5 h-3.5" />
