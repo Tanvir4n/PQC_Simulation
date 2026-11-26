@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Play, RotateCcw, Sun, Moon, Sparkles, Layers, Maximize2, Shield } from "lucide-react";
-import { QuantumLogo } from "@/components/brand/QuantumLogo";
+import { BrandLockup } from "@/components/brand/QuantumLogo";
 import { useTheme } from "@/lib/theme";
 
 export type ActiveNavTab =
@@ -54,22 +54,7 @@ export const AgentShieldHeader: React.FC<AgentShieldHeaderProps> = ({
             onClick={() => setActiveTab("architecture")}
             className="flex items-center gap-2.5 hover:opacity-90 transition-opacity text-left"
           >
-            <div className="w-8 h-8 rounded-xl dark:bg-[#00dc82]/10 bg-[#00dc82]/15 dark:border-[#00dc82]/25 border-emerald-500/25 border flex items-center justify-center shrink-0">
-              <QuantumLogo size={22} glow={false} />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-sm font-extrabold tracking-tight dark:text-white text-[#202124]">
-                  QuantumResist
-                </span>
-                <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded dark:bg-[#00dc82]/10 bg-emerald-100 text-[#00dc82] dark:border-[#00dc82]/20 border-emerald-300 border uppercase">
-                  FIPS 204
-                </span>
-              </div>
-              <p className="text-[10px] font-mono text-[#777B78] hidden sm:block truncate max-w-[190px]">
-                Quantum-Resilient Blockchain
-              </p>
-            </div>
+            <BrandLockup size="sm" subtitle="Quantum-resilient blockchain" />
           </button>
         </div>
 

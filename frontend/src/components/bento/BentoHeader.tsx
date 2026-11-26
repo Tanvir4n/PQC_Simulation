@@ -1,9 +1,46 @@
 "use client";
 
 import React from "react";
-import { Sparkles, LayoutGrid, ArrowRight, Sun, Moon, Cpu } from "lucide-react";
+import { LayoutGrid, ArrowRight, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/theme";
-import { QuantumLogo } from "@/components/brand/QuantumLogo";
+import { BrandLockup } from "@/components/brand/QuantumLogo";
+
+/**
+ * Custom precision SVG mark for the Simulation tab:
+ * A segmented quantum orbital ring framing a crisp execution core.
+ */
+const SimulationMark: React.FC<{ active?: boolean }> = ({ active }) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    className="w-4 h-4 shrink-0"
+    aria-hidden="true"
+  >
+    {/* Segmented outer quantum orbital arcs */}
+    <path
+      d="M10 2.25A7.75 7.75 0 0 1 17.5 8.1"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      opacity={active ? 0.9 : 0.75}
+    />
+    <path
+      d="M10 17.75A7.75 7.75 0 0 1 2.5 11.9"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      opacity={active ? 0.9 : 0.75}
+    />
+    {/* Orbital nodes */}
+    <circle cx="17.2" cy="11.2" r="1.15" fill="currentColor" opacity={active ? 1 : 0.8} />
+    <circle cx="2.8" cy="8.8" r="1.15" fill="currentColor" opacity={active ? 1 : 0.8} />
+    {/* Crisp central execution play prism */}
+    <path
+      d="M8.1 6.75a.55.55 0 0 1 .84-.47l4.65 3.05a.55.55 0 0 1 0 .94l-4.65 3.05a.55.55 0 0 1-.84-.47V6.75Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 interface BentoHeaderProps {
   currentView: "overview" | "simulation";
@@ -24,17 +61,10 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
       <div className="flex items-center gap-3">
         <button
           onClick={() => setCurrentView("overview")}
-          className="flex items-center gap-2.5 px-3 py-1.5 rounded-2xl dark:bg-[#121721] bg-slate-100 dark:border-[#1e2736] border-slate-200 border shadow-xs hover:opacity-95 transition-all text-left"
+          aria-label="QuantumResist home"
+          className="flex items-center px-2 py-1.5 -mx-1 rounded-2xl hover:bg-slate-100/70 dark:hover:bg-white/[0.03] transition-colors text-left"
         >
-          <div className="w-8 h-8 rounded-xl dark:bg-[#00dc82]/10 bg-emerald-500/10 dark:border-[#00dc82]/25 border-emerald-500/25 border flex items-center justify-center shadow-xs shrink-0">
-            <QuantumLogo size={22} glow={false} />
-          </div>
-          <span className="text-base sm:text-lg font-extrabold tracking-tight dark:text-white text-slate-900">
-            QuantumResist
-          </span>
-          <span className="text-[11px] dark:text-[#00dc82] text-emerald-700 font-mono font-bold px-2 py-0.5 rounded-md dark:bg-[#00dc82]/10 bg-emerald-100/80 border dark:border-[#00dc82]/25 border-emerald-300 uppercase tracking-wide">
-            FIPS 204
-          </span>
+          <BrandLockup size="md" />
         </button>
       </div>
 
@@ -59,14 +89,14 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           )}
         </button>
 
-        {/* Overview / Simulation Lab Switcher - Fixed Rigid Dimensions, No Dots */}
-        <div className="relative flex items-center p-1 rounded-2xl dark:bg-[#07090d] bg-slate-100 dark:border-[#161d27] border-slate-200 border shadow-inner select-none w-[240px] h-[38px] shrink-0">
+        {/* Overview / Simulation Lab Switcher - Fixed Rigid Dimensions, Clean Hairline Finish */}
+        <div className="relative flex items-center p-1 rounded-full dark:bg-[#07090d] bg-slate-100/90 dark:border-white/[0.08] border-slate-200/90 border shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] select-none w-[244px] h-[38px] shrink-0">
           {/* Animated Sliding Pill Highlight */}
           <div
-            className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               currentView === "simulation"
-                ? "left-[calc(50%+2px)] bg-gradient-to-r from-[#00dc82] to-[#059669] shadow-[0_0_20px_rgba(0,220,130,0.45)]"
-                : "left-1 dark:bg-[#141b24] bg-white border dark:border-[#1f2937] border-slate-200 shadow-sm"
+                ? "left-[calc(50%+2px)] bg-gradient-to-b from-[#2be096] to-[#059669] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_2px_12px_-2px_rgba(0,220,130,0.5)]"
+                : "left-1 dark:bg-[#141b24] bg-white border dark:border-white/[0.08] border-slate-200/80 shadow-xs"
             }`}
           />
 
@@ -74,9 +104,9 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           <button
             type="button"
             onClick={() => setCurrentView("overview")}
-            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 ${
+            className={`relative z-10 w-1/2 h-full rounded-full text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00dc82]/40 ${
               currentView === "overview"
-                ? "dark:text-[#00dc82] text-emerald-700 font-bold"
+                ? "dark:text-[#3ee6a0] text-emerald-700 font-bold"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
@@ -88,13 +118,13 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
           <button
             type="button"
             onClick={() => setCurrentView("simulation")}
-            className={`relative z-10 w-1/2 h-full rounded-xl text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 ${
+            className={`relative z-10 w-1/2 h-full rounded-full text-xs font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00dc82]/40 ${
               currentView === "simulation"
-                ? "text-slate-950 font-extrabold"
+                ? "text-[#041f14] font-bold tracking-[-0.01em]"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <Cpu className="w-3.5 h-3.5" />
+            <SimulationMark active={currentView === "simulation"} />
             <span>Simulation</span>
           </button>
         </div>

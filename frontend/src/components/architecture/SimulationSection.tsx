@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { AgentShieldHeader, ActiveNavTab } from "@/components/navigation/AgentShieldHeader";
 import { ScenarioBar, SCENARIOS, ScenarioItem } from "@/components/navigation/ScenarioBar";
-import { ArchitectureCanvas, SimulationState } from "@/components/architecture/ArchitectureCanvas";
+import { SimulationState } from "@/components/architecture/ArchitectureCanvas";
+import { HybridGatewayFlow } from "@/components/architecture/HybridGatewayFlow";
 import { AuditLogFooter } from "@/components/architecture/AuditLogFooter";
 import { NodeInspectorDrawer } from "@/components/architecture/NodeInspectorDrawer";
 import { ARCHITECTURE_NODES } from "@/lib/architectureData";
@@ -46,13 +47,17 @@ export const SimulationSection: React.FC<SimulationSectionProps> = ({
 
   const [auditStatus, setAuditStatus] = useState<"IDLE" | "SIMULATING" | "ACCEPT" | "REJECT">("IDLE");
   const [outcomeMessage, setOutcomeMessage] = useState<string>("");
+  const [runSignal, setRunSignal] = useState<number>(0);
 
   // Run End-to-End Simulation through the 6 architecture stages
   const handleRunSimulation = () => {
     if (simulationState.isRunning) return;
 
-    if (activeTab !== "architecture" && activeTab !== "workflow") {
+    // The architecture diagram animates itself; just replay it.
+    if (activeTab !== "workflow") {
       setActiveTab("architecture");
+      setRunSignal((n) => n + 1);
+      return;
     }
 
     setAuditStatus("SIMULATING");
@@ -190,7 +195,7 @@ export const SimulationSection: React.FC<SimulationSectionProps> = ({
       />
 
       {/* Interactive Scenario Bar */}
-      {(activeTab === "architecture" || activeTab === "workflow") && (
+      {activeTab === "workflow" && (
         <ScenarioBar
           selectedScenario={selectedScenario.id}
           onSelectScenario={(sc) => {
@@ -206,11 +211,17 @@ export const SimulationSection: React.FC<SimulationSectionProps> = ({
         {/* TAB 1: ARCHITECTURE DIAGRAM */}
         {activeTab === "architecture" && (
           <div className="space-y-6">
-            <ArchitectureCanvas
-              onSelectNode={(nodeId) => setSelectedNodeId(nodeId)}
-              selectedNodeId={selectedNodeId}
-              simulationState={simulationState}
-              onNavigateTab={(tab) => setActiveTab(tab)}
+            <HybridGatewayFlow
+              runSignal={runSignal}
+              onScenarioChange={(sc) => setSelectedScenario(sc)}
+              onRunStart={() => {
+                setAuditStatus("SIMULATING");
+                setOutcomeMessage("");
+              }}
+              onSettled={(accepted, reason) => {
+                setAuditStatus(accepted ? "ACCEPT" : "REJECT");
+                setOutcomeMessage(reason);
+              }}
             />
 
             {/* Bottom 3 Cards: What the user reads (EN · বাংলা), Audit Log, 100-Node Mesh */}

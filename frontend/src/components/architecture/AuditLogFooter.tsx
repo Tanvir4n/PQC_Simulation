@@ -22,6 +22,7 @@ export const AuditLogFooter: React.FC<AuditLogFooterProps> = ({
 
   const isAccepted = status === "ACCEPT" || status === "IDLE";
   const isRejected = status === "REJECT";
+  const isPending = status === "SIMULATING";
 
   const englishText = isAccepted
     ? "Allowed. Both classical ECDSA (secp256k1) and post-quantum ML-DSA-65 (NIST FIPS 204) signatures verified under SHA3-512 canonical domain-separated context. Nonce is fresh and unique. Transaction committed to block #" +
@@ -73,14 +74,20 @@ export const AuditLogFooter: React.FC<AuditLogFooterProps> = ({
             </div>
 
             <p className="text-xs text-[#202124] dark:text-slate-200 leading-relaxed font-sans">
-              {lang === "en" ? englishText : bengaliText}
+              {isPending
+                ? lang === "en"
+                  ? "Verifying the hybrid signature. Both ECDSA and ML-DSA-65 must pass before anything is written."
+                  : "হাইব্রিড স্বাক্ষর যাচাই করা হচ্ছে। কিছু লেখার আগে ECDSA এবং ML-DSA-65 দুটিই পাস করতে হবে।"
+                : lang === "en"
+                  ? englishText
+                  : bengaliText}
             </p>
           </div>
 
           <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-[#777B78]">
             <span>Human-Readable Explanation</span>
-            <span className={isAccepted ? "text-[#00dc82] font-bold" : "text-rose-500 font-bold"}>
-              {isAccepted ? "PASSED (0x1)" : "HALTED"}
+            <span className={isPending ? "text-[#777B78] font-bold" : isAccepted ? "text-[#00dc82] font-bold" : "text-rose-500 font-bold"}>
+              {isPending ? "VERIFYING" : isAccepted ? "PASSED (0x1)" : "HALTED"}
             </span>
           </div>
         </div>
@@ -103,12 +110,14 @@ export const AuditLogFooter: React.FC<AuditLogFooterProps> = ({
                 </span>
                 <span
                   className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                    isAccepted
-                      ? "bg-[#00dc82]/15 text-[#00dc82]"
-                      : "bg-rose-500/15 text-rose-500"
+                    isPending
+                      ? "bg-slate-500/15 text-[#777B78]"
+                      : isAccepted
+                        ? "bg-[#00dc82]/15 text-[#00dc82]"
+                        : "bg-rose-500/15 text-rose-500"
                   }`}
                 >
-                  {isAccepted ? "ALLOW 0x1" : "REJECT 0x0"}
+                  {isPending ? "PENDING" : isAccepted ? "ALLOW 0x1" : "REJECT 0x0"}
                 </span>
               </div>
               <div className="text-[11px] text-[#777B78] pt-1">

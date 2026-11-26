@@ -8,7 +8,7 @@ import { GlyphGrid } from "@/components/bento/GlyphGrid";
 import { HexBadge } from "@/components/bento/HexBadge";
 import { WireframeCubes } from "@/components/bento/WireframeCubes";
 import { ModuleModal } from "@/components/bento/ModuleModal";
-import { QuantumLogo } from "@/components/brand/QuantumLogo";
+import { BrandMark } from "@/components/brand/QuantumLogo";
 import { SimulationSection } from "@/components/architecture/SimulationSection";
 import { Shield, Sparkles, ArrowRight, Zap, ExternalLink, ShieldCheck } from "lucide-react";
 
@@ -104,9 +104,7 @@ export default function Home() {
             {/* Card 5: Hero Branding Box */}
             <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 flex flex-col justify-between shadow-md">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl dark:bg-[#080c10] bg-emerald-50 border dark:border-[#00dc82]/30 border-emerald-500/30 flex items-center justify-center shadow-lg shadow-[#00dc82]/10 shrink-0">
-                  <QuantumLogo size={34} glow={true} />
-                </div>
+                <BrandMark size={48} />
                 <div>
                   <h1 className="text-2xl font-extrabold tracking-tight dark:text-white text-slate-900 flex items-center gap-2">
                     <span>QuantumResist</span>

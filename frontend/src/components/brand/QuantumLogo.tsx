@@ -1,81 +1,108 @@
 "use client";
 
-import React from "react";
+import React, { useId } from "react";
 
 interface QuantumLogoProps {
   size?: number;
   className?: string;
   glow?: boolean;
+  /** Mark colour. Defaults to the brand emerald. */
+  color?: string;
 }
 
 /**
- * High-definition QuantumResist Shield Logo
- * Faithful to research identity & FIPS 204 specification
- * Sleek, minimal, rounded vector geometry
+ * QuantumResist mark.
+ * A shield split down the middle: the left half is solid (classical ECDSA),
+ * the right half is a lattice (post-quantum ML-DSA). Both halves make one shield,
+ * the same way both signatures make one valid transaction.
  */
 export const QuantumLogo: React.FC<QuantumLogoProps> = ({
   size = 28,
   className = "",
-  glow = true,
+  glow = false,
+  color = "#3ee6a0",
 }) => {
+  const uid = useId().replace(/:/g, "");
+  const shield =
+    "M16 3.2 26 6.6V15c0 6.2-4 10.9-10 13.8C10 25.9 6 21.2 6 15V6.6Z";
+  const lattice: [number, number][] = [];
+  for (const y of [9.5, 13.5, 17.5, 21.5]) for (const x of [18.6, 22.2]) lattice.push([x, y]);
+
   return (
-    <div
-      style={{ width: size, height: size }}
-      className={`relative inline-flex items-center justify-center shrink-0 select-none ${className} ${
-        glow
-          ? "dark:drop-shadow-[0_0_10px_rgba(0,220,130,0.45)] drop-shadow-[0_1px_4px_rgba(5,150,105,0.2)]"
-          : ""
-      }`}
+    <span
+      style={{ width: size, height: size, filter: glow ? `drop-shadow(0 0 8px ${color}55)` : undefined }}
+      className={`relative inline-flex items-center justify-center shrink-0 select-none ${className}`}
     >
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
-      >
+      <svg viewBox="0 0 32 32" fill="none" className="w-full h-full" aria-hidden>
         <defs>
-          <linearGradient id="qrShieldStroke" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00dc82" />
-            <stop offset="100%" stopColor="#059669" />
-          </linearGradient>
-          <linearGradient id="qrShieldFill" x1="16" y1="3" x2="16" y2="29" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00dc82" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#059669" stopOpacity="0.04" />
-          </linearGradient>
-          <linearGradient id="qrInnerLattice" x1="16" y1="8" x2="16" y2="24" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00dc82" />
-            <stop offset="50%" stopColor="#38bdf8" />
-            <stop offset="100%" stopColor="#059669" />
-          </linearGradient>
+          <clipPath id={`l-${uid}`}>
+            <rect x="0" y="0" width="16" height="32" />
+          </clipPath>
+          <clipPath id={`s-${uid}`}>
+            <path d={shield} />
+          </clipPath>
         </defs>
 
-        {/* Clean, rounded outer quantum security shield */}
-        <path
-          d="M16 3.5C21.5 5.8 25.5 6.2 26.5 6.5C27 9.5 27 16.5 24 21.5C21.5 25.5 17.5 28 16 28.5C14.5 28 10.5 25.5 8 21.5C5 16.5 5 9.5 5.5 6.5C6.5 6.2 10.5 5.8 16 3.5Z"
-          fill="url(#qrShieldFill)"
-          stroke="url(#qrShieldStroke)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        {/* Classical half: solid */}
+        <g clipPath={`url(#s-${uid})`}>
+          <rect x="0" y="0" width="16" height="32" fill={color} clipPath={`url(#l-${uid})`} />
+          {/* Post-quantum half: lattice */}
+          {lattice.map(([x, y]) => (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r="1.15" fill={color} />
+          ))}
+        </g>
 
-        {/* Inner geometric core: Minimalist quantum lattice node */}
-        <circle cx="16" cy="14" r="2.5" fill="url(#qrInnerLattice)" />
-        {/* Symmetric quantum orbital lines */}
-        <path
-          d="M16 16.5V23.5"
-          stroke="url(#qrInnerLattice)"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
-        <path
-          d="M11 12.5C13 11 19 11 21 12.5"
-          stroke="url(#qrInnerLattice)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.8"
-        />
+        {/* Shield outline */}
+        <path d={shield} stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
       </svg>
-    </div>
+    </span>
+  );
+};
+
+/** The mark on its ink tile, used in headers and cards. */
+export const BrandMark: React.FC<{ size?: number; className?: string }> = ({ size = 34, className = "" }) => (
+  <span
+    style={{ width: size, height: size, borderRadius: size * 0.32 }}
+    className={`relative inline-flex items-center justify-center shrink-0 overflow-hidden
+      bg-[linear-gradient(160deg,#16231d_0%,#0a120e_100%)]
+      shadow-[inset_0_1px_0_rgba(255,255,255,0.09),inset_0_0_0_1px_rgba(62,230,160,0.18),0_1px_2px_rgba(0,0,0,0.25),0_6px_16px_-6px_rgba(10,60,40,0.45)]
+      ${className}`}
+  >
+    <QuantumLogo size={Math.round(size * 0.66)} />
+  </span>
+);
+
+interface BrandLockupProps {
+  size?: "sm" | "md";
+  subtitle?: string;
+}
+
+/** Mark + wordmark + standard tag. */
+export const BrandLockup: React.FC<BrandLockupProps> = ({ size = "md", subtitle }) => {
+  const md = size === "md";
+  return (
+    <span className="inline-flex items-center gap-3">
+      <BrandMark size={md ? 34 : 30} />
+      <span className="flex flex-col leading-none">
+        <span className="flex items-center gap-2.5">
+          <span
+            className={`${md ? "text-[18px]" : "text-[15px]"} tracking-[-0.025em] dark:text-white text-[#0d1512]`}
+          >
+            <span className="font-bold">Quantum</span>
+            <span className="font-normal dark:text-white/70 text-[#0d1512]/65">Resist</span>
+          </span>
+          <span className="h-3.5 w-px dark:bg-white/15 bg-black/12" aria-hidden />
+          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] uppercase dark:text-white/55 text-[#0d1512]/55">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3ee6a0] shadow-[0_0_0_2px_rgba(62,230,160,0.18)]" aria-hidden />
+            FIPS 204
+          </span>
+        </span>
+        {subtitle && (
+          <span className="mt-1.5 font-mono text-[10px] tracking-[0.06em] dark:text-white/40 text-[#0d1512]/45 hidden sm:block">
+            {subtitle}
+          </span>
+        )}
+      </span>
+    </span>
   );
 };
