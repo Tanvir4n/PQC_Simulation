@@ -226,11 +226,10 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`p-2 rounded-xl transition-colors ${
-                    isExpanded
-                      ? "bg-[#00dc82]/20 text-[#00dc82]"
-                      : "dark:bg-[#141a24] bg-slate-100 text-slate-500 group-hover:dark:text-slate-200 group-hover:text-slate-900"
-                  }`}
+                  className={`p-2 rounded-xl transition-colors ${isExpanded
+                    ? "bg-[#00dc82]/20 text-[#00dc82]"
+                    : "dark:bg-[#141a24] bg-slate-100 text-slate-500 group-hover:dark:text-slate-200 group-hover:text-slate-900"
+                    }`}
                 >
                   <Icon className="w-4 h-4" />
                 </div>

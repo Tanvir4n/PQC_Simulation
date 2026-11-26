@@ -186,23 +186,65 @@ export default function Home() {
               {/* Card 4: Hexagonal Badge & ASCII Art Box */}
               <HexBadge onInspectCrypto={() => setActiveModalModule("crypto")} />
 
-              {/* Card 5: Hero Branding Box */}
-              <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 flex flex-col justify-between shadow-xs">
-                <div className="flex items-center gap-3.5">
-                  <BrandMark size={48} />
-                  <div>
-                    <h1 className="text-2xl font-extrabold tracking-tight dark:text-[#ecebe4] text-[#1d1d1a] flex items-center gap-2">
-                      <span>QuantumResist</span>
-                    </h1>
-                    <span className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase tracking-wider">
-                      Hybrid Classical-Post-Quantum Platform
+              {/* Card 5: Hero Branding & Protocol Specification Box (Interactive) */}
+              <div
+                onClick={() => setActiveModalModule("overview")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setActiveModalModule("overview")}
+                className="group cursor-pointer rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] hover:dark:border-[#30352b] hover:border-[#d9d6ca] p-5 flex flex-col justify-between gap-4 shadow-xs transition-all min-h-[260px]"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3.5">
+                    <BrandMark size={44} />
+                    <div>
+                      <h1 className="text-xl font-extrabold tracking-tight dark:text-[#ecebe4] text-[#1d1d1a] flex items-center gap-2">
+                        <span>QuantumResist</span>
+                      </h1>
+                      <span className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase tracking-wider">
+                        Hybrid Classical-Post-Quantum Platform
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#2e7d4f] dark:text-[#5fca8c] bg-[#f2f7f0] dark:bg-[#5fca8c]/10 px-2 py-0.5 rounded border border-[#a9cfb2] dark:border-[#5fca8c]/25 font-bold shrink-0">
+                    v0x01
+                  </span>
+                </div>
+
+                {/* Protocol Specification & Conjunction Formula */}
+                <div className="space-y-2.5">
+                  <div className="rounded-2xl dark:bg-[#12140f] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] p-3 font-mono text-[11px] space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="dark:text-[#6f6d64] text-[#9a978c]">ADDRESS BINDING</span>
+                      <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold">SHA-256</span>
+                    </div>
+                    <div className="dark:text-[#ecebe4] text-[#1d1d1a] truncate">
+                      Trunc₁₆₀(SHA-256(&quot;HYB-ADDR&quot; ‖ pk_e ‖ pk_pq))
+                    </div>
+                    <div className="pt-1.5 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between">
+                      <span className="dark:text-[#6f6d64] text-[#9a978c]">CONJUNCTION GATE</span>
+                      <span className="dark:text-[#ecebe4] text-[#1d1d1a] font-bold">b_final = b_e ∧ b_pq</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-mono">
+                    <span className="px-2 py-0.5 rounded-full dark:bg-[#1c2019] bg-[#efeee7] dark:text-[#b2b0a6] text-[#5c5a53]">
+                      NIST FIPS 204
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full dark:bg-[#1c2019] bg-[#efeee7] dark:text-[#b2b0a6] text-[#5c5a53]">
+                      RFC 6979
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full dark:bg-[#1c2019] bg-[#efeee7] dark:text-[#b2b0a6] text-[#5c5a53]">
+                      SHA3-512 Context
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between text-xs font-mono dark:text-[#b2b0a6] text-[#5c5a53]">
-                  <span>ECDSA (secp256k1) + ML-DSA-65</span>
-                  <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold">SHA3-512</span>
+                <div className="pt-2.5 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between text-[11px] font-mono">
+                  <span className="dark:text-[#b2b0a6] text-[#5c5a53]">ECDSA (secp256k1) + ML-DSA-65</span>
+                  <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold group-hover:underline">
+                    [Inspect Overview] →
+                  </span>
                 </div>
               </div>
 
