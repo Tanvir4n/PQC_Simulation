@@ -1,9 +1,55 @@
 "use client";
 
 import React from "react";
-import { LayoutGrid, ArrowRight, Sun, Moon } from "lucide-react";
+import { ArrowRight, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { BrandLockup } from "@/components/brand/QuantumLogo";
+
+/**
+ * Custom precision SVG mark for the Overview tab:
+ * An asymmetric architectural bento grid mirroring the overview workspace.
+ */
+const OverviewMark: React.FC<{ active?: boolean }> = ({ active }) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    className="w-4 h-4 shrink-0"
+    aria-hidden="true"
+  >
+    {/* Left tall architectural pillar */}
+    <rect
+      x="2.75"
+      y="3"
+      width="5.75"
+      height="14"
+      rx="1.75"
+      fill="currentColor"
+      fillOpacity={active ? 0.18 : 0.08}
+      stroke="currentColor"
+      strokeWidth="1.55"
+    />
+    {/* Top-right hero card */}
+    <rect
+      x="10.75"
+      y="3"
+      width="6.5"
+      height="6"
+      rx="1.65"
+      fill="currentColor"
+      fillOpacity={active ? 0.95 : 0.65}
+    />
+    {/* Bottom-right module card */}
+    <rect
+      x="10.75"
+      y="11"
+      width="6.5"
+      height="6"
+      rx="1.65"
+      stroke="currentColor"
+      strokeWidth="1.55"
+    />
+  </svg>
+);
 
 /**
  * Custom precision SVG mark for the Simulation tab:
@@ -70,23 +116,49 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
 
       {/* Right Controls: View Switcher (Overview vs Simulation), Day/Night, & Quick Launch */}
       <div className="flex items-center gap-2.5 shrink-0">
-        {/* Day / Night Theme Toggle */}
+        {/* Day / Night Theme Toggle — Fixed Rigid Size & Animated Icon/Label Transition */}
         <button
-          onClick={toggleTheme}
+          type="button"
+          onClick={(e) => toggleTheme(e)}
+          aria-label={isDark ? "Switch to Day Mode" : "Switch to Night Mode"}
           title={isDark ? "Switch to Day Mode (Light Theme)" : "Switch to Night Mode (Dark Theme)"}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl dark:bg-[#07090d] bg-slate-100 hover:bg-slate-200 dark:hover:bg-[#141b24] dark:border-[#161d27] border-slate-200 border text-xs font-mono transition-all shadow-xs shrink-0"
+          className="relative flex items-center justify-center gap-2 w-[38px] sm:w-[92px] h-[38px] rounded-full dark:bg-[#07090d] bg-slate-100/90 hover:bg-slate-200/80 dark:hover:bg-[#141b24] dark:border-white/[0.08] border-slate-200/90 border text-xs font-mono transition-colors duration-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] shrink-0 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00dc82]/40 overflow-hidden select-none"
         >
-          {isDark ? (
-            <>
-              <Sun className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline text-[11px] text-slate-400 font-medium">Day</span>
-            </>
-          ) : (
-            <>
-              <Moon className="w-3.5 h-3.5 text-indigo-600" />
-              <span className="hidden sm:inline text-[11px] text-slate-600 font-medium">Night</span>
-            </>
-          )}
+          {/* Animated Sun / Moon Icon Stack */}
+          <span className="relative w-4 h-4 shrink-0 flex items-center justify-center">
+            <Sun
+              className={`w-3.5 h-3.5 text-amber-400 absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isDark
+                  ? "opacity-100 rotate-0 scale-100"
+                  : "opacity-0 -rotate-90 scale-50"
+              }`}
+            />
+            <Moon
+              className={`w-3.5 h-3.5 text-indigo-600 absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isDark
+                  ? "opacity-0 rotate-90 scale-50"
+                  : "opacity-100 rotate-0 scale-100"
+              }`}
+            />
+          </span>
+
+          {/* Fixed-Width Sliding Label */}
+          <span className="hidden sm:inline-flex relative w-[36px] h-4 items-center overflow-hidden">
+            <span
+              className={`absolute inset-0 flex items-center text-[11px] font-medium text-slate-300 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isDark ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
+              }`}
+            >
+              Day
+            </span>
+            <span
+              className={`absolute inset-0 flex items-center text-[11px] font-medium text-slate-700 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isDark ? "opacity-0 translate-y-2.5" : "opacity-100 translate-y-0"
+              }`}
+            >
+              Night
+            </span>
+          </span>
         </button>
 
         {/* Overview / Simulation Lab Switcher - Fixed Rigid Dimensions, Clean Hairline Finish */}
@@ -110,7 +182,7 @@ export const BentoHeader: React.FC<BentoHeaderProps> = ({
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <LayoutGrid className="w-3.5 h-3.5" />
+            <OverviewMark active={currentView === "overview"} />
             <span>Overview</span>
           </button>
 
