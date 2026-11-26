@@ -212,7 +212,7 @@ export const PillarAccordion: React.FC<PillarAccordionProps> = ({ onOpenModule }
   ];
 
   return (
-    <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 divide-y dark:divide-[#161d27] divide-slate-100 overflow-hidden shadow-md">
+    <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] divide-y dark:divide-[#23271f] divide-[#e6e4da] overflow-hidden shadow-xs">
       {pillars.map((p) => {
         const isExpanded = activeId === p.id;
         const Icon = p.icon;

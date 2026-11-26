@@ -10,132 +10,140 @@ import { WireframeCubes } from "@/components/bento/WireframeCubes";
 import { ModuleModal } from "@/components/bento/ModuleModal";
 import { BrandMark } from "@/components/brand/QuantumLogo";
 import { SimulationSection } from "@/components/architecture/SimulationSection";
-import { Shield, Sparkles, ArrowRight, Zap, ExternalLink, ShieldCheck } from "lucide-react";
+import { Play, ExternalLink, ShieldCheck } from "lucide-react";
 
 export default function Home() {
   const [currentView, setCurrentView] = useState<"overview" | "simulation">("overview");
   const [activeModalModule, setActiveModalModule] = useState<string | null>(null);
-  const [isLiveMode, setIsLiveMode] = useState<boolean>(true);
+  const [isLiveMode] = useState<boolean>(true);
 
   return (
-    <div className="min-h-screen dark:bg-[#030507] bg-[#f4f6f9] p-3 md:p-6 lg:p-8 flex flex-col gap-4 dark:text-slate-100 text-slate-900 max-w-[1600px] w-full mx-auto select-none transition-colors duration-300">
-      {/* 1. Top Unified Header (Dots removed, view switcher, Day/Night toggle, Quick Lab) */}
-      <BentoHeader
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-        onOpenQuickLab={() => setActiveModalModule("pipeline")}
-      />
+    <div className="min-h-screen dark:bg-[#0f110e] bg-[#fbfaf6] py-3 sm:py-6 px-3 sm:px-6 flex flex-col justify-between gap-5 dark:text-[#ecebe4] text-[#1d1d1a] select-none transition-colors duration-300">
+      <div className="w-full max-w-7xl mx-auto flex flex-col gap-5">
+        {/* 1. Unified Simulation-Style Floating Header */}
+        <BentoHeader
+          currentView={currentView}
+          setCurrentView={setCurrentView}
+          onOpenQuickLab={() => setActiveModalModule("pipeline")}
+        />
 
-      {/* 2. VIEW A: FRONT PAGE (Exact Original Bento Grid Layout) */}
-      {currentView === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start animate-in fade-in duration-200">
-          {/* Left Column: Interactive Pillar Navigator & Inspector (Span 4) */}
-          <div className="lg:col-span-4 space-y-4">
-            <PillarAccordion onOpenModule={(id) => setActiveModalModule(id)} />
+        {/* 2. VIEW A: EXISTING BENTO GRID DESIGN (Styled in Simulation Warm Paper / Obsidian Palette) */}
+        {currentView === "overview" && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start animate-in fade-in duration-200">
+            {/* Left Column: Interactive Pillar Navigator & Inspector (Span 4) */}
+            <div className="lg:col-span-4 space-y-4">
+              <PillarAccordion onOpenModule={(id) => setActiveModalModule(id)} />
 
-            {/* Academic Affiliation Card */}
-            <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-4 flex items-center justify-between text-xs font-mono shadow-sm">
-              <div>
-                <div className="dark:text-slate-200 text-slate-900 font-bold">Md. Tanvir Hasan</div>
-                <div className="text-[11px] dark:text-slate-500 text-slate-500">
-                  Dept. of Computer Science Engineering, DIU
-                </div>
-              </div>
-              <a
-                href="https://orcid.org/0009-0008-9130-3360"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#00dc82] hover:underline flex items-center gap-1 text-[11px] font-bold"
-              >
-                <span>ORCID</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Bento Cards Section (Span 8) */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Card 1: Big Bold Hero Statement & Vibrant Green Pill */}
-            <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 flex flex-col justify-between space-y-4 shadow-md">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono dark:text-slate-500 text-slate-500">
-                  <span>Security Assurance</span>
-                  <span className="text-[#00dc82] font-bold">[+]</span>
-                </div>
-                <h2 className="text-xl md:text-2xl font-extrabold dark:text-white text-slate-900 leading-snug">
-                  Build <span className="text-[#00dc82]">quantum-resilient</span> blockchains that survive{" "}
-                  <span className="dark:text-white text-slate-900">Shor&apos;s algorithm</span>
-                </h2>
-                <div className="text-xs font-mono dark:text-slate-400 text-slate-600 pt-1">
-                  [Strict AND Verification · 1,054 Peak TPS · 3,380 B Envelope]
-                </div>
-              </div>
-
-              <div className="pt-2">
-                {/* Clicking switches directly to the dedicated Simulation Section! */}
-                <button
-                  onClick={() => setCurrentView("simulation")}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-[#00dc82] hover:bg-[#00c574] text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-xl shadow-[#00dc82]/20 hover:scale-[1.01]"
-                >
-                  <span>Launch Interactive Simulation Lab</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            {/* Card 2: 3x4 Glowing Glyph Grid */}
-            <GlyphGrid
-              onSelectGlyph={(id) => {
-                if (id === "mldsa" || id === "secp" || id === "env") setActiveModalModule("crypto");
-                else if (id === "tps") setActiveModalModule("scalability");
-                else if (id === "mig" || id === "trough") setActiveModalModule("migration");
-                else if (id === "abl" || id === "and") setActiveModalModule("security");
-                else if (id === "anvil" || id === "gas") setActiveModalModule("evm");
-                else setActiveModalModule("overview");
-              }}
-            />
-
-            {/* Card 3: Wireframe 3D Sphere & Orbiting Satellite */}
-            <WireframeGlobe onInspectNetwork={() => setActiveModalModule("network")} />
-
-            {/* Card 4: Hexagonal Badge & ASCII Art Box */}
-            <HexBadge onInspectCrypto={() => setActiveModalModule("crypto")} />
-
-            {/* Card 5: Hero Branding Box */}
-            <div className="rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 p-6 flex flex-col justify-between shadow-md">
-              <div className="flex items-center gap-3">
-                <BrandMark size={48} />
+              {/* Academic Affiliation Card */}
+              <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-4 px-5 flex items-center justify-between text-xs font-mono shadow-xs">
                 <div>
-                  <h1 className="text-2xl font-extrabold tracking-tight dark:text-white text-slate-900 flex items-center gap-2">
-                    <span>QuantumResist</span>
-                  </h1>
-                  <span className="text-[10px] font-mono dark:text-slate-500 text-slate-500 uppercase tracking-wider">
-                    Hybrid Classical-Post-Quantum Platform
-                  </span>
+                  <div className="dark:text-[#ecebe4] text-[#1d1d1a] font-bold">Md. Tanvir Hasan</div>
+                  <div className="text-[11px] dark:text-[#6f6d64] text-[#9a978c]">
+                    Dept. of Computer Science Engineering, DIU
+                  </div>
                 </div>
-              </div>
-
-              <div className="mt-4 pt-4 border-t dark:border-[#161d27] border-slate-100 flex items-center justify-between text-xs font-mono dark:text-slate-400 text-slate-600">
-                <span>ECDSA (secp256k1) + ML-DSA-65</span>
-                <span className="text-[#00dc82] font-bold">SHA3-512</span>
+                <a
+                  href="https://orcid.org/0009-0008-9130-3360"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#2e7d4f] dark:text-[#5fca8c] hover:underline flex items-center gap-1 text-[11px] font-bold"
+                >
+                  <span>ORCID</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
 
-            {/* Card 6: Wireframe Isometric 3D Cubes & Matrix Code */}
-            <WireframeCubes onInspectBlocks={() => setActiveModalModule("mempool")} />
-          </div>
-        </div>
-      )}
+            {/* Right Bento Cards Section (Span 8) */}
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Card 1: Big Bold Hero Statement & Signature Simulation Lime Pill */}
+              <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 flex flex-col justify-between space-y-4 shadow-xs relative overflow-hidden">
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-15"
+                  style={{
+                    backgroundImage: "radial-gradient(#9a978c 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                  }}
+                />
+                <div className="relative z-10 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono dark:text-[#6f6d64] text-[#9a978c]">
+                    <span>Security Assurance</span>
+                    <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold">[+]</span>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] leading-snug">
+                    Build <span className="text-[#2e7d4f] dark:text-[#5fca8c]">quantum-resilient</span> blockchains that survive{" "}
+                    <span className="dark:text-[#ecebe4] text-[#1d1d1a]">Shor&apos;s algorithm</span>
+                  </h2>
+                  <div className="text-xs font-mono dark:text-[#b2b0a6] text-[#5c5a53] pt-1">
+                    [Strict AND Verification · 1,054 Peak TPS · 3,380 B Envelope]
+                  </div>
+                </div>
 
-      {/* 3. VIEW B: DEDICATED PQC ARCHITECTURE & SIMULATION SECTION */}
-      {currentView === "simulation" && (
-        <div className="w-full animate-in fade-in duration-200">
-          <SimulationSection
-            onBackToOverview={() => setCurrentView("overview")}
-            isLiveMode={isLiveMode}
-          />
-        </div>
-      )}
+                <div className="relative z-10 pt-2">
+                  <button
+                    onClick={() => setCurrentView("simulation")}
+                    className="w-full py-3.5 px-6 rounded-full bg-[#96F34C] hover:bg-[#85e23b] text-[#141712] font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xs hover:scale-[1.01] active:scale-[0.99]"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>Launch Interactive Simulation Lab</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Card 2: 3x4 Glyph Grid */}
+              <GlyphGrid
+                onSelectGlyph={(id) => {
+                  if (id === "mldsa" || id === "secp" || id === "env") setActiveModalModule("crypto");
+                  else if (id === "tps") setActiveModalModule("scalability");
+                  else if (id === "mig" || id === "trough") setActiveModalModule("migration");
+                  else if (id === "abl" || id === "and") setActiveModalModule("security");
+                  else if (id === "anvil" || id === "gas") setActiveModalModule("evm");
+                  else setActiveModalModule("overview");
+                }}
+              />
+
+              {/* Card 3: Wireframe 3D Sphere & Orbiting Satellite */}
+              <WireframeGlobe onInspectNetwork={() => setActiveModalModule("network")} />
+
+              {/* Card 4: Hexagonal Badge & ASCII Art Box */}
+              <HexBadge onInspectCrypto={() => setActiveModalModule("crypto")} />
+
+              {/* Card 5: Hero Branding Box */}
+              <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 flex flex-col justify-between shadow-xs">
+                <div className="flex items-center gap-3.5">
+                  <BrandMark size={48} />
+                  <div>
+                    <h1 className="text-2xl font-extrabold tracking-tight dark:text-[#ecebe4] text-[#1d1d1a] flex items-center gap-2">
+                      <span>QuantumResist</span>
+                    </h1>
+                    <span className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase tracking-wider">
+                      Hybrid Classical-Post-Quantum Platform
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-4 border-t dark:border-[#23271f] border-[#e6e4da] flex items-center justify-between text-xs font-mono dark:text-[#b2b0a6] text-[#5c5a53]">
+                  <span>ECDSA (secp256k1) + ML-DSA-65</span>
+                  <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold">SHA3-512</span>
+                </div>
+              </div>
+
+              {/* Card 6: Wireframe Isometric 3D Cubes & Matrix Code */}
+              <WireframeCubes onInspectBlocks={() => setActiveModalModule("mempool")} />
+            </div>
+          </div>
+        )}
+
+        {/* 3. VIEW B: DEDICATED PQC ARCHITECTURE & SIMULATION SECTION */}
+        {currentView === "simulation" && (
+          <div className="w-full animate-in fade-in duration-200">
+            <SimulationSection
+              onBackToOverview={() => setCurrentView("overview")}
+              isLiveMode={isLiveMode}
+            />
+          </div>
+        )}
+      </div>
 
       {/* 4. Interactive Fullscreen Modal for Detailed Module Laboratory */}
       <ModuleModal
@@ -146,11 +154,11 @@ export default function Home() {
       />
 
       {/* 5. Footer with Academic Affiliation */}
-      <footer className="w-full pt-4 border-t dark:border-[#161d27] border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-slate-500 gap-3">
+      <footer className="w-full max-w-7xl mx-auto pt-4 border-t dark:border-[#23271f] border-[#e6e4da] flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#9a978c] dark:text-[#6f6d64] gap-3">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-[#00dc82]" />
+          <ShieldCheck className="w-4 h-4 text-[#2e7d4f] dark:text-[#5fca8c]" />
           <span>
-            <strong className="dark:text-white text-slate-900">Md. Tanvir Hasan</strong> · Dept. of Computer Science Engineering, Daffodil International University
+            <strong className="dark:text-[#ecebe4] text-[#1d1d1a]">Md. Tanvir Hasan</strong> · Dept. of Computer Science Engineering, Daffodil International University
           </span>
         </div>
         <div className="flex items-center gap-4">
@@ -158,7 +166,7 @@ export default function Home() {
             href="https://orcid.org/0009-0008-9130-3360"
             target="_blank"
             rel="noreferrer"
-            className="text-[#00dc82] hover:underline flex items-center gap-1 font-bold"
+            className="text-[#2e7d4f] dark:text-[#5fca8c] hover:underline flex items-center gap-1 font-bold"
           >
             <span>ORCID: 0009-0008-9130-3360</span>
             <ExternalLink className="w-3 h-3" />

@@ -10,7 +10,7 @@ export const HexBadge: React.FC<HexBadgeProps> = ({ onInspectCrypto }) => {
   return (
     <div
       onClick={onInspectCrypto}
-      className="group cursor-pointer relative h-full min-h-[260px] rounded-2xl dark:bg-[#0b0e14] bg-white border dark:border-[#161d27] border-slate-200 hover:dark:border-[#263344] hover:border-slate-300 p-5 flex flex-col justify-between overflow-hidden transition-all shadow-md"
+      className="group cursor-pointer relative h-full min-h-[260px] rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] hover:dark:border-[#30352b] hover:border-[#d9d6ca] p-5 flex flex-col justify-between overflow-hidden transition-all shadow-xs"
     >
       {/* Ambient radial background glow */}
       <div className="absolute inset-0 bg-radial from-[#00dc82]/5 via-transparent to-transparent pointer-events-none" />
