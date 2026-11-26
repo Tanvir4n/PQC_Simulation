@@ -29,9 +29,9 @@ export default function Home() {
 
         {/* 2. VIEW A: EXISTING BENTO GRID DESIGN (Styled in Simulation Warm Paper / Obsidian Palette) */}
         {currentView === "overview" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start animate-in fade-in duration-200">
-            {/* Left Column: Interactive Pillar Navigator & Inspector (Span 4) */}
-            <div className="lg:col-span-4 space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch animate-in fade-in duration-200">
+            {/* Left Column: Interactive Pillar Navigator, Affiliation & Live Benchmark Module (Span 4) */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
               <PillarAccordion onOpenModule={(id) => setActiveModalModule(id)} />
 
               {/* Academic Affiliation Card */}
@@ -51,6 +51,84 @@ export default function Home() {
                   <span>ORCID</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
+              </div>
+
+              {/* Paper Telemetry & EVM Benchmark Module (Fills Left Column Cleanly) */}
+              <div
+                onClick={() => setActiveModalModule("scalability")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setActiveModalModule("scalability")}
+                className="group cursor-pointer flex-1 rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] hover:dark:border-[#30352b] hover:border-[#d9d6ca] p-5 flex flex-col justify-between gap-4 shadow-xs transition-all"
+              >
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#7cc046] dark:bg-[#5fca8c] animate-pulse" />
+                    <span className="text-[11px] dark:text-[#6f6d64] text-[#9a978c] uppercase tracking-wider font-semibold">
+                      Empirical Telemetry
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#2e7d4f] dark:text-[#5fca8c] bg-[#f2f7f0] dark:bg-[#5fca8c]/10 px-2 py-0.5 rounded border border-[#a9cfb2] dark:border-[#5fca8c]/25 font-bold">
+                    1,000-Run Avg
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="rounded-2xl dark:bg-[#12140f] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] p-3">
+                    <div className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase">
+                      Wire Envelope
+                    </div>
+                    <div className="text-base font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] mt-0.5 font-mono">
+                      3,380 B
+                    </div>
+                    <div className="text-[10px] font-mono text-[#2e7d4f] dark:text-[#5fca8c] mt-0.5">
+                      1B + 70B + 3,309B
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl dark:bg-[#12140f] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] p-3">
+                    <div className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase">
+                      Peak Throughput
+                    </div>
+                    <div className="text-base font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] mt-0.5 font-mono">
+                      1,054 TPS
+                    </div>
+                    <div className="text-[10px] font-mono text-[#2e7d4f] dark:text-[#5fca8c] mt-0.5">
+                      100-Node Mesh
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl dark:bg-[#12140f] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] p-3">
+                    <div className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase">
+                      EVM Auth Gas
+                    </div>
+                    <div className="text-base font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] mt-0.5 font-mono">
+                      70,442
+                    </div>
+                    <div className="text-[10px] font-mono text-[#a8701f] dark:text-[#e0a54c] mt-0.5">
+                      HybridAuth.sol
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl dark:bg-[#12140f] bg-[#f6f5ef] border dark:border-[#23271f] border-[#e6e4da] p-3">
+                    <div className="text-[10px] font-mono dark:text-[#6f6d64] text-[#9a978c] uppercase">
+                      Parity Trough
+                    </div>
+                    <div className="text-base font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] mt-0.5 font-mono">
+                      75.4%
+                    </div>
+                    <div className="text-[10px] font-mono dark:text-[#b2b0a6] text-[#5c5a53] mt-0.5">
+                      Phase P3 Safety
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] font-mono border-t dark:border-[#23271f] border-[#e6e4da] pt-2.5">
+                  <span className="dark:text-[#6f6d64] text-[#9a978c]">Table 3 · 9 · 11 · 12</span>
+                  <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold group-hover:underline">
+                    [Inspect Benchmarks] →
+                  </span>
+                </div>
               </div>
             </div>
 
