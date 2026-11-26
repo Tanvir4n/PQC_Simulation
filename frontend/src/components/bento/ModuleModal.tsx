@@ -73,28 +73,24 @@ export const ModuleModal: React.FC<ModuleModalProps> = ({
             >
               <span className="relative w-4 h-4 shrink-0 flex items-center justify-center">
                 <Sun
-                  className={`w-3.5 h-3.5 text-amber-400 absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
-                  }`}
+                  className={`w-3.5 h-3.5 text-amber-400 absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
+                    }`}
                 />
                 <Moon
-                  className={`w-3.5 h-3.5 text-[#5c5a53] absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isDark ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
-                  }`}
+                  className={`w-3.5 h-3.5 text-[#5c5a53] absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isDark ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+                    }`}
                 />
               </span>
               <span className="hidden sm:inline-flex relative w-[36px] h-4 items-center overflow-hidden">
                 <span
-                  className={`absolute inset-0 flex items-center text-[11px] font-medium text-[#b2b0a6] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isDark ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
-                  }`}
+                  className={`absolute inset-0 flex items-center text-[11px] font-medium text-[#b2b0a6] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isDark ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
+                    }`}
                 >
                   Day
                 </span>
                 <span
-                  className={`absolute inset-0 flex items-center text-[11px] font-medium text-[#5c5a53] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isDark ? "opacity-0 translate-y-2.5" : "opacity-100 translate-y-0"
-                  }`}
+                  className={`absolute inset-0 flex items-center text-[11px] font-medium text-[#5c5a53] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isDark ? "opacity-0 translate-y-2.5" : "opacity-100 translate-y-0"
+                    }`}
                 >
                   Night
                 </span>

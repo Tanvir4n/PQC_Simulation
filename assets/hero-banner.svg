@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="QuantumResist: Hybrid Classical-Post-Quantum Blockchain Simulator">
+  <defs>
+    <!-- Main Card Gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f110e" />
+      <stop offset="55%" stop-color="#141813" />
+      <stop offset="100%" stop-color="#0d1210" />
+    </linearGradient>
+
+    <!-- Border Stroke -->
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2c3528" />
+      <stop offset="50%" stop-color="#3ee6a0" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#5b6be1" stop-opacity="0.35" />
+    </linearGradient>
+
+    <!-- Ambient Emerald Glow -->
+    <radialGradient id="emeraldGlow" cx="76%" cy="50%" r="48%">
+      <stop offset="0%" stop-color="#3ee6a0" stop-opacity="0.16" />
+      <stop offset="60%" stop-color="#5b6be1" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#0f110e" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="leftGlow" cx="12%" cy="22%" r="36%">
+      <stop offset="0%" stop-color="#3ee6a0" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#0f110e" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Brand Tile Gradient -->
+    <linearGradient id="tileGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b2b23" />
+      <stop offset="100%" stop-color="#0a120e" />
+    </linearGradient>
+
+    <!-- Shield Split Clip -->
+    <clipPath id="shieldClip">
+      <path d="M96 64 L118 71.5 V90 C118 103.6 109.2 114 96 120.4 C82.8 114 74 103.6 74 90 V71.5 Z" />
+    </clipPath>
+    <clipPath id="shieldLeftHalf">
+      <rect x="70" y="60" width="26" height="66" />
+    </clipPath>
+
+    <!-- Subtle Dot Grid Pattern -->
+    <pattern id="dotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#4b5645" opacity="0.45" />
+    </pattern>
+
+    <!-- Connector Gradients -->
+    <linearGradient id="skyToIndigo" x1="700" y1="125" x2="885" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="100%" stop-color="#8c9bff" />
+    </linearGradient>
+    <linearGradient id="emeraldToIndigo" x1="700" y1="295" x2="885" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3ee6a0" />
+      <stop offset="100%" stop-color="#8c9bff" />
+    </linearGradient>
+    <linearGradient id="indigoToCommit" x1="990" y1="210" x2="1058" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8c9bff" />
+      <stop offset="100%" stop-color="#3ee6a0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base Frame -->
+  <rect x="2" y="2" width="1196" height="416" rx="28" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
+  <rect x="2" y="2" width="1196" height="416" rx="28" fill="url(#dotGrid)" opacity="0.45" />
+  <rect x="2" y="2" width="1196" height="416" rx="28" fill="url(#emeraldGlow)" />
+  <rect x="2" y="2" width="1196" height="416" rx="28" fill="url(#leftGlow)" />
+
+  <!-- Subtle Geometric Orbit Arcs on Right -->
+  <ellipse cx="920" cy="210" rx="225" ry="135" fill="none" stroke="#2c3528" stroke-width="1" stroke-dasharray="4 6" opacity="0.6" />
+  <ellipse cx="920" cy="210" rx="165" ry="185" fill="none" stroke="#3ee6a0" stroke-width="0.8" stroke-opacity="0.14" stroke-dasharray="3 7" />
+
+  <!-- ========================================================= -->
+  <!-- LEFT HERO: BRAND MARK, TYPOGRAPHY & EMPIRICAL KPI STRIP    -->
+  <!-- ========================================================= -->
+
+  <!-- Brand Tile (Matches BrandMark component) -->
+  <rect x="60" y="56" width="72" height="72" rx="20" fill="url(#tileGrad)" stroke="#3ee6a0" stroke-opacity="0.32" stroke-width="1.2" />
+  <g clip-path="url(#shieldClip)">
+    <rect x="70" y="60" width="26" height="66" fill="#3ee6a0" clip-path="url(#shieldLeftHalf)" />
+    <!-- Lattice grid inside right half -->
+    <circle cx="101.8" cy="77.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="109.5" cy="77.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="101.8" cy="86.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="109.5" cy="86.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="101.8" cy="95.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="109.5" cy="95.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="101.8" cy="104.5" r="2.2" fill="#3ee6a0" />
+    <circle cx="109.5" cy="104.5" r="2.2" fill="#3ee6a0" />
+  </g>
+  <path d="M96 64 L118 71.5 V90 C118 103.6 109.2 114 96 120.4 C82.8 114 74 103.6 74 90 V71.5 Z" fill="none" stroke="#3ee6a0" stroke-width="2.4" stroke-linejoin="round" />
+
+  <!-- Spec Pill Next to Brand -->
+  <rect x="150" y="60" width="320" height="28" rx="14" fill="#182019" stroke="#2c382a" stroke-width="1" />
+  <circle cx="168" cy="74" r="4" fill="#3ee6a0">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite" />
+  </circle>
+  <text x="182" y="78" fill="#b7c2b3" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11.5" font-weight="600" letter-spacing="1.1">
+    NIST FIPS 204 · RFC 6979 · HYBRID PQC
+  </text>
+
+  <!-- Main Wordmark -->
+  <text x="150" y="126" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="42" letter-spacing="-1.2">
+    <tspan fill="#f4f6f0" font-weight="800">Quantum</tspan><tspan fill="#b9c3b6" font-weight="400">Resist</tspan>
+  </text>
+
+  <!-- Tagline / Research Paper Context -->
+  <text x="60" y="176" fill="#ecebe4" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="-0.4">
+    Hybrid Classical–Post-Quantum Blockchain Simulator
+  </text>
+  <text x="60" y="206" fill="#9ea699" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5">
+    Dual ECDSA (secp256k1) + ML-DSA-65 verification over SHA3-512 canonical context.
+  </text>
+  <text x="60" y="229" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12">
+    Md. Tanvir Hasan · Daffodil International University · ORCID 0009-0008-9130-3360
+  </text>
+
+  <!-- 4 Ground-Truth Metric Pills (Bottom Left) -->
+  <!-- Card 1 -->
+  <rect x="60" y="268" width="134" height="72" rx="14" fill="#151914" stroke="#252c22" stroke-width="1" />
+  <text x="74" y="290" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">CONJUNCTION</text>
+  <text x="74" y="314" fill="#3ee6a0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17" font-weight="800">b_e ∧ b_pq</text>
+  <text x="74" y="330" fill="#9ea699" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">Strict AND Gate</text>
+
+  <!-- Card 2 -->
+  <rect x="206" y="268" width="134" height="72" rx="14" fill="#151914" stroke="#252c22" stroke-width="1" />
+  <text x="220" y="290" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">ENVELOPE</text>
+  <text x="220" y="314" fill="#f4f6f0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17" font-weight="800">3,380 B</text>
+  <text x="220" y="330" fill="#60a5fa" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">1B + 70B + 3,309B</text>
+
+  <!-- Card 3 -->
+  <rect x="352" y="268" width="134" height="72" rx="14" fill="#151914" stroke="#252c22" stroke-width="1" />
+  <text x="366" y="290" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">THROUGHPUT</text>
+  <text x="366" y="314" fill="#f4f6f0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17" font-weight="800">1,054 TPS</text>
+  <text x="366" y="330" fill="#5fca8c" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">100-Node Mesh</text>
+
+  <!-- Card 4 -->
+  <rect x="498" y="268" width="134" height="72" rx="14" fill="#151914" stroke="#252c22" stroke-width="1" />
+  <text x="512" y="290" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">EVM ANVIL</text>
+  <text x="512" y="314" fill="#8c9bff" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="17" font-weight="800">70,442</text>
+  <text x="512" y="330" fill="#9ea699" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">HybridAuth Gas</text>
+
+  <!-- Bottom Attribution Line -->
+  <text x="60" y="376" fill="#6f786a" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11">
+    Next.js 16 · React Flow · FastAPI · LibOQS / Dilithium · Solidity 0.8.28 · Anvil EVM
+  </text>
+
+  <!-- ========================================================= -->
+  <!-- RIGHT HERO: ARCHITECTURAL HYBRID VERIFICATION FLOW        -->
+  <!-- ========================================================= -->
+
+  <!-- Vertical Divider -->
+  <line x1="658" y1="48" x2="658" y2="372" stroke="#252c22" stroke-width="1" stroke-dasharray="4 4" />
+
+  <!-- Flow Title -->
+  <text x="692" y="68" fill="#828a7d" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="1.4">
+    CANONICAL ARCHITECTURE · STRICT CONJUNCTION PIPELINE
+  </text>
+
+  <!-- Connector Paths (Animated Signal Pulses) -->
+  <path id="pathTop" d="M 848 134 C 875 134, 875 186, 902 196" fill="none" stroke="url(#skyToIndigo)" stroke-width="2" stroke-dasharray="5 4">
+    <animate attributeName="stroke-dashoffset" from="18" to="0" dur="1.4s" repeatCount="indefinite" />
+  </path>
+  <path id="pathBot" d="M 848 286 C 875 286, 875 234, 902 224" fill="none" stroke="url(#emeraldToIndigo)" stroke-width="2" stroke-dasharray="5 4">
+    <animate attributeName="stroke-dashoffset" from="18" to="0" dur="1.4s" repeatCount="indefinite" />
+  </path>
+  <path id="pathOut" d="M 1018 210 L 1054 210" fill="none" stroke="url(#indigoToCommit)" stroke-width="2.2" stroke-dasharray="4 3">
+    <animate attributeName="stroke-dashoffset" from="14" to="0" dur="1.2s" repeatCount="indefinite" />
+  </path>
+
+  <!-- Node 1: Classical ECDSA -->
+  <rect x="692" y="96" width="156" height="76" rx="16" fill="#121922" stroke="#3b82f6" stroke-opacity="0.45" stroke-width="1.3" />
+  <circle cx="710" cy="116" r="4" fill="#60a5fa" />
+  <text x="722" y="120" fill="#93c5fd" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="700">CLASSICAL</text>
+  <text x="710" y="142" fill="#f4f6f0" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="14.5" font-weight="700">ECDSA Sign</text>
+  <text x="710" y="159" fill="#9ea699" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">secp256k1 · ~70 B DER</text>
+
+  <!-- Node 2: Post-Quantum ML-DSA-65 -->
+  <rect x="692" y="248" width="156" height="76" rx="16" fill="#121e17" stroke="#3ee6a0" stroke-opacity="0.45" stroke-width="1.3" />
+  <circle cx="710" cy="268" r="4" fill="#3ee6a0" />
+  <text x="722" y="272" fill="#6ee7b7" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="700">POST-QUANTUM</text>
+  <text x="710" y="294" fill="#f4f6f0" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="14.5" font-weight="700">ML-DSA-65</text>
+  <text x="710" y="311" fill="#9ea699" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">FIPS 204 · 3,309 B</text>
+
+  <!-- Node 3: SHA3-512 Binding Banner + Vertical Feeds to Both Signers -->
+  <line x1="770" y1="192" x2="770" y2="172" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 3" stroke-opacity="0.65" />
+  <line x1="770" y1="228" x2="770" y2="248" stroke="#3ee6a0" stroke-width="1.5" stroke-dasharray="3 3" stroke-opacity="0.65" />
+  <circle cx="770" cy="172" r="2.5" fill="#60a5fa" />
+  <circle cx="770" cy="248" r="2.5" fill="#3ee6a0" />
+  <rect x="702" y="192" width="136" height="36" rx="18" fill="#171b16" stroke="#343d30" stroke-width="1.2" />
+  <text x="770" y="214" text-anchor="middle" fill="#cfd8cb" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="700">
+    SHA3-512 Digest
+  </text>
+
+  <!-- Node 4: Strict AND Gateway -->
+  <rect x="896" y="160" width="122" height="100" rx="18" fill="#16182b" stroke="#8c9bff" stroke-opacity="0.65" stroke-width="1.5" />
+  <text x="957" y="185" text-anchor="middle" fill="#a6b3ff" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="700">GATEWAY</text>
+  <text x="957" y="212" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="18" font-weight="800">∧</text>
+  <text x="957" y="232" text-anchor="middle" fill="#ecebe4" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="12.5" font-weight="700">Strict AND</text>
+  <text x="957" y="247" text-anchor="middle" fill="#a6b3ff" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">Zero Fallback</text>
+
+  <!-- Node 5: Ledger Commit Output -->
+  <rect x="1054" y="166" width="104" height="88" rx="18" fill="#102218" stroke="#3ee6a0" stroke-opacity="0.7" stroke-width="1.5" />
+  <circle cx="1106" cy="193" r="12" fill="#3ee6a0" fill-opacity="0.16" stroke="#3ee6a0" stroke-width="1.5" />
+  <path d="M1100.5 193.5 L1104.2 197.2 L1111.5 189.5" fill="none" stroke="#3ee6a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="1106" y="224" text-anchor="middle" fill="#f4f6f0" font-family="ui-sans-serif, -apple-system, sans-serif" font-size="12" font-weight="700">ACCEPT</text>
+  <text x="1106" y="240" text-anchor="middle" fill="#6ee7b7" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">Merkle · EVM</text>
+
+  <!-- Right Bottom Status Bar -->
+  <rect x="692" y="346" width="466" height="28" rx="14" fill="#151914" stroke="#252c22" stroke-width="1" />
+  <circle cx="710" cy="360" r="3.5" fill="#3ee6a0" />
+  <text x="722" y="364" fill="#9ea699" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">
+    Adversarial Ablation C0–C5 · 7-Phase Migration (75.4% Parity Trough)
+  </text>
+</svg>

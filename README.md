@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="assets/hero-banner.svg" alt="QuantumResist: Hybrid Classical–Post-Quantum Blockchain Simulator" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/NIST-FIPS%20204%20(ML--DSA--65)-2e7d4f?style=for-the-badge&logoColor=white" alt="NIST FIPS 204" />
+  <img src="https://img.shields.io/badge/Classical-ECDSA%20secp256k1-4a59cc?style=for-the-badge" alt="ECDSA secp256k1" />
+  <img src="https://img.shields.io/badge/Envelope-3%2C380%20Bytes-141712?style=for-the-badge" alt="3380 Bytes" />
+  <img src="https://img.shields.io/badge/Peak%20TPS-1%2C054%20TPS-2e7d4f?style=for-the-badge" alt="1054 TPS" />
+  <img src="https://img.shields.io/badge/EVM-Solidity%200.8.28%20%7C%20Anvil-5c5a53?style=for-the-badge" alt="Solidity 0.8.28" />
+</p>
+
 # QuantumResist: Interactive Hybrid Blockchain Research Simulator
 
 > **Research Paper**: *A Secure and Scalable Hybrid Classical–Post-Quantum Cryptographic Framework for Quantum-Resilient Blockchain Systems*  
