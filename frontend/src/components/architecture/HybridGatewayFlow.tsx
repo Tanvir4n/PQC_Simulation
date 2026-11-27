@@ -499,13 +499,13 @@ export const HybridGatewayFlow: React.FC<HybridGatewayFlowProps> = ({
       {/* ── Diagram ── */}
       <div
         ref={wrap}
-        className="relative px-5 sm:px-8 pt-8 pb-8"
+        className="relative px-4 sm:px-6 pt-7 pb-7"
         style={{
           backgroundImage:
             "radial-gradient(ellipse 40% 50% at 38% 45%, var(--f-glow), transparent 70%)",
         }}
       >
-        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" aria-hidden>
+        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" aria-hidden>
           {edges.map((e) => (
             <g key={e.id}>
               <path
@@ -531,9 +531,9 @@ export const HybridGatewayFlow: React.FC<HybridGatewayFlowProps> = ({
           ))}
         </svg>
 
-        <div className="relative grid grid-cols-1 xl:grid-cols-[230px_220px_minmax(380px,1fr)_230px] gap-6 xl:gap-x-[64px] items-center">
+        <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(160px,195px)_minmax(170px,205px)_minmax(0,1fr)_minmax(155px,188px)] gap-5 lg:gap-x-8 xl:gap-x-11 items-center">
           {/* Column 1: inputs */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 min-w-0">
             <InputCard
               data-anchor="wallet"
               tone="trust"
@@ -566,7 +566,7 @@ export const HybridGatewayFlow: React.FC<HybridGatewayFlowProps> = ({
           {/* Column 2: hybrid envelope */}
           <div
             data-anchor="env"
-            className={`rounded-2xl border p-4 transition-all duration-300 ${
+            className={`min-w-0 rounded-2xl border p-4 transition-all duration-300 ${
               stage >= 2
                 ? "border-[var(--f-flow-line)] bg-[var(--f-flow-bg)]"
                 : "border-[var(--f-line)] bg-[var(--f-card)]"
@@ -587,7 +587,7 @@ export const HybridGatewayFlow: React.FC<HybridGatewayFlowProps> = ({
           {/* Column 3: verification gateway */}
           <div
             data-anchor="gw"
-            className="rounded-[22px] border border-[var(--f-line-strong)] bg-[var(--f-card)] p-4 sm:p-5"
+            className="min-w-0 rounded-[22px] border border-[var(--f-line-strong)] bg-[var(--f-card)] p-4 sm:p-5"
           >
             <div className="flex items-center justify-between px-1 pb-3">
               <div className="flex items-center gap-2">
@@ -661,7 +661,7 @@ export const HybridGatewayFlow: React.FC<HybridGatewayFlowProps> = ({
           </div>
 
           {/* Column 4: outcomes */}
-          <div className="flex flex-col gap-24 xl:py-10">
+          <div className="flex flex-col gap-20 lg:py-8 min-w-0">
             <OutcomeCard
               data-anchor="accept"
               tone="trust"
@@ -837,11 +837,11 @@ const CheckRow: React.FC<{
 
   return (
     <div className={`rounded-xl border px-3.5 py-3 min-h-[76px] transition-all duration-300 ${shell}`}>
-      <div className="flex items-baseline gap-2.5">
-        <span className="font-mono text-[12px] text-[var(--f-muted)]">{String(n).padStart(2, "0")}</span>
-        <span className="text-[16px] font-semibold tracking-tight">{title}</span>
-        <span className="font-mono text-[11px] text-[var(--f-muted)] truncate">{tag}</span>
-        <span className={`ml-auto font-mono text-[13.5px] font-bold ${valueColor}`}>{value}</span>
+      <div className="flex items-baseline gap-2 min-w-0">
+        <span className="font-mono text-[12px] text-[var(--f-muted)] shrink-0">{String(n).padStart(2, "0")}</span>
+        <span className="text-[15px] font-semibold tracking-tight whitespace-nowrap">{title}</span>
+        <span className="font-mono text-[11px] text-[var(--f-muted)] truncate min-w-0">{tag}</span>
+        <span className={`ml-auto font-mono text-[13.5px] font-bold shrink-0 ${valueColor}`}>{value}</span>
       </div>
       <p
         className={`mt-1 text-[13.5px] leading-snug text-[var(--f-ink-2)] transition-opacity duration-300 ${
