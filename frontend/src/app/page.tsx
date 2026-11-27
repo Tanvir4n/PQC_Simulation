@@ -137,13 +137,6 @@ export default function Home() {
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Card 1: Big Bold Hero Statement & Signature Simulation Lime Pill */}
               <div className="rounded-3xl dark:bg-[#141712] bg-[#fdfdfa] border dark:border-[#23271f] border-[#e6e4da] p-6 flex flex-col justify-between space-y-4 shadow-xs relative overflow-hidden">
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-15"
-                  style={{
-                    backgroundImage: "radial-gradient(#9a978c 1px, transparent 1px)",
-                    backgroundSize: "18px 18px",
-                  }}
-                />
                 <div className="relative z-10 space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono dark:text-[#6f6d64] text-[#9a978c]">
                     <span>Security Assurance</span>
