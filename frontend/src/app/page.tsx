@@ -9,6 +9,7 @@ import { HexBadge } from "@/components/bento/HexBadge";
 import { WireframeCubes } from "@/components/bento/WireframeCubes";
 import { ModuleModal } from "@/components/bento/ModuleModal";
 import { BrandMark } from "@/components/brand/QuantumLogo";
+import { ScrambleText } from "@/components/brand/ScrambleText";
 import { SimulationSection } from "@/components/architecture/SimulationSection";
 import { Play, ExternalLink, ShieldCheck } from "lucide-react";
 
@@ -148,10 +149,23 @@ export default function Home() {
                     <span>Security Assurance</span>
                     <span className="text-[#2e7d4f] dark:text-[#5fca8c] font-bold">[+]</span>
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] leading-snug">
-                    Build <span className="text-[#2e7d4f] dark:text-[#5fca8c]">quantum-resilient</span> blockchains that survive{" "}
-                    <span className="dark:text-[#ecebe4] text-[#1d1d1a]">Shor&apos;s algorithm</span>
-                  </h2>
+                  <ScrambleText
+                    as="h2"
+                    durationMs={1250}
+                    className="text-xl md:text-2xl font-extrabold dark:text-[#ecebe4] text-[#1d1d1a] leading-snug cursor-default"
+                    segments={[
+                      { text: "Build " },
+                      {
+                        text: "quantum-resilient",
+                        className: "text-[#2e7d4f] dark:text-[#5fca8c]",
+                      },
+                      { text: " blockchains that survive " },
+                      {
+                        text: "Shor's algorithm",
+                        className: "dark:text-[#ecebe4] text-[#1d1d1a]",
+                      },
+                    ]}
+                  />
                   <div className="text-xs font-mono dark:text-[#b2b0a6] text-[#5c5a53] pt-1">
                     [Strict AND Verification · 1,054 Peak TPS · 3,380 B Envelope]
                   </div>
